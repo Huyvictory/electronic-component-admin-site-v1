@@ -1,0 +1,195 @@
+.master-layout {
+    min-height: 100vh;
+    /* Styles NavSider */
+    
+    .custom-nav.ant-menu-inline {
+        custom-nav-item, .custom-sub-nav >.ant-menu-submenu-title {
+            padding: 0 34px 0 10px !important;
+        }
+        .custom-nav-item {
+            padding: 0 34px 0 10px !important;
+        }
+    }
+    /* End Styles NavSider */
+    /* Styles Header */
+    .app-header {
+        height: $heighAppHeader;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0;
+        background: #fff;
+        box-shadow: 4px 4px 40px 0 rgba(0,0,0,.05);
+        width: calc(100vw - 220px);
+        .icon-collapsed {
+            padding: 0 22px;
+            height: 64px;
+            cursor: pointer;
+            transition: all .3s,padding 0s;
+            font-size: 20px;
+            &:hover {
+                background-color: rgba(0, 0, 0, .025);
+            }
+            .trigger {
+                font-size: 22px;
+            }
+        }
+       
+        .menu-top-right {
+            line-height: 56px;
+            border: none;
+            text-align: right;
+            .ant-menu-submenu-title {
+                min-width: 160px;
+                display: flex;
+                align-items: center;
+                height: 56px;
+                .submenu-title-wrapper {
+                    display: flex;
+                    align-items: center;
+                    .ant-avatar-icon {
+                        margin-right: 5px;
+                        .anticon-user {
+                            margin-right: 0;
+                            font-size: 18px;
+                        }
+                    }
+                    .anticon-down {
+                        margin-left: 5px;
+                    }
+                }
+            }
+            .ant-menu-submenu-active {
+                // color: #fff !important;
+                background: $navBgActiveColor;
+            }
+        }
+    }
+    /* End Styles Header */
+    .app-breadcrumb {
+        margin: 16px 20px
+    }
+    /* Styles Sider*/
+    .nav-sider {
+        overflow: auto;
+        height: 100vh;
+        position: fixed;
+        left: 0px;
+        z-index: 2;
+        &__collapsed {
+            flex: 0 0 $navSiderCollapsedWidth;
+            max-width: $navSiderCollapsedWidth;
+            min-width: $navSiderCollapsedWidth;
+            width: $navSiderCollapsedWidth;
+        }
+        &__expanded {
+            flex: 0 0 $navSiderExpandedWidth !important;
+            max-width: $navSiderExpandedWidth !important;
+            min-width: $navSiderExpandedWidth !important;
+            width: $navSiderExpandedWidth !important;
+        }
+        .ant-menu-submenu-title {
+            display: flex;
+            align-items: center;
+            .ant-spin-spinning {
+                flex-shrink: 0;
+                width: fit-content;
+                margin-left: auto;
+            }
+            .title {
+                flex: 1;
+                max-width: 89%;
+                overflow: hidden;
+            }
+        }
+        .redirect-login {
+            padding: 2px;
+            margin-right: 4px;
+            transition: all 0.2s;
+            border-radius: 3px;
+            color: #fff;
+        }
+        .redirect-login:hover {
+            background-color: #e6e6e6;
+            color: #000C17;
+        }
+    }
+    .logo {
+        // height: $heighAppHeader;
+        //padding: 9px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        // background: #002140;
+        &__collapsed {
+            height: 80px;
+            padding: 8px;
+            img {
+                border-radius: 4px;
+                width: 100%;
+            }
+        }
+        &__expanded {
+            padding: 8px;
+            height: $navSiderExpandedWidth;
+            img {
+                border-radius: 10px;
+                width: 100%;
+            }
+        }
+    }
+    /* End Styles Sider*/
+    .app-content {
+        margin-top: $heighAppHeader;
+        height: calc(100vh - 58px);
+        overflow-y: auto;
+        .content-wrapper {
+            margin: 0 8px 8px 8px;
+            padding: 24px;
+            // min-height: 360px;
+            min-height: calc(100vh - 170px);
+            background: #fff;  
+        }
+        &::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        &::-webkit-scrollbar-thumb {
+            background-color: #e6e6e6;
+        }
+    }
+    .app-footer {
+        padding: 14px 50px;
+        background: #e7e7e7;
+        text-align: center;
+    }
+}
+
+.overlay-panel-submenu {
+    padding: 0;
+    .ant-menu-submenu-title {
+        padding-right: 5px;
+    }
+    li {
+        background: #fff !important;
+        margin: -4px 0 !important;
+    }
+    li, li a {
+        color: $navTextColor !important;
+        &:hover {
+            color: $navTextActiveColor !important;
+        }
+    }
+}
+
+.overlay-panel-submenu.ant-menu-submenu-selected {
+    color: $navTextColor;
+    border: none;
+}
+
+.full-screen-loading {
+    .ant-spin
+    {
+        max-height: unset !important;
+    }
+}

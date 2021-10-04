@@ -1,0 +1,45 @@
+.public-layout {
+    .container {
+        // max-width: 1000px;
+        width: 100%;
+        // margin-left: auto;
+        // margin-right: auto;
+        padding-left: 15px;
+        padding-right: 15px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .app-header {
+        background: #fff;
+        position: fixed;
+        width: 100%;
+        box-shadow: 0 2px 8px #f0f1f2;
+        z-index: 10;
+        padding: 0;
+        height: $heighPublicLayoutHeader;
+        .app-logo {
+            // float: left;
+            text-align: center;
+            img {width: 50px;}
+            a {
+                text-decoration: none;
+                line-height: $heighPublicLayoutHeader;
+                font-size: 21px;
+                display: inline-block;
+                &:hover {
+                text-decoration: none;
+                }
+            }
+        }
+    }
+
+    .app-content {
+        margin-top: $heighPublicLayoutHeader;
+        background: #fff; 
+        height: calc(100vh - 128px);
+        width: 100vw;
+        display: flex;
+        align-items: center;
+    }
+}

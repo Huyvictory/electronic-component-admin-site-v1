@@ -1,0 +1,179 @@
+@mixin keyframes($animation-name) {
+    @-webkit-keyframes #{$animation-name} {
+      @content;
+    }
+    @-moz-keyframes #{$animation-name} {
+      @content;
+    }  
+    @-ms-keyframes #{$animation-name} {
+      @content;
+    }
+    @-o-keyframes #{$animation-name} {
+      @content;
+    }  
+    @keyframes #{$animation-name} {
+      @content;
+    }
+  }
+
+  @mixin animation($str) {
+    -webkit-animation: #{$str};
+    -moz-animation: #{$str};
+    -ms-animation: #{$str};
+    -o-animation: #{$str};
+    animation: #{$str};      
+  }
+  
+  @include keyframes(slide-left) {
+    0% { left: -100%; opacity: 0; }
+    100% { left: 0; opacity: 1;}
+  }
+  @include keyframes(slide-right) {
+    0% { left: 0; opacity: 1; }
+    100% { left: 100%; opacity: 0;}
+  }
+
+.question-component{
+    position: relative;
+    .component {
+        width: 100%;
+        position: absolute;
+        @include animation('slide-left 0.75s');
+    }
+}
+
+.step-by-step-on-img {
+  .add-img {
+    .edit-img {
+        text-align: center;
+        padding: 32px 16px;
+        border: 1px #ccc dashed;
+        cursor: pointer;
+        transition: all 0.1s;
+        color: #1890ff;
+    }
+    .edit-img.add {
+      color: rgba(0, 0, 0, 0.65);
+    }
+    .edit-img:hover {
+      border: 1px #1890ff dashed;
+    }
+    .ant-upload {
+      width: 100%;
+      height: 120px;
+    }
+  }
+}
+.modal-step-by-step {
+  min-height: 612px;
+  .slick-prev:before, .slick-next:before {
+    color: #ccc !important;
+  }
+  .img-ctn {
+    position: relative;
+    cursor: pointer;
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    position: relative;
+    .del-img {
+      position: absolute;
+      right: 8px;
+      top: 8px;
+      opacity: 0.5;
+      font-weight: bold;
+      color: #000;
+      z-index: 99;
+      transition: opacity 0.5;
+    }
+    .del-img:hover {
+      color: #fff;
+      background-color: #000;
+      border-radius: 50%;
+    }
+
+    .img-overlay {
+      transition: all 0.5s;
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      right: 4px;
+      bottom: 4px;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    .img-overlay:hover {
+      -webkit-filter: opacity(0.7); /* Safari 6.0 - 9.0 */
+      filter: opacity(0.7);
+      .del-img {
+        opacity: 1;
+      }
+    }
+  }
+
+  .img-ctn:hover {
+    .del-img {
+      opacity: 1;
+    }
+  }
+
+  .region-ctn {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000;
+    position: relative;
+  }
+
+  .select-ratio {
+    width: 120px;
+    padding: 0 8px;
+  }
+
+  .ctn-upload-img {
+    display: flex;
+    margin: 0 auto;
+    margin-top: 16px;
+    justify-content: center;
+
+    .ctn-slider {
+      width: 500px;
+      max-height: 100px;
+      background-color: rgba(204, 204, 204, 0.5);
+      min-height: 100px;
+      .slick-track {
+        margin-left: 0 !important;
+      }
+    }
+  
+    .avatar-uploader {
+      width: fit-content;
+      .ant-upload {
+        height: 100px;
+        width: 100px;
+        background-color: rgba(204, 204, 204, 0.5);
+        margin: 0;
+        border: none;
+        color: #62b2fc;
+        transition: all 0.5s;
+        span {
+          div {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            span {
+              margin-right: 3px;
+            }
+          }
+        }
+      }
+      .ant-upload:hover {
+        background-color: #62b2fc;
+        color: #fff;
+      }
+    }
+  }
+}

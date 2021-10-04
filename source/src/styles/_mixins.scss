@@ -1,0 +1,47 @@
+@mixin oocssWidthPX($list...) {
+    @if (existed($list...)) {
+        @each $value in $list {
+            .s-w#{$value}px { width: $value + px; }
+        }
+    }
+  }
+  
+  @mixin oocssWidthPER($list...) {
+    @if (existed($list...)) {
+        @each $value in $list {
+            .s-w#{$value}per { width: $value + 0%; }
+        }
+    }
+  }
+  
+  @mixin oocssMarginPaddingPX($list...) {
+    @if (existed($list...)) {
+        @each $value in $list {
+            $cName : 00;
+            $tmp1 : floor($value);
+            $tmp2 : floor($value * 10) - ($tmp1 * 10);
+  
+            @if ($tmp2 > 0) {
+                $cName : $tmp1 + _ + $tmp2;
+            } @else {
+                $cName : $tmp1;
+            }
+  
+            /* #{$value} em */
+            .s-mg#{$cName}px { margin: $value + px; }
+            .s-mt#{$cName}px { margin-top: $value + px; }
+            .s-mr#{$cName}px { margin-right: $value + px; }
+            .s-mb#{$cName}px { margin-bottom: $value + px; }
+            .s-ml#{$cName}px { margin-left: $value + px; }
+            .s-pd#{$cName}px { padding: $value + px; }
+            .s-pt#{$cName}px { padding-top: $value + px; }
+            .s-pr#{$cName}px { padding-right: $value + px; }
+            .s-pb#{$cName}px { padding-bottom: $value + px; }
+            .s-pl#{$cName}px { padding-left: $value + px; }
+        }
+    }
+  }
+  
+// @include oocssWidthPX();
+//   @include oocssWidthPER(15,20,50);
+@include oocssMarginPaddingPX(4,10,52);

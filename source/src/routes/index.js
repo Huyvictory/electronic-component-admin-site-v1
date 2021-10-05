@@ -19,13 +19,6 @@ import Forbidden from '../containers/Forbidden';
 import SettingsListPage from '../containers/settings/SettingsListPage';
 import GroupPermissionListPage from '../containers/groupPermission/GroupPermissionListPage';
 import CustomerListPage from '../containers/customer/CustomerListPage';
-import CategoryExportListPage from '../containers/category/CategoryExportListPage';
-import CategoryExportListPageChild from '../containers/category/CategoryExportListPageChild';
-import CategoryImportListPage from '../containers/category/CategoryImportListPage';
-import CategoryImportListPageChild from '../containers/category/CategoryImportListPageChild';
-import CategoryProductListPage from '../containers/category/CategoryProductListPage';
-import CategoryProductListPageChild from '../containers/category/CategoryProductListPageChild';
-import ProductListPage from '../containers/product/ProductListPage';
 
 const RootRoute = () => {
     const {
@@ -36,10 +29,6 @@ const RootRoute = () => {
         setting,
         groupPermission,
         customer,
-        categoryExport,
-        categoryImport,
-        categoryProduct,
-        product,
     } = sitePathConfig;
 
     return (
@@ -60,13 +49,6 @@ const RootRoute = () => {
                 <PrivateRoute exact path={setting.path} component={SettingsListPage}/>
                 <PrivateRoute exact path={groupPermission.path} component={GroupPermissionListPage}/>
                 <PrivateRoute exact path={customer.path} component={CustomerListPage}/>
-                <PrivateRoute exact path={categoryExport.path} component={CategoryExportListPage}/>
-                <PrivateRoute exact path={categoryExport.childrenKeys[0]} component={CategoryExportListPageChild}/>
-                <PrivateRoute exact path={categoryImport.path} component={CategoryImportListPage}/>
-                <PrivateRoute exact path={categoryImport.childrenKeys[0]} component={CategoryImportListPageChild}/>
-                <PrivateRoute exact path={categoryProduct.path} component={CategoryProductListPage}/>
-                <PrivateRoute exact path={categoryProduct.childrenKeys[0]} component={CategoryProductListPageChild}/>
-                <PrivateRoute exact path={product.path + "/:id"} component={ProductListPage}/>
 
                 {/* Error Page */}
                 <PrivateRoute exact path={forbidden.path} component={Forbidden}/>

@@ -5,8 +5,6 @@ import user from './user';
 import groupPermission from './groupPermission';
 import settings from './setting';
 import customer from './customer';
-import category from './category';
-import product from './product';
 
 const rootReducer = combineReducers({
     appCommon: appCommon.reducer,
@@ -15,8 +13,6 @@ const rootReducer = combineReducers({
     groupPermission: groupPermission.reducer,
     settings: settings.reducer,
     customer: customer.reducer,
-    category: category.reducer,
-    product: product.reducer,
 });
 
 export default rootReducer;

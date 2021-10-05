@@ -2,39 +2,39 @@ import { actionTypes, reduxUtil } from '../actions/category';
 
 const { createReducer, defineActionSuccess, defineActionLoading, defineActionFailed } = reduxUtil;
 const {
-    GET_CATEGORY_LIST,
-    DELETE_CATEGORY,
+    GET_CATEGORYS_LIST,
+    DEL,
 } = actionTypes;
 
 const initialState = { 
-    categoryData: [],
-    tbCategoryLoading: false,
+    settingsData: [],
+    tbSettingsLoading: false,
 };
 
 const reducer = createReducer({
-    [defineActionLoading(GET_CATEGORY_LIST)]: (state) => {
+    [defineActionLoading(GET_SETTINGS_LIST)]: (state) => {
         return {
             ...state,
-            tbCategoryLoading: true
+            tbSettingsLoading: true
         }
     },
-    [defineActionSuccess(GET_CATEGORY_LIST)]: (state, { categoryData }) => {
+    [defineActionSuccess(GET_SETTINGS_LIST)]: (state, { settingsData }) => {
         return {
             ...state,
-            categoryData,
-            tbCategoryLoading: false
+            settingsData,
+            tbSettingsLoading: false
         }
     },
-    [defineActionLoading(DELETE_CATEGORY)] : (state) =>{
+    [defineActionLoading(DELETE_SETTING)] : (state) =>{
         return {
             ...state,
-            tbCategoryLoading: true,
+            tbSettingsLoading: true,
         }
     },
-    [defineActionFailed(DELETE_CATEGORY)] : (state) =>{
+    [defineActionFailed(DELETE_SETTING)] : (state) =>{
         return {
             ...state,
-            tbCategoryLoading: false,
+            tbSettingsLoading: false,
         }
     },
     initialState

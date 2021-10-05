@@ -56,62 +56,6 @@ const navMenuConfig = [
             }
         ]
     },
-    {
-        label: 'Danh mục',
-        icon: <UnorderedListOutlined />,
-        children: [
-            {
-                label: 'Danh mục thu',
-                ...sitePathConfig.categoryImport,
-            },
-            {
-                label: 'Danh mục chi',
-                ...sitePathConfig.categoryExport,
-            },
-            {
-                label: 'Danh mục sản phẩm',
-                ...sitePathConfig.categoryProduct,
-            },
-        ]
-    },
-    {
-        label: 'Sản phẩm',
-        icon: <InboxOutlined />,
-        ...sitePathConfig.product,
-        children: [],
-        handleOnClick(props, handleLoadingMenuItem) {
-            !this.clicked
-            && handleLoadingMenuItem(sitePathConfig.product.path)
-            && store.dispatch(
-                actions.getProductCategoryAutoComplete({
-                    params: { kind: CATEGORY_KIND_PRODUCT },
-                    onCompleted: data => {
-                        if (data?.length > 0) {
-                            const pathname = sitePathConfig.product.path;
-                            data.forEach(c => {
-                                const _pathname = `${pathname}/${c.id}`
-                                const _pathnameWithQs = `${pathname}/${c.id}?${strParams({ categoryId: c.id, categoryName: c.categoryName })}`
-                                this.children.push({
-                                    label: c.categoryName,
-                                    path: _pathnameWithQs,
-                                    key: _pathname,
-                                })
-                            })
-                        }
-                        handleLoadingMenuItem(null)
-                    },
-                    onError: error => {
-                        handleLoadingMenuItem(null)
-                        showErrorMessage(
-                            error?.message ||
-                                props.t('errorMessage')
-                        )
-                    },
-                })
-            )
-            this.clicked = true;
-        },
-    },
 ]
 
 export { navMenuConfig };

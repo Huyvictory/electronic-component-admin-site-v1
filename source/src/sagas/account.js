@@ -16,8 +16,9 @@ const {
 } = reduxUtil;
 
 function* login({ payload: { params, onCompleted, onError } }) {
+  const APP = "BACKEND_ADMIN"
   try {
-    const result = yield call(sendRequest, apiConfig.account.login, params);
+    const result = yield call(sendRequest, apiConfig.account.login, {...params, app: APP });
     const { success, responseData } = result;
     if (success && responseData.result) {
       const apiProfileConfig =

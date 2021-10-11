@@ -46,6 +46,8 @@ class CategoryListPage extends ListBasePage {
       { title: 'Mô tả', dataIndex: "categoryDescription" },
       { title: 'Loại', dataIndex: "categoryKind" },
       { title: 'Tên', dataIndex: "categoryName", width: "200px" },
+      { title: 'Loại', dataIndex: "categoryKind", width: "200px" },
+
       this.renderStatusColumn(),
       this.renderActionColumn(),
     ];

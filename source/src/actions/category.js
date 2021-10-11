@@ -6,16 +6,16 @@ const { defineAction, createActionWithLoading, createAction } = reduxUtil;
 
 export const actionTypes = {
     GET_CATEGORY_LIST: defineAction('GET_CATEGORY_LIST'),
-    CREATE_SETTING: defineAction('CREATE_SETTING'),
-    GET_SETTING_BY_ID: defineAction('GET_SETTING_BY_ID'),
-    UPDATE_SETTING: defineAction('UPDATE_SETTING'),
-    DELETE_SETTING: defineAction('DELETE_SETTING'),
+    CREATE_CATEGORY: defineAction('CREATE_CATEGORY'),
+    GET_CATEGORY_BY_ID: defineAction('GET_CATEGORY_BY_ID'),
+    UPDATE_CATEGORY: defineAction('UPDATE_CATEGORY'),
+    DELETE_CATEGORY: defineAction('DELETE_CATEGORY'),
 }
 
 export const actions = {
-    getSettingsList: createActionWithLoading(actionTypes.GET_SETTINGS_LIST),
-    createSetting: createAction(actionTypes.CREATE_SETTING),
-    getSettingById: createAction(actionTypes.GET_SETTING_BY_ID),
-    updateSetting: createAction(actionTypes.UPDATE_SETTING),
-    deleteSetting: createActionWithLoading(actionTypes.DELETE_SETTING)
+    getCategoryList: createActionWithLoading(actionTypes.GET_CATEGORY_LIST),
+    createCategory: createAction(actionTypes.CREATE_CATEGORY),
+    getCategoryById: createAction(actionTypes.GET_CATEGORY_BY_ID),
+    updateCategory: createAction(actionTypes.UPDATE_CATEGORY),
+    deleteCategory: createActionWithLoading(actionTypes.DELETE_CATEGORY)
 }

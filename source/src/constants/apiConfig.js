@@ -138,7 +138,12 @@ const apiConfig = {
             path: '/v1/settings/delete',
             method: 'DELETE',
             headers: baseHeader
-        }
+        },
+        getSettingsClientList: {
+            path: '/v1/settings/client-list',
+            method: 'GET',
+            headers: baseHeader
+        },
     },
     customer: {
         getCustomerList: {
@@ -163,6 +168,33 @@ const apiConfig = {
         },
         deleteCustomer: {
             path: '/v1/customer/delete',
+            method: 'DELETE',
+            headers: baseHeader
+        }
+    },
+    category: {
+        getCategoryList: {
+            path: '/v1/category/list',
+            method: 'GET',
+            headers: baseHeader
+        },
+        createCategory: {
+            path: '/v1/category/create',
+            method: 'POST',
+            headers: baseHeader
+        },
+        getCategoryById: {
+            path: '/v1/category/get',
+            method: 'GET',
+            headers: baseHeader
+        },
+        updateCategory: {
+            path: '/v1/category/update',
+            method: 'PUT',
+            headers: baseHeader
+        },
+        deleteCategory: {
+            path: '/v1/category/delete',
             method: 'DELETE',
             headers: baseHeader
         }

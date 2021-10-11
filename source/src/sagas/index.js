@@ -5,6 +5,7 @@ import user from './user';
 import groupPermission from './groupPermission';
 import setting from './setting';
 import customer from './customer';
+import category from './category';
 
 const sagas = [
     ...appCommon,
@@ -13,6 +14,7 @@ const sagas = [
     ...groupPermission,
     ...setting,
     ...customer,
+    ...category
 ];
 
 function* rootSaga() {

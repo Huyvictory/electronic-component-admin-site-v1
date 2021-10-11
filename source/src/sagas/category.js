@@ -1,24 +1,24 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 
 import { sendRequest } from '../services/apiService';
-import { actionTypes, reduxUtil } from '../actions/customer';
+import { actionTypes, reduxUtil } from '../actions/category';
 import apiConfig from '../constants/apiConfig';
 import { handleApiResponse } from '../utils/apiHelper';
 
 const { defineActionLoading, defineActionSuccess, defineActionFailed } = reduxUtil;
 
 const {
-    GET_CUSTOMER_LIST,
-    GET_CUSTOMER_BY_ID,
-    UPDATE_CUSTOMER,
-    DELETE_CUSTOMER,
-    CREATE_CUSTOMER,
+    GET_CATEGORY_LIST,
+    GET_CATEGORY_BY_ID,
+    UPDATE_CATEGORY,
+    DELETE_CATEGORY,
+    CREATE_CATEGORY,
 } = actionTypes;
 
 
-function* getCustomerList({ payload: { params } }) {
+function* getCategoryList({ payload: { params } }) {
 
-    const apiParams = apiConfig.customer.getCustomerList;
+    const apiParams = apiConfig.category.getCategoryList;
     const searchParams = { page: params.page, size: params.size };
     
     if(params.search) {
@@ -35,20 +35,20 @@ function* getCustomerList({ payload: { params } }) {
     try {
         const result = yield call(sendRequest, apiParams, searchParams);
         yield put({
-            type: defineActionSuccess(GET_CUSTOMER_LIST),
-            customerData: result.responseData && result.responseData.data,
+            type: defineActionSuccess(GET_CATEGORY_LIST),
+            categoryData: result.responseData && result.responseData.data,
         });
     }
     catch(error) {
-        yield put({ type: defineActionFailed(GET_CUSTOMER_LIST) });
+        yield put({ type: defineActionFailed(GET_CATEGORY_LIST) });
     }
 }
 
-function* getCustomerById({ payload: { params, onCompleted, onError } }) {
+function* getCategoryById({ payload: { params, onCompleted, onError } }) {
     try {
         const apiParams = {
-            ...apiConfig.customer.getCustomerById,
-            path: `${apiConfig.customer.getCustomerById.path}/${params.id}`
+            ...apiConfig.category.getCategoryById,
+            path: `${apiConfig.category.getCategoryById.path}/${params.id}`
         }
         const result = yield call(sendRequest, apiParams);
         handleApiResponse(result, onCompleted, onError);
@@ -58,9 +58,9 @@ function* getCustomerById({ payload: { params, onCompleted, onError } }) {
     }
 }
 
-function* createCustomer({payload: { params, onCompleted, onError }}){
+function* createCategory({payload: { params, onCompleted, onError }}){
     try {
-        const apiParams = apiConfig.customer.createCustomer;
+        const apiParams = apiConfig.category.createCategory;
         const result = yield call(sendRequest, apiParams, params);
         handleApiResponse(result, onCompleted, onError);
     }
@@ -69,9 +69,9 @@ function* createCustomer({payload: { params, onCompleted, onError }}){
     }
 }
 
-function* updateCustomer({ payload: { params, onCompleted, onError } }) {
+function* updateCategory({ payload: { params, onCompleted, onError } }) {
     try {
-        const apiParams = apiConfig.customer.updateCustomer;
+        const apiParams = apiConfig.category.updateCategory;
         const result = yield call(sendRequest, apiParams, params);
         handleApiResponse(result, onCompleted, onError);
     }
@@ -80,31 +80,31 @@ function* updateCustomer({ payload: { params, onCompleted, onError } }) {
     }
 }
 
-function* deleteCustomer({ payload: { params, onCompleted, onError } }) {
+function* deleteCategory({ payload: { params, onCompleted, onError } }) {
     try {
         const apiParams = {
-            ...apiConfig.customer.deleteCustomer,
-            path: `${apiConfig.customer.deleteCustomer.path}/${params.id}`
+            ...apiConfig.category.deleteCategory,
+            path: `${apiConfig.category.deleteCategory.path}/${params.id}`
         }
         const result = yield call(sendRequest, apiParams);
         handleApiResponse(result, onCompleted, onError);
 
         const { success, responseData } = result;
         if(!success || !responseData.result)
-            yield put({ type: defineActionFailed(DELETE_CUSTOMER) });
+            yield put({ type: defineActionFailed(DELETE_CATEGORY) });
     }
     catch(error) {
-        yield put({ type: defineActionFailed(DELETE_CUSTOMER) });
+        yield put({ type: defineActionFailed(DELETE_CATEGORY) });
         onError(error);
     }
 }
 
 const sagas = [
-    takeLatest(defineActionLoading(GET_CUSTOMER_LIST), getCustomerList),
-    takeLatest(GET_CUSTOMER_BY_ID, getCustomerById),
-    takeLatest(UPDATE_CUSTOMER, updateCustomer),
-    takeLatest(CREATE_CUSTOMER, createCustomer),
-    takeLatest(defineActionLoading(DELETE_CUSTOMER), deleteCustomer),
+    takeLatest(defineActionLoading(GET_CATEGORY_LIST),getCategoryList),
+    takeLatest(GET_CATEGORY_BY_ID, getCategoryById),
+    takeLatest(UPDATE_CATEGORY, updateCategory),
+    takeLatest(CREATE_CATEGORY, createCategory),
+    takeLatest(defineActionLoading(DELETE_CATEGORY), deleteCategory),
 ]
 
 export default sagas;

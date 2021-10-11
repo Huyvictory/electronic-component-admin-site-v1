@@ -2,8 +2,8 @@ import { actionTypes, reduxUtil } from '../actions/category';
 
 const { createReducer, defineActionSuccess, defineActionLoading, defineActionFailed } = reduxUtil;
 const {
-    GET_CATEGORYS_LIST,
-    DEL,
+    GET_CATEGORY_LIST,
+    DELETE_CATEGORY,
 } = actionTypes;
 
 const initialState = { 
@@ -12,26 +12,26 @@ const initialState = {
 };
 
 const reducer = createReducer({
-    [defineActionLoading(GET_SETTINGS_LIST)]: (state) => {
+    [defineActionLoading(GET_CATEGORY_LIST)]: (state) => {
         return {
             ...state,
             tbSettingsLoading: true
         }
     },
-    [defineActionSuccess(GET_SETTINGS_LIST)]: (state, { settingsData }) => {
+    [defineActionSuccess(GET_CATEGORY_LIST)]: (state, { settingsData }) => {
         return {
             ...state,
             settingsData,
             tbSettingsLoading: false
         }
     },
-    [defineActionLoading(DELETE_SETTING)] : (state) =>{
+    [defineActionLoading(DELETE_CATEGORY)] : (state) =>{
         return {
             ...state,
             tbSettingsLoading: true,
         }
     },
-    [defineActionFailed(DELETE_SETTING)] : (state) =>{
+    [defineActionFailed(DELETE_CATEGORY)] : (state) =>{
         return {
             ...state,
             tbSettingsLoading: false,

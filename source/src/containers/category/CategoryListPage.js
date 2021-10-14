@@ -45,10 +45,10 @@ class CategoryListPage extends ListBasePage {
           />
         ),
       },
-      { title: 'Tên tài khoản', dataIndex: "customerUsername" },
-      { title: 'Họ và tên', dataIndex: "customerFullName" },
-      { title: 'Số điện thoại', dataIndex: "customerPhone", width: 120 },
-      { title: 'E-mail', dataIndex: "customerEmail", width: "200px" },
+      { title: 'Tên danh mục', dataIndex: "CategoryName" },
+      { title: 'Loại danh mục', dataIndex: "CategoryType" },
+      { title: 'Mô tả danh mục', dataIndex: "CategoryDescription", width: 150 },
+      // { title: 'E-mail', dataIndex: "customerEmail", width: "200px" },
       {
         title: <div style={{ paddingRight: 20 }}>Ngày tạo</div>,
         dataIndex: "createdDate",
@@ -70,12 +70,12 @@ class CategoryListPage extends ListBasePage {
     return [
       {
         key: "fullName",
-        seachPlaceholder: 'Họ và tên',
+        seachPlaceholder: 'Tên danh mục',
         initialValue: this.search.fullName,
       },
       {
         key: "phone",
-        seachPlaceholder: 'Số điện thoại',
+        seachPlaceholder: 'Loại danh mục',
         initialValue: this.search.phone,
       },
       // {

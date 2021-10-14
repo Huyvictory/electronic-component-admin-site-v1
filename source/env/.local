@@ -1,2 +1,2 @@
-REACT_APP_API = https://nails-api-v2.developteam.net
+REACT_APP_API = http://13.92.240.168:8383
 GENERATE_SOURCEMAP=true

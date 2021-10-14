@@ -115,43 +115,33 @@ class CategoryForm extends BasicForm {
 			<Row gutter={16}>
 				<Col span={12}>
 					<TextField
-					fieldName="categoryUsername"
-					label="Tên tài khoản"
+					fieldName="CategoryName"
+					label="Tên danh mục"
 					required
 					disabled={loadingSave || isEditing}
 					/>
 				</Col>
 				<Col span={12}>
 					<TextField
-					fieldName="categoryFullName"
-					label="Họ và tên"
+					fieldName="CategoryType"
+					label="Loại danh mục"
 					required
 					disabled={loadingSave}
+          initialValues = "1"
 					/>
 				</Col>
 			</Row>
 			<Row gutter={16}>
-          <Col span={12}>
+          <Col span={24}>
             <TextField
-              type="password"
-              fieldName="categoryPassword"
-              label={isEditing ? "Mật khẩu mới" : "Mật khẩu"}
+              fieldName="CategoryDescription"
+              label={"Mô tả danh mục"}
               required={!isEditing}
-              validators={[this.validateToConfirmPassword]}
-              minLength={6}
               disabled={loadingSave}
+              style = {{height: '50px'}}
             />
           </Col>
-          <Col span={12}>
-            <TextField
-              type="number"
-              fieldName="categoryPhone"
-              label="Số điện thoại"
-              required
-              minLength={10}
-              disabled={loadingSave}
-            />
-          </Col>
+
           {/* <Col span={12}>
             <TextField
               fieldName="confirmPassword"
@@ -162,32 +152,7 @@ class CategoryForm extends BasicForm {
               disabled={loadingSave}
             />
           </Col> */}
-      </Row>
-			<Row gutter={16}>
-        <Col span={12}>
-					<TextField
-						fieldName="categoryAddress"
-						label="Địa chỉ"
-						required
-						disabled={loadingSave}
-					/>
-				</Col>
-				<Col span={12}>
-					<TextField fieldName="categoryEmail" label="E-mail" type="email" disabled={loadingSave} required/>
-				</Col>
-			</Row>
-
-			<Row gutter={16}>
-        <Col span={12}>
-          <DropdownField
-            fieldName="status"
-            label="Trạng thái"
-            required
-            options={commonStatus}
-            disabled={loadingSave}
-          />
-        </Col>
-			</Row>
+      </Row>			
       </Form>
     );
   }

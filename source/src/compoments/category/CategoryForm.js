@@ -106,7 +106,7 @@ class CategoryForm extends BasicForm {
                 <Col span={12}>
                     <TextField
                     fieldName="categoryName"
-                    label="Tên danh mục"
+                    label="Tiêu đề"
                     required
                     disabled={loadingSave}
                     />

@@ -18,12 +18,12 @@ const {
 
 function* getCategoryList({ payload: { params } }) {
 
-    const apiParams = apiConfig.category.getList;
+    const apiParams = apiConfig.category.getCategoryList;
     const searchParams = { page: params.page, size: params.size };
 
     if(params.kind) {
         searchParams.kind = params.kind
-    }
+    }    
 
     if(params.parentId) {
         searchParams.parentId = params.parentId

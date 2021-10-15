@@ -56,6 +56,16 @@ const navMenuConfig = [
             }
         ]
     },
+    {
+        label: 'Danh mục',
+        icon: <UserOutlined />,
+        children: [
+            {
+                label: 'Tin tức',
+                ...sitePathConfig.category,
+            }
+        ]
+    },
 ]
 
 export { navMenuConfig };

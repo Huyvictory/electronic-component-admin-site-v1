@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Avatar, Tag, Button } from "antd";
 import { UserOutlined, PlusOutlined } from "@ant-design/icons";
-import { withTranslation } from "react-i18next";
+// import { withTranslation } from "react-i18next";
 
 import ListBasePage from "../ListBasePage";
 import CustomerForm from "../../compoments/category/CategoryForm";
@@ -36,17 +36,16 @@ class CategoryListPage extends ListBasePage {
         render: (avatarPath) => (
           <Avatar
             className="category-avatar"
-            style = {{width: '70px', height: '70px', padding: '8px'}}
+            style = {{width: '70px', height: '70px', padding: '15px'}}
             size="large"
             icon={<UserOutlined />}
             src={avatarPath ? `${AppConstants.contentRootUrl}${avatarPath}` : null}
           />
         ),
-      },
-      { title: 'Mô tả', dataIndex: "categoryDescription" },
+      },      
+      { title: 'Tên', dataIndex: "categoryName" },
       { title: 'Loại', dataIndex: "categoryKind" },
-      { title: 'Tên', dataIndex: "categoryName", width: "200px" },
-      { title: 'Loại', dataIndex: "categoryKind", width: "200px" },
+      { title: 'Mô tả', dataIndex: "categoryDescription" },
 
       this.renderStatusColumn(),
       this.renderActionColumn(),
@@ -67,7 +66,7 @@ class CategoryListPage extends ListBasePage {
       },
       {
         key: "kind",
-        seachPlaceholder:  'loại',
+        seachPlaceholder:  'Loại',
         initialValue: this.search.kind,
         // initialValue: this.search.phone,
 
@@ -115,7 +114,7 @@ class CategoryListPage extends ListBasePage {
               type="primary"
               onClick={() => this.onShowModifiedModal(false)}
             >
-              <PlusOutlined /> {"createNewButton"}
+              <PlusOutlined /> {"Thêm mới"}
               {/* {t("createNewButton")} */}
             </Button>
             ))

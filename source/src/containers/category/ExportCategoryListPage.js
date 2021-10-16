@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Avatar, Tag, Button } from "antd";
-import { UserOutlined, PlusOutlined } from "@ant-design/icons";
+import { ExportOutlined, PlusOutlined } from "@ant-design/icons";
 
 import ListBasePage from "../ListBasePage";
 import CategoryForm from "../../compoments/category/CategoryForm";
@@ -12,27 +12,29 @@ import { actions } from "../../actions";
 import { FieldTypes } from "../../constants/formConfig";
 import { convertUtcToLocalTime } from "../../utils/datetimeHelper";
 import { AppConstants } from "../../constants";
+import {categoryKinds} from "../../constants/masterData";
 
 const commonStatus = [
   { value: 1, label: 'Kích hoạt', color: 'green' },
   { value: 0, label: 'Khóa', color: 'red' },
 ]
 
-class CategoryListPage extends ListBasePage {
+class ExportCategoryListPage extends ListBasePage {
   initialSearch() {
-    return { fullName: "", phone: "" };
+    return { categoryName: "", categoryType: "" };
   }
 
   constructor(props) {
     super(props);
     const { t } = props;
-    this.objectName =  "Category";
-    this.breadcrumbs = [{ name: "Category" }];
+    this.objectName =  "Danh mục chi";
+    this.breadcrumbs = [{ name: "Export Category" }];
+    this.search = this.initialSearch();
     this.columns = [
       this.renderIdColumn(),
       {
         title: "#",
-        dataIndex: "categoryAvatarPath",
+        dataIndex: "categoryExportAvatarPath",
         align: 'center',
         width: 100,
         render: (avatarPath) => (
@@ -40,14 +42,14 @@ class CategoryListPage extends ListBasePage {
             style={{width: "70px", height: "70px", padding: "8px"}}
             className="table-avatar"
             size="large"
-            icon={<UserOutlined />}
+            icon={<ExportOutlined />}
             src={avatarPath ? `${AppConstants.contentRootUrl}${avatarPath}` : null}
           />
         ),
       },
-      { title: 'Tên danh mục', dataIndex: "CategoryName" },
-      { title: 'Loại danh mục', dataIndex: "CategoryType" },
-      { title: 'Mô tả danh mục', dataIndex: "CategoryDescription", width: 150 },
+      { title: 'Tên danh mục', dataIndex: "ExportCategoryName" },
+      { title: 'Loại danh mục', dataIndex: "ExportCategoryType" },
+      { title: 'Mô tả danh mục', dataIndex: "ExportCategoryDescription", width: 150 },
       // { title: 'E-mail', dataIndex: "customerEmail", width: "200px" },
       {
         title: <div style={{ paddingRight: 20 }}>Ngày tạo</div>,
@@ -69,14 +71,14 @@ class CategoryListPage extends ListBasePage {
   getSearchFields() {
     return [
       {
-        key: "fullName",
-        seachPlaceholder: 'Tên danh mục',
-        initialValue: this.search.fullName,
+        key: "SearchExportCategory",
+        seachPlaceholder: 'Tên danh mục chi',
+        initialValue: this.search.categoryName,
       },
       {
-        key: "phone",
+        key: "SearchExportCategoryType",
         seachPlaceholder: 'Loại danh mục',
-        initialValue: this.search.phone,
+        initialValue: this.search.categoryType,
       },
       // {
       //   key: "status",
@@ -86,6 +88,13 @@ class CategoryListPage extends ListBasePage {
       //   initialValue: this.search.status,
       // },
     ];
+  }
+
+  getList() {
+    const { getDataList } = this.props;
+        const page = this.pagination.current ? this.pagination.current - 1 : 0;
+        const params = { page, size: this.pagination.pageSize, search: this.search, kind: categoryKinds.CATEGORY_KIND_EXPORT};
+        getDataList({ params });
   }
 
   renderStatusColumn() {
@@ -171,4 +180,4 @@ const mapDispatchToProps = (dispatch) => ({
   uploadFile: (payload) => dispatch(actions.uploadFile(payload)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(CategoryListPage);
+export default connect(mapStateToProps, mapDispatchToProps)(ExportCategoryListPage);

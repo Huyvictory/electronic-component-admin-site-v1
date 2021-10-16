@@ -22,11 +22,11 @@ function* getCategoryList({ payload: { params } }) {
     const searchParams = { page: params.page, size: params.size };
     
     if(params.search) {
-        if(params.search.fullName) {
-            searchParams.fullName = params.search.fullName
+        if(params.search.categoryName) {
+            searchParams.categoryName = params.search.categoryName
         }
-        if(params.search.phone) {
-            searchParams.phone = params.search.phone
+        if(params.search.categoryType) {
+            searchParams.categoryType = params.search.categoryType
         }
         if(params.search.status || params.search.status === 0) {
             searchParams.status = params.search.status

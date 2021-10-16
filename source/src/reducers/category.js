@@ -7,34 +7,34 @@ const {
 } = actionTypes;
 
 const initialState = { 
-    settingsData: [],
-    tbSettingsLoading: false,
+    categoryData: [],
+    tbCategoryLoading: false,
 };
 
 const reducer = createReducer({
     [defineActionLoading(GET_CATEGORY_LIST)]: (state) => {
         return {
             ...state,
-            tbSettingsLoading: true
+            tbCategoryLoading: true
         }
     },
     [defineActionSuccess(GET_CATEGORY_LIST)]: (state, { settingsData }) => {
         return {
             ...state,
             settingsData,
-            tbSettingsLoading: false
+            tbCategoryLoading: false
         }
     },
     [defineActionLoading(DELETE_CATEGORY)] : (state) =>{
         return {
             ...state,
-            tbSettingsLoading: true,
+            tbCategoryLoading: true,
         }
     },
     [defineActionFailed(DELETE_CATEGORY)] : (state) =>{
         return {
             ...state,
-            tbSettingsLoading: false,
+            tbCategoryLoading: false,
         }
     },
     initialState

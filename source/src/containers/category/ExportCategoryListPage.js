@@ -49,7 +49,7 @@ class ExportCategoryListPage extends ListBasePage {
           />
         ),
       },
-      { title: 'Tên danh mục', dataIndex: "categoryName", align: "center", width: -100},
+      { title: 'Tên danh mục', dataIndex: "categoryName"},
       {
         title: <div style={{ paddingRight: 20 }}>Ngày tạo</div>,
         dataIndex: "createdDate",

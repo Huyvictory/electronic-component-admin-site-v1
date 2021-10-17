@@ -18,10 +18,10 @@ const reducer = createReducer({
             tbCategoryLoading: true
         }
     },
-    [defineActionSuccess(GET_CATEGORY_LIST)]: (state, { settingsData }) => {
+    [defineActionSuccess(GET_CATEGORY_LIST)]: (state, { categoryData }) => {
         return {
             ...state,
-            settingsData,
+            categoryData,
             tbCategoryLoading: false
         }
     },

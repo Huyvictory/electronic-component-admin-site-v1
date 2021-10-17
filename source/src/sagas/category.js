@@ -22,15 +22,12 @@ function* getCategoryList({ payload: { params } }) {
     const searchParams = { page: params.page, size: params.size };
     
     if(params.search) {
-        if(params.search.categoryName) {
-            searchParams.categoryName = params.search.categoryName
+        if(params.search.name) {
+            searchParams.name = params.search.name
         }
-        if(params.search.categoryType) {
-            searchParams.categoryType = params.search.categoryType
-        }
-        if(params.search.status || params.search.status === 0) {
-            searchParams.status = params.search.status
-        }
+    }
+    if(params.kind) {
+        searchParams.kind = params.kind
     }
     try {
         const result = yield call(sendRequest, apiParams, searchParams);

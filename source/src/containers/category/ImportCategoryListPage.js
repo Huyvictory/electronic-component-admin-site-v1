@@ -13,6 +13,7 @@ import { FieldTypes } from "../../constants/formConfig";
 import { convertUtcToLocalTime } from "../../utils/datetimeHelper";
 import { AppConstants } from "../../constants";
 import {categoryKinds} from "../../constants/masterData";
+import { showErrorMessage, showSucsessMessage } from '../../services/notifyService';
 
 const commonStatus = [
   { value: 1, label: 'Kích hoạt', color: 'green' },
@@ -21,7 +22,7 @@ const commonStatus = [
 
 class ImportCategoryListPage extends ListBasePage {
   initialSearch() {
-    return { categoryName: "", categoryType: "" };
+    return { name: ""};
   }
 
   constructor(props) {
@@ -30,11 +31,12 @@ class ImportCategoryListPage extends ListBasePage {
     this.objectName =  "Danh mục thu";
     this.breadcrumbs = [{ name: "Import Category" }];
     this.search = this.initialSearch();
+    this.dataDetail = {};
     this.columns = [
       this.renderIdColumn(),
       {
         title: "#",
-        dataIndex: "categoryImportAvatarPath",
+        dataIndex: "categoryImage",
         align: 'center',
         width: 100,
         render: (avatarPath) => (
@@ -47,9 +49,9 @@ class ImportCategoryListPage extends ListBasePage {
           />
         ),
       },
-      { title: 'Tên danh mục', dataIndex: "ImportCategoryName" },
-      { title: 'Loại danh mục', dataIndex: "ImportCategoryType" },
-      { title: 'Mô tả danh mục', dataIndex: "ImportCategoryDescription", width: 150 },
+      { title: 'Tên danh mục', dataIndex: "categoryName" },
+      { title: 'Loại danh mục', dataIndex: "categoryKind" },
+      { title: 'Mô tả danh mục', dataIndex: "categoryDescription", width: 200 },
       // { title: 'E-mail', dataIndex: "customerEmail", width: "200px" },
       {
         title: <div style={{ paddingRight: 20 }}>Ngày tạo</div>,
@@ -71,14 +73,9 @@ class ImportCategoryListPage extends ListBasePage {
   getSearchFields() {
     return [
       {
-        key: "SearchImportCategory",
+        key: "name",
         seachPlaceholder: 'Tên danh mục thu',
-        initialValue: this.search.categoryName,
-      },
-      {
-        key: "SearchImportCategoryType",
-        seachPlaceholder: 'Loại danh mục',
-        initialValue: this.search.categoryType,
+        initialValue: this.search.name,
       },
       // {
       //   key: "status",
@@ -95,6 +92,44 @@ class ImportCategoryListPage extends ListBasePage {
         const page = this.pagination.current ? this.pagination.current - 1 : 0;
         const params = { page, size: this.pagination.pageSize, search: this.search, kind: categoryKinds.CATEGORY_KIND_IMPORT};
         getDataList({ params });
+  }
+
+  getDetail(id) {
+    const { getDataById, showFullScreenLoading, hideFullScreenLoading } = this.props;
+    const params = { id };
+    showFullScreenLoading();
+    getDataById({
+        params,
+        onCompleted: ({data}) => {
+            this.dataDetail = this.getDataDetailMapping(data);
+            this.onShowModifiedModal(true);
+            hideFullScreenLoading();
+        },
+        onError: (err) => {
+            if(err && err.message)
+                showErrorMessage(err.message);
+            else
+                showErrorMessage(`${this.getActionName()} ${this.objectName} thất bại. Vui lòng thử lại!`);
+            hideFullScreenLoading();
+        }
+    });
+}
+
+  prepareCreateData(data) {
+    return {
+      ...data,
+      categoryKind: categoryKinds.CATEGORY_KIND_IMPORT,
+      categoryOrdering: 0,
+    }
+  }
+
+  prepareUpdateData(data) {
+    return {
+      ...data,
+      categoryOrdering: 0,
+      id: this.dataDetail.id,
+      status: 1
+    }
   }
 
   renderStatusColumn() {
@@ -119,6 +154,7 @@ class ImportCategoryListPage extends ListBasePage {
       loading,
       uploadFile,
     } = this.props;
+    console.log(dataList.data);
     const { isShowModifiedModal, isShowModifiedLoading } = this.state;
     const category = dataList.data || [];
     this.pagination.total = dataList.totalElements || 0;

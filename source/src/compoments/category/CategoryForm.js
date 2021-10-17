@@ -56,7 +56,7 @@ class CategoryForm extends BasicForm {
     uploadFile({
       params: { fileObjects: { file }, type: UploadFileTypes.AVATAR },
       onCompleted: (result) => {
-        this.setFieldValue("categoryAvatarPath", result.data.filePath);
+        this.setFieldValue("categoryImage", result.data.filePath);
         this.setState({ uploading: false });
         onSuccess();
       },
@@ -101,7 +101,7 @@ class CategoryForm extends BasicForm {
 			<Row gutter={16}>
 				<Col span={12}>
 					<CropImageFiled
-						fieldName="categoryAvatarPath"
+						fieldName="categoryImage"
 						loading={uploading}
 						label="Ảnh đại diện"
 						imageUrl={avatar}
@@ -115,30 +115,22 @@ class CategoryForm extends BasicForm {
 			<Row gutter={16}>
 				<Col span={12}>
 					<TextField
-					fieldName="CategoryName"
+					fieldName="categoryName"
 					label="Tên danh mục"
 					required
 					disabled={loadingSave || isEditing}
-					/>
-				</Col>
-				<Col span={12}>
-					<TextField
-					fieldName="CategoryType"
-					label="Loại danh mục"
-					required
-					disabled={loadingSave}
-          initialValues = "1"
 					/>
 				</Col>
 			</Row>
 			<Row gutter={16}>
           <Col span={24}>
             <TextField
-              fieldName="CategoryDescription"
+              fieldName="categoryDescription"
               label={"Mô tả danh mục"}
               required={!isEditing}
               disabled={loadingSave}
               style = {{height: '50px'}}
+              type = "textarea"
             />
           </Col>
 

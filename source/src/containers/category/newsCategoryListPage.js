@@ -5,21 +5,23 @@ import { UserOutlined, PlusOutlined } from "@ant-design/icons";
 // import { withTranslation } from "react-i18next";
 
 import ListBasePage from "../ListBasePage";
-import NewsCategoryForm from "../../compoments/category/newsCategoryForm";
+import NewsCategoryForm from "../../compoments/category/NewsCategoryForm";
 import BaseTable from "../../compoments/common/table/BaseTable";
 import BasicModal from "../../compoments/common/modal/BasicModal";
 
 import { actions } from "../../actions";
 import { FieldTypes } from "../../constants/formConfig";
 import { convertUtcToLocalTime } from "../../utils/datetimeHelper";
-import { AppConstants } from "../../constants";
+import { AppConstants, CategoryKinds } from "../../constants";
 import { categoryKinds, commonStatus, CustomerLoyaltyLevelColorConfig } from "../../constants/masterData";
+import { showErrorMessage, showSucsessMessage } from '../../services/notifyService';
+
 // const commonStatus = [
 //   { value: 1, label: 'Kích hoạt', color: 'green' },
 //   { value: 0, label: 'Khóa', color: 'red' },
 // ]
 
-class newsCategoryListPage extends ListBasePage {
+class NewsCategoryListPage extends ListBasePage {
   initialSearch() {
     return { name: "", kind: "" };
   }  
@@ -29,6 +31,8 @@ class newsCategoryListPage extends ListBasePage {
     super(props);
     this.objectName = "Danh mục";
     this.breadcrumbs = [{ name: "Danh mục" }];
+    this.search = this.initialSearch();
+    this.dataDetail = {};
     this.columns = [
       this.renderIdColumn(),
       {
@@ -73,13 +77,40 @@ class newsCategoryListPage extends ListBasePage {
       categoryOrdering: 0,
     }
   }
+  prepareUpdateData(data) {
+    return {
+      ...data,
+      categoryOrdering: 0,
+      id: this.dataDetail.id,
+      status: 1
+    }
+  }
   getList() {
     const { getDataList } = this.props;
         const page = this.pagination.current ? this.pagination.current - 1 : 0;
         const params = { page, size: this.pagination.pageSize, search: this.search, kind: 4};
         getDataList({ params });
   }
-
+  getDetail(id) {
+    const { getDataById, showFullScreenLoading, hideFullScreenLoading } = this.props;
+    const params = { id };
+    showFullScreenLoading();
+    getDataById({
+        params,
+        onCompleted: ({data}) => {
+            this.dataDetail = this.getDataDetailMapping(data);
+            this.onShowModifiedModal(true);
+            hideFullScreenLoading();
+        },
+        onError: (err) => {
+            if(err && err.message)
+                showErrorMessage(err.message);
+            else
+                showErrorMessage(`${this.getActionName()} ${this.objectName} thất bại. Vui lòng thử lại!`);
+            hideFullScreenLoading();
+        }
+    });
+}
   getSearchFields() {
     return [
       {
@@ -112,7 +143,7 @@ class newsCategoryListPage extends ListBasePage {
         const statusItem= commonStatus.find(s=>s.value === status);
         return (
           <Tag className='tag-status' color = {statusItem.color}>
-            {statusItem.label}
+            {statusItem?.label}
           </Tag>
         )
       }
@@ -180,11 +211,11 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   getDataList: (payload) => dispatch(actions.getCategoryList(payload)),
-  getDataById: (payload) => dispatch(actions.getCategoryList(payload)),
+  getDataById: (payload) => dispatch(actions.getCategoryById(payload)),
   updateData: (payload) => dispatch(actions.updateCategory(payload)),
   deleteData: (payload) => dispatch(actions.deleteCategory(payload)),
   createData: (payload) => dispatch(actions.createCategory(payload)),
   uploadFile: (payload) => dispatch(actions.uploadFile(payload)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(newsCategoryListPage);
+export default connect(mapStateToProps, mapDispatchToProps)(NewsCategoryListPage);

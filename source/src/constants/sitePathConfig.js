@@ -51,8 +51,8 @@ export const sitePathConfig = {
             apiConfig.customer.deleteCustomer.path,
         ]
     },
-    category: {
-        path: '/category',
+    newscategory: {
+        path: '/newscategory',
         permissions: [
             apiConfig.category.getCategoryList.path,
             apiConfig.category.getCategoryById.path,

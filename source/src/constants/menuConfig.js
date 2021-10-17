@@ -62,7 +62,7 @@ const navMenuConfig = [
         children: [
             {
                 label: 'Tin tức',
-                ...sitePathConfig.category,
+                ...sitePathConfig.newscategory,
             }
         ]
     },

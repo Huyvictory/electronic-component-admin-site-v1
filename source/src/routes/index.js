@@ -19,7 +19,7 @@ import Forbidden from '../containers/Forbidden';
 import SettingsListPage from '../containers/settings/SettingsListPage';
 import GroupPermissionListPage from '../containers/groupPermission/GroupPermissionListPage';
 import CustomerListPage from '../containers/customer/CustomerListPage';
-import CategoryListPage from '../containers/category/CategoryListPage';
+import newsCategoryListPage from '../containers/category/newsCategoryListPage';
 
 const RootRoute = () => {
     const {
@@ -51,7 +51,7 @@ const RootRoute = () => {
                 <PrivateRoute exact path={setting.path} component={SettingsListPage}/>
                 <PrivateRoute exact path={groupPermission.path} component={GroupPermissionListPage}/>
                 <PrivateRoute exact path={customer.path} component={CustomerListPage}/>
-                <PrivateRoute exact path={category.path} component={CategoryListPage}/>
+                <PrivateRoute exact path={category.path} component={newsCategoryListPage}/>
 
                 {/* Error Page */}
                 <PrivateRoute exact path={forbidden.path} component={Forbidden}/>

@@ -29,7 +29,7 @@ class ImportCategoryListPage extends ListBasePage {
     super(props);
     const { t } = props;
     this.objectName =  "Danh mục thu";
-    this.breadcrumbs = [{ name: "Import Category" }];
+    this.breadcrumbs = [{ name: "Danh mục thu" }];
     this.search = this.initialSearch();
     this.dataDetail = {};
     this.columns = [
@@ -50,9 +50,6 @@ class ImportCategoryListPage extends ListBasePage {
         ),
       },
       { title: 'Tên danh mục', dataIndex: "categoryName" },
-      { title: 'Loại danh mục', dataIndex: "categoryKind" },
-      { title: 'Mô tả danh mục', dataIndex: "categoryDescription", width: 200 },
-      // { title: 'E-mail', dataIndex: "customerEmail", width: "200px" },
       {
         title: <div style={{ paddingRight: 20 }}>Ngày tạo</div>,
         dataIndex: "createdDate",

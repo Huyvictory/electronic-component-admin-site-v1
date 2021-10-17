@@ -62,11 +62,11 @@ const navMenuConfig = [
         icon : <BarsOutlined></BarsOutlined>,
         children: [
             {
-                label: 'Category Import',
+                label: 'Danh mục thu',
                 ...sitePathConfig.importcategory
             },
             {
-                label: 'Category Export',
+                label: 'Danh mục chi',
                 ...sitePathConfig.exportcategory
             }
         ]

@@ -15,7 +15,7 @@ import { commonStatus } from "../../constants/masterData";
 import Utils from "../../utils";
 import { showErrorMessage } from "../../services/notifyService";
 
-class newsCategoryForm extends BasicForm {
+class NewsCategoryForm extends BasicForm {
     constructor(props) {
         super(props);
         this.state = {
@@ -84,7 +84,7 @@ class newsCategoryForm extends BasicForm {
             ref={this.formRef}
             layout="vertical"
             onFinish={this.handleSubmit}
-            initialValues={dataDetail}
+            initialValues={this.getInitialValue()}
         >
             <Row gutter={16}>
                 <Col span={12}>
@@ -95,7 +95,6 @@ class newsCategoryForm extends BasicForm {
                     imageUrl={avatar}
                     onChange={this.handleChangeAvatar}
                     uploadFile={this.uploadFileAvatar}
-                    requiredMsg = 'Vui lòng tải hình lên'
                     disabled={loadingSave}
                 />
                 </Col>
@@ -107,14 +106,16 @@ class newsCategoryForm extends BasicForm {
                     fieldName="categoryName"
                     label="Tiêu đề"
                     required
-                    disabled={loadingSave}
+					disabled={loadingSave}
                     />
                 </Col>
                 <Col span={12}>
                     <TextField
                     type="textarea"
                     fieldName="categoryDescription"
+                    required
                     label="Mô tả"
+                    style = {{height: '50px'}}
                     disabled={loadingSave}/>
                 </Col>
             </Row>
@@ -125,4 +126,4 @@ class newsCategoryForm extends BasicForm {
     }
 }
 
-export default newsCategoryForm;
+export default NewsCategoryForm;

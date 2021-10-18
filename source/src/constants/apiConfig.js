@@ -138,7 +138,12 @@ const apiConfig = {
             path: '/v1/settings/delete',
             method: 'DELETE',
             headers: baseHeader
-        }
+        },
+        getSettingsClientList: {
+            path: '/v1/settings/client-list',
+            method: 'GET',
+            headers: baseHeader
+        },
     },
     customer: {
         getCustomerList: {

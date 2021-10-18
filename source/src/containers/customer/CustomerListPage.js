@@ -25,7 +25,7 @@ class CustomerListPage extends ListBasePage {
 
   constructor(props) {
     super(props);
-    const { t } = props;
+    // const { t } = props;
     this.objectName =  "Khách hàng";
     this.breadcrumbs = [{ name: "Khách hàng" }];
     this.columns = [

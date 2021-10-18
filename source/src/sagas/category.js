@@ -20,7 +20,6 @@ function* getCategoryList({ payload: { params } }) {
 
     const apiParams = apiConfig.category.getCategoryList;
     const searchParams = { page: params.page, size: params.size };
-    
     if(params.search) {
         if(params.search.name) {
             searchParams.name = params.search.name
@@ -83,10 +82,9 @@ function* deleteCategory({ payload: { params, onCompleted, onError } }) {
             ...apiConfig.category.deleteCategory,
             path: `${apiConfig.category.deleteCategory.path}/${params.id}`
         }
-        const result = yield call(sendRequest, apiParams);
-        handleApiResponse(result, onCompleted, onError);
+        const { success, responseData } = yield call(sendRequest, apiParams);
+        handleApiResponse({ success, responseData }, onCompleted, onError);
 
-        const { success, responseData } = result;
         if(!success || !responseData.result)
             yield put({ type: defineActionFailed(DELETE_CATEGORY) });
     }

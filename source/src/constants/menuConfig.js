@@ -59,7 +59,7 @@ const navMenuConfig = [
     },
     {
         label: 'Danh mục',
-        icon : <BarsOutlined></BarsOutlined>,
+        icon: <BarsOutlined></BarsOutlined>,
         children: [
             {
                 label: 'Danh mục thu',
@@ -68,9 +68,13 @@ const navMenuConfig = [
             {
                 label: 'Danh mục chi',
                 ...sitePathConfig.exportcategory
+            },
+            {
+                label: 'Tin tức',
+                ...sitePathConfig.newscategory,
             }
         ]
-    }
+    },
 ]
 
 export { navMenuConfig };

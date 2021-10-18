@@ -54,11 +54,11 @@ const CurrentcyPositions = {
     BACK: 1,
 }
 
-const CategoryKinds = {
-    CATEGORY_KIND_NEWS: 1,
-    CATEGORY_KIND_UNIVERSITY: 2,
-    CATEGORY_KIND_JOB: 3,
-}
+// const CategoryKinds = {
+//     CATEGORY_KIND_NEWS: 1,
+//     CATEGORY_KIND_UNIVERSITY: 2,
+//     CATEGORY_KIND_JOB: 3,
+// }
 export const LIMIT_IMAGE_SIZE = 512000;
 
 // Pagination config
@@ -82,6 +82,6 @@ export {
     GroupPermissonTypes,
     UploadFileTypes,
     ProvinceKinds,
-    CategoryKinds,
+    // CategoryKinds,
     CurrentcyPositions,
 };

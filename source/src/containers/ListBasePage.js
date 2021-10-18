@@ -19,6 +19,7 @@ import ElementWithPermission from '../compoments/common/elements/ElementWithPerm
 import { sitePathConfig } from '../constants/sitePathConfig';
 
 import { actions } from '../actions';
+import { categoryKinds } from '../constants/masterData';
 
 const { getUserData } = actions;
 
@@ -126,7 +127,7 @@ class ListBasePage extends Component {
     getList() {
         const { getDataList } = this.props;
         const page = this.pagination.current ? this.pagination.current - 1 : 0;
-        const params = { page, size: this.pagination.pageSize, search: this.search};
+        const params = { page, size: this.pagination.pageSize, search: this.search, kind: categoryKinds.CATEGORY_KIND_NEWS};
         getDataList({ params });
     }
 

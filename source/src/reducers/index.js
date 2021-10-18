@@ -14,7 +14,8 @@ const rootReducer = combineReducers({
     groupPermission: groupPermission.reducer,
     settings: settings.reducer,
     customer: customer.reducer,
-    category: category.reducer
+    category: category.reducer,
+
 });
 
 export default rootReducer;

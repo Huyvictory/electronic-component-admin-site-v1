@@ -58,7 +58,7 @@ const navMenuConfig = [
         ]
     },
     {
-        label: 'Category',
+        label: 'Danh mục',
         icon : <BarsOutlined></BarsOutlined>,
         children: [
             {

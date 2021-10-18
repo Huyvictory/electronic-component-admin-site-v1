@@ -4,6 +4,7 @@ import { Form, Col, Row } from "antd";
 import BasicForm from "../common/entryForm/BasicForm";
 import TextField from "../common/entryForm/TextField";
 import DropdownField from "../common/entryForm/DropdownField";
+import CropImageFiled from "../common/entryForm/CropImageFiled";
 
 import { commonStatus, commonLanguages } from "../../constants/masterData";
 
@@ -38,7 +39,7 @@ class AdminForm extends BasicForm {
 
   componentDidMount() {
     const { dataDetail } = this.props;
-    this.setFieldValue("logoPath", dataDetail.logoPath);
+    this.setFieldValue("avatarPath", dataDetail.logoPath);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -103,7 +104,7 @@ class AdminForm extends BasicForm {
       params: { fileObjects: { file }, type: UploadFileTypes.LOGO },
       onCompleted: (result) => {
         // this.otherData.logoPath = result.data.filePath;
-        this.setFieldValue("logoPath", result.data.filePath);
+        this.setFieldValue("avatarPath", result.data.filePath);
         this.setState({ uploading: false });
         onSuccess();
       },
@@ -115,6 +116,7 @@ class AdminForm extends BasicForm {
       },
     });
   };
+
 
   getInitialFormValues = () => {
     const { isEditing, dataDetail } = this.props;
@@ -128,6 +130,7 @@ class AdminForm extends BasicForm {
 
   render() {
     const { isEditing, formId, loadingSave } = this.props;
+    const { logo, uploading } = this.state;
     // const userData = getUserData();
     return (
       <Form
@@ -137,6 +140,19 @@ class AdminForm extends BasicForm {
         onFinish={this.handleSubmit}
         initialValues={this.getInitialFormValues()}
       >
+        <Row gutter={16}>
+				<Col span={12}>
+					<CropImageFiled
+						fieldName="avatarPath"
+						loading={uploading}
+						label="Ảnh đại diện"
+						imageUrl={logo}
+						onChange={this.handleChangeLogo}
+						uploadFile={this.uploadFileLogo}
+						disabled={loadingSave}
+					/>
+				</Col>
+			</Row>
         <Row gutter={16}>
           <Col span={12}>
             <TextField

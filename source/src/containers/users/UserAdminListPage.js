@@ -31,8 +31,9 @@ class UserAdminListPage extends ListBasePage {
         render: (avatar) => (
           <Avatar
             size="large"
-            icon={<UserOutlined />}
+            icon={<UserOutlined style={{ fontSize: '54px'}} />}
             src={avatar ? `${AppConstants.contentRootUrl}${avatar}` : null}
+            style={{width: "70px", height: "70px", padding: "8px"}}
           />
         ),
       },
@@ -110,6 +111,7 @@ class UserAdminListPage extends ListBasePage {
       ddlRoleLoading,
       loading,
       searchGroupPermissionList,
+      uploadFile
     } = this.props;
     const { isShowModifiedModal, isShowModifiedLoading } = this.state;
     const users = dataList.data || [];
@@ -151,6 +153,7 @@ class UserAdminListPage extends ListBasePage {
             ddlRoleLoading={ddlRoleLoading}
             kind={GroupPermissonTypes.ADMIN}
             loadingSave={isShowModifiedLoading}
+            uploadFile={uploadFile}
           />
         </BasicModal>
       </div>
@@ -173,6 +176,7 @@ const mapDispatchToProps = (dispatch) => ({
   createData: (payload) => dispatch(actions.createUser(payload)),
   updateData: (payload) => dispatch(actions.updateUser(payload)),
   deleteData: (payload) => dispatch(actions.deleteAdmin(payload)),
+  uploadFile: (payload) => dispatch(actions.uploadFile(payload))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserAdminListPage);

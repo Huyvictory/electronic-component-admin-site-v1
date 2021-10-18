@@ -52,7 +52,7 @@ export const sitePathConfig = {
         ]
     },
     newscategory: {
-        path: '/newscategory',
+        path: '/news-category',
         permissions: [
             apiConfig.category.getCategoryList.path,
             apiConfig.category.getCategoryById.path,

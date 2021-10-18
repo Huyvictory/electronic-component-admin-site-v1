@@ -21,14 +21,22 @@ function* getCategoryList({ payload: { params } }) {
     const apiParams = apiConfig.category.getCategoryList;
     const searchParams = { page: params.page, size: params.size };
     if(params.search) {
+<<<<<<< HEAD
         if(params.search.categoryName) {
+=======
+        if(params.search.name) {
+>>>>>>> huy_dev
             searchParams.name = params.search.name
         }
     }
     if(params.kind) {
         searchParams.kind = params.kind
+<<<<<<< HEAD
     }    
     
+=======
+    }
+>>>>>>> huy_dev
     try {
         const result = yield call(sendRequest, apiParams, searchParams);
         yield put({
@@ -96,7 +104,11 @@ function* deleteCategory({ payload: { params, onCompleted, onError } }) {
 }
 
 const sagas = [
+<<<<<<< HEAD
     takeLatest(defineActionLoading(GET_CATEGORY_LIST), getCategoryList),
+=======
+    takeLatest(defineActionLoading(GET_CATEGORY_LIST),getCategoryList),
+>>>>>>> huy_dev
     takeLatest(GET_CATEGORY_BY_ID, getCategoryById),
     takeLatest(UPDATE_CATEGORY, updateCategory),
     takeLatest(CREATE_CATEGORY, createCategory),

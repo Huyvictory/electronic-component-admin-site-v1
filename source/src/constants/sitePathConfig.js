@@ -51,8 +51,13 @@ export const sitePathConfig = {
             apiConfig.customer.deleteCustomer.path,
         ]
     },
+<<<<<<< HEAD
     newscategory: {
         path: '/news-category',
+=======
+    importcategory: {
+        path: '/importcategory',
+>>>>>>> huy_dev
         permissions: [
             apiConfig.category.getCategoryList.path,
             apiConfig.category.getCategoryById.path,
@@ -61,4 +66,17 @@ export const sitePathConfig = {
             apiConfig.category.deleteCategory.path,
         ]
     },
+<<<<<<< HEAD
+=======
+    exportcategory: {
+        path: '/exportcategory',
+        permissions: [
+            apiConfig.category.getCategoryList.path,
+            apiConfig.category.getCategoryById.path,
+            apiConfig.category.createCategory.path,
+            apiConfig.category.updateCategory.path,
+            apiConfig.category.deleteCategory.path,
+        ]
+    }
+>>>>>>> huy_dev
 }

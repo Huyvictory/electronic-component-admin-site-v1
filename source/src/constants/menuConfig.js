@@ -8,6 +8,7 @@ import {
     QuestionOutlined,
     UnorderedListOutlined,
     InboxOutlined,
+    BarsOutlined
 } from '@ant-design/icons';
 import { sitePathConfig } from '../constants/sitePathConfig';
 import store from '../store';
@@ -57,6 +58,7 @@ const navMenuConfig = [
         ]
     },
     {
+<<<<<<< HEAD
         label: 'Danh mục',
         icon: <UserOutlined />,
         children: [
@@ -66,6 +68,21 @@ const navMenuConfig = [
             }
         ]
     },
+=======
+        label: 'Category',
+        icon : <BarsOutlined></BarsOutlined>,
+        children: [
+            {
+                label: 'Danh mục thu',
+                ...sitePathConfig.importcategory
+            },
+            {
+                label: 'Danh mục chi',
+                ...sitePathConfig.exportcategory
+            }
+        ]
+    }
+>>>>>>> huy_dev
 ]
 
 export { navMenuConfig };

@@ -13,7 +13,11 @@ export const actionTypes = {
 }
 
 export const actions = {
+<<<<<<< HEAD
     getCategoryList: createActionWithLoading(actionTypes.GET_CATEGORY_LIST),
+=======
+    getCategoriesList: createActionWithLoading(actionTypes.GET_CATEGORY_LIST),
+>>>>>>> huy_dev
     createCategory: createAction(actionTypes.CREATE_CATEGORY),
     getCategoryById: createAction(actionTypes.GET_CATEGORY_BY_ID),
     updateCategory: createAction(actionTypes.UPDATE_CATEGORY),

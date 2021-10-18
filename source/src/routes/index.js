@@ -19,7 +19,12 @@ import Forbidden from '../containers/Forbidden';
 import SettingsListPage from '../containers/settings/SettingsListPage';
 import GroupPermissionListPage from '../containers/groupPermission/GroupPermissionListPage';
 import CustomerListPage from '../containers/customer/CustomerListPage';
+<<<<<<< HEAD
 import NewsCategoryListPage from '../containers/category/NewsCategoryListPage';
+=======
+import ImportCategoryListPage from '../containers/category/ImportCategoryListPage';
+import ExportCategoryListPage from '../containers/category/ExportCategoryListPage';
+>>>>>>> huy_dev
 
 const RootRoute = () => {
     const {
@@ -30,7 +35,12 @@ const RootRoute = () => {
         setting,
         groupPermission,
         customer,
+<<<<<<< HEAD
         newscategory
+=======
+        importcategory,
+        exportcategory
+>>>>>>> huy_dev
     } = sitePathConfig;
 
     return (
@@ -51,7 +61,12 @@ const RootRoute = () => {
                 <PrivateRoute exact path={setting.path} component={SettingsListPage}/>
                 <PrivateRoute exact path={groupPermission.path} component={GroupPermissionListPage}/>
                 <PrivateRoute exact path={customer.path} component={CustomerListPage}/>
+<<<<<<< HEAD
                 <PrivateRoute exact path={newscategory.path} component={NewsCategoryListPage}/>
+=======
+                <PrivateRoute exact path = {importcategory.path} component = {ImportCategoryListPage}></PrivateRoute>
+                <PrivateRoute exact path = {exportcategory.path} component={ExportCategoryListPage}></PrivateRoute>
+>>>>>>> huy_dev
 
                 {/* Error Page */}
                 <PrivateRoute exact path={forbidden.path} component={Forbidden}/>

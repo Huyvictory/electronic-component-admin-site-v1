@@ -6,7 +6,10 @@ import groupPermission from './groupPermission';
 import setting from './setting';
 import customer from './customer';
 import category from './category';
+<<<<<<< HEAD
 
+=======
+>>>>>>> huy_dev
 
 const sagas = [
     ...appCommon,
@@ -15,7 +18,11 @@ const sagas = [
     ...groupPermission,
     ...setting,
     ...customer,
+<<<<<<< HEAD
     ...category,
+=======
+    ...category
+>>>>>>> huy_dev
 ];
 
 function* rootSaga() {

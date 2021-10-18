@@ -20,23 +20,15 @@ function* getCategoryList({ payload: { params } }) {
 
     const apiParams = apiConfig.category.getCategoryList;
     const searchParams = { page: params.page, size: params.size };
-
+    if(params.search) {
+        if(params.search.categoryName) {
+            searchParams.name = params.search.name
+        }
+    }
     if(params.kind) {
         searchParams.kind = params.kind
     }    
-
-    if(params.parentId) {
-        searchParams.parentId = params.parentId
-    }
-
-    if(params.search) {
-        if(params.search.name) {
-            searchParams.name = params.search.name
-        }
-        if(params.search.status) {
-            searchParams.status = params.search.status
-        }
-    }
+    
     try {
         const result = yield call(sendRequest, apiParams, searchParams);
         yield put({
@@ -52,8 +44,8 @@ function* getCategoryList({ payload: { params } }) {
 function* getCategoryById({ payload: { params, onCompleted, onError } }) {
     try {
         const apiParams = {
-            ...apiConfig.category.getById,
-            path: `${apiConfig.category.getById.path}/${params.id}`
+            ...apiConfig.category.getCategoryById,
+            path: `${apiConfig.category.getCategoryById.path}/${params.id}`
         }
         const result = yield call(sendRequest, apiParams);
         handleApiResponse(result, onCompleted, onError);
@@ -65,7 +57,7 @@ function* getCategoryById({ payload: { params, onCompleted, onError } }) {
 
 function* createCategory({payload: { params, onCompleted, onError }}){
     try {
-        const apiParams = apiConfig.category.create;
+        const apiParams = apiConfig.category.createCategory;
         const result = yield call(sendRequest, apiParams, params);
         handleApiResponse(result, onCompleted, onError);
     }
@@ -76,7 +68,7 @@ function* createCategory({payload: { params, onCompleted, onError }}){
 
 function* updateCategory({ payload: { params, onCompleted, onError } }) {
     try {
-        const apiParams = apiConfig.category.update;
+        const apiParams = apiConfig.category.updateCategory;
         const result = yield call(sendRequest, apiParams, params);
         handleApiResponse(result, onCompleted, onError);
     }
@@ -88,8 +80,8 @@ function* updateCategory({ payload: { params, onCompleted, onError } }) {
 function* deleteCategory({ payload: { params, onCompleted, onError } }) {
     try {
         const apiParams = {
-            ...apiConfig.category.delete,
-            path: `${apiConfig.category.delete.path}/${params.id}`
+            ...apiConfig.category.deleteCategory,
+            path: `${apiConfig.category.deleteCategory.path}/${params.id}`
         }
         const { success, responseData } = yield call(sendRequest, apiParams);
         handleApiResponse({ success, responseData }, onCompleted, onError);

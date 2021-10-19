@@ -5,7 +5,7 @@ import { UserOutlined, PlusOutlined } from "@ant-design/icons";
 // import { withTranslation } from "react-i18next";
 
 import ListBasePage from "../ListBasePage";
-import NewsCategoryForm from "../../compoments/category/NewsCategoryForm";
+import ProductCategoryForm from "../../compoments/category/ProductCategoryForm";
 import BaseTable from "../../compoments/common/table/BaseTable";
 import BasicModal from "../../compoments/common/modal/BasicModal";
 
@@ -21,7 +21,7 @@ import { showErrorMessage, showSucsessMessage } from '../../services/notifyServi
 //   { value: 0, label: 'Khóa', color: 'red' },
 // ]
 
-class NewsCategoryListPage extends ListBasePage {
+class ProductCategoryListPage extends ListBasePage {
   initialSearch() {
     return { name: "", kind: "" };
   }  
@@ -42,8 +42,8 @@ class NewsCategoryListPage extends ListBasePage {
         width: 100,
         render: (avatarPath) => (
           <Avatar
-            className="table-avatar"
-            style = {{width: '70px', height: '70px', padding: '15px'}}
+          className="table-avatar"
+          style = {{width: '70px', height: '70px', padding: '15px'}}
             size="large"
             icon={<UserOutlined />}
             src={avatarPath ? `${AppConstants.contentRootUrl}${avatarPath}` : null}
@@ -73,7 +73,7 @@ class NewsCategoryListPage extends ListBasePage {
   prepareCreateData(data){
     return {
       ...data,
-      categoryKind: 4,
+      categoryKind: 3,
       categoryOrdering: 0,
     }
   }
@@ -88,7 +88,7 @@ class NewsCategoryListPage extends ListBasePage {
   getList() {
     const { getDataList } = this.props;
         const page = this.pagination.current ? this.pagination.current - 1 : 0;
-        const params = { page, size: this.pagination.pageSize, search: this.search, kind: 4};
+        const params = { page, size: this.pagination.pageSize, search: this.search, kind: 3};
         getDataList({ params });
   }
   getDetail(id) {
@@ -191,7 +191,7 @@ class NewsCategoryListPage extends ListBasePage {
           onOk={this.onOkModal}
           onCancel={this.onCancelModal}
         >
-          <NewsCategoryForm
+          <ProductCategoryForm
             isEditing={this.isEditing}
             dataDetail={this.isEditing ? this.dataDetail : {}}
             uploadFile={uploadFile}
@@ -218,4 +218,4 @@ const mapDispatchToProps = (dispatch) => ({
   uploadFile: (payload) => dispatch(actions.uploadFile(payload)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(NewsCategoryListPage);
+export default connect(mapStateToProps, mapDispatchToProps)(ProductCategoryListPage);

@@ -61,11 +61,16 @@ const navMenuConfig = [
         icon: <UserOutlined />,
         children: [
             {
+                label: 'Sản phẩm',
+                ...sitePathConfig.product,
+            },
+            {
                 label: 'Tin tức',
                 ...sitePathConfig.newscategory,
             }
         ]
     },
+    
 ]
 
 export { navMenuConfig };

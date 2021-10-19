@@ -21,8 +21,8 @@ class CategoryForm extends BasicForm {
   constructor(props) {
     super(props);
     this.state = {
-      avatar: props.dataDetail.categoryAvatarPath
-        ? `${AppConstants.contentRootUrl}/${props.dataDetail.categoryAvatarPath}`
+      avatar: props.dataDetail.categoryImage
+        ? `${AppConstants.contentRootUrl}/${props.dataDetail.categoryImage}`
         : "",
       uploading: false,
     }

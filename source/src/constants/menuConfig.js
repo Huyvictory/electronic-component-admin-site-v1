@@ -67,7 +67,11 @@ const navMenuConfig = [
             },
             {
                 label: 'Danh mục chi',
-                ...sitePathConfig.exportcategory
+                ...sitePathConfig.exportcategory,
+            },
+            {
+                label: 'Sản phẩm',
+                ...sitePathConfig.product,
             },
             {
                 label: 'Tin tức',
@@ -75,6 +79,7 @@ const navMenuConfig = [
             }
         ]
     },
+    
 ]
 
 export { navMenuConfig };

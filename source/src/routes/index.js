@@ -22,6 +22,7 @@ import CustomerListPage from '../containers/customer/CustomerListPage';
 import NewsCategoryListPage from '../containers/category/newsCategoryListPage';
 import ImportCategoryListPage from '../containers/category/ImportCategoryListPage';
 import ExportCategoryListPage from '../containers/category/ExportCategoryListPage';
+import ProductCategoryListPage from '../containers/category/ProductCategoryListPage';
 
 const RootRoute = () => {
     const {
@@ -34,7 +35,9 @@ const RootRoute = () => {
         customer,
         newscategory,
         importcategory,
-        exportcategory
+        exportcategory,
+        product,
+        
     } = sitePathConfig;
 
     return (
@@ -55,6 +58,7 @@ const RootRoute = () => {
                 <PrivateRoute exact path={setting.path} component={SettingsListPage}/>
                 <PrivateRoute exact path={groupPermission.path} component={GroupPermissionListPage}/>
                 <PrivateRoute exact path={customer.path} component={CustomerListPage}/>
+                <PrivateRoute exact path={product.path} component={ProductCategoryListPage}/>
                 <PrivateRoute exact path={newscategory.path} component={NewsCategoryListPage}/>
                 <PrivateRoute exact path = {importcategory.path} component = {ImportCategoryListPage}></PrivateRoute>
                 <PrivateRoute exact path = {exportcategory.path} component={ExportCategoryListPage}></PrivateRoute>

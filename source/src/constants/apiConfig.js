@@ -197,7 +197,39 @@ const apiConfig = {
             path: '/v1/category/delete',
             method: 'DELETE',
             headers: baseHeader
+        },
+        getTypeCategory: {
+            path: '/v1/category/auto-complete',
+            method: 'GET',
+            headers: baseHeader
         }
     },
+    product: {
+        getProductList: {
+            path: '/v1/product/list',
+            method: 'GET',
+            headers: baseHeader
+        },
+        createProduct: {
+            path: '/v1/product/create',
+            method: 'POST',
+            headers: baseHeader
+        },
+        getProductById: {
+            path: '/v1/product/get',
+            method: 'GET',
+            headers: baseHeader
+        },
+        updateProduct: {
+            path: '/v1/product/update',
+            method: 'PUT',
+            headers: baseHeader
+        },
+        deleteProduct: {
+            path: '/v1/product/delete',
+            method: 'DELETE',
+            headers: baseHeader
+        }
+    }
 }
 export default apiConfig;

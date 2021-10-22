@@ -6,7 +6,7 @@ import TextField from "../common/entryForm/TextField";
 import DropdownField from "../common/entryForm/DropdownField";
 import CropImageFiled from "../common/entryForm/CropImageFiled";
 
-import { commonStatus, commonLanguages } from "../../constants/masterData";
+import { commonStatus} from "../../constants/masterData";
 
 import {
   AppConstants,

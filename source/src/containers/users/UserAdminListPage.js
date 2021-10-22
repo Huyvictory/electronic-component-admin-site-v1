@@ -93,6 +93,7 @@ class UserAdminListPage extends ListBasePage {
       id: this.dataDetail.id,
       kind: UserTypes.ADMIN,
       ...values,
+      lang: 'Viet Nam'
     };
   }
 

@@ -80,5 +80,16 @@ export const sitePathConfig = {
             apiConfig.category.updateCategory.path,
             apiConfig.category.deleteCategory.path,
         ]
+    },
+    product: {
+        path: '/product',
+        permissions: [
+            apiConfig.product.getProductList.path,
+            apiConfig.product.getProductById.path,
+            apiConfig.product.createProduct.path,
+            apiConfig.product.updateProduct.path,
+            apiConfig.product.deleteProduct.path,
+            apiConfig.category.getTypeCategory.path
+        ]
     }
 }

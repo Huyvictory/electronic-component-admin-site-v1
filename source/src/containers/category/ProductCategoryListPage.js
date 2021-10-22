@@ -136,7 +136,7 @@ class ProductCategoryListPage extends ListBasePage {
   }
   renderStatusColumn(){
     return {
-      title: 'Status',
+      title: 'Trạng thái',
       dataIndex: 'status',
       width: '100px',
       render: (status) =>{

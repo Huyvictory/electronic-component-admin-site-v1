@@ -71,7 +71,7 @@ const navMenuConfig = [
             },
             {
                 label: 'Sản phẩm',
-                ...sitePathConfig.product,
+                ...sitePathConfig.productCategory,
             },
             {
                 label: 'Tin tức',
@@ -79,9 +79,6 @@ const navMenuConfig = [
             }
         ]
     },
-<<<<<<< HEAD
-    
-=======
     {
         label: 'Sản phẩm',
         icon: <InboxOutlined></InboxOutlined>,
@@ -92,7 +89,6 @@ const navMenuConfig = [
             },
         ]
     },
->>>>>>> huy_dev
 ]
 
 export { navMenuConfig };

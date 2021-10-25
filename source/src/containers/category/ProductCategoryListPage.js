@@ -210,7 +210,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  getDataList: (payload) => dispatch(actions.getCategoryList(payload)),
+  getDataList: (payload) => dispatch(actions.getCategoriesList(payload)),
   getDataById: (payload) => dispatch(actions.getCategoryById(payload)),
   updateData: (payload) => dispatch(actions.updateCategory(payload)),
   deleteData: (payload) => dispatch(actions.deleteCategory(payload)),

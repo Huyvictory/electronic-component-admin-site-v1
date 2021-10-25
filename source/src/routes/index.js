@@ -22,7 +22,11 @@ import CustomerListPage from '../containers/customer/CustomerListPage';
 import NewsCategoryListPage from '../containers/category/newsCategoryListPage';
 import ImportCategoryListPage from '../containers/category/ImportCategoryListPage';
 import ExportCategoryListPage from '../containers/category/ExportCategoryListPage';
+<<<<<<< HEAD
 import ProductCategoryListPage from '../containers/category/ProductCategoryListPage';
+=======
+import ProductListPage from '../containers/product/ProductListPage';
+>>>>>>> huy_dev
 
 const RootRoute = () => {
     const {
@@ -36,8 +40,12 @@ const RootRoute = () => {
         newscategory,
         importcategory,
         exportcategory,
+<<<<<<< HEAD
         product,
         
+=======
+        product
+>>>>>>> huy_dev
     } = sitePathConfig;
 
     return (
@@ -62,6 +70,7 @@ const RootRoute = () => {
                 <PrivateRoute exact path={newscategory.path} component={NewsCategoryListPage}/>
                 <PrivateRoute exact path = {importcategory.path} component = {ImportCategoryListPage}></PrivateRoute>
                 <PrivateRoute exact path = {exportcategory.path} component={ExportCategoryListPage}></PrivateRoute>
+                <PrivateRoute exact path = {product.path} component={ProductListPage}></PrivateRoute>
 
                 {/* Error Page */}
                 <PrivateRoute exact path={forbidden.path} component={Forbidden}/>

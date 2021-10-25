@@ -7,8 +7,8 @@ import FieldSet from "../common/elements/FieldSet";
 import DropdownField from "../common/entryForm/DropdownField";
 import CropImageFiled from "../common/entryForm/CropImageFiled";
 import DatePickerField from "../common/entryForm/DatePickerField";
-import { commonLanguages } from "../../constants/masterData";
 import { convertStringToDateTime, convertDateTimeToString } from "../../utils/datetimeHelper";
+import {commonStatus} from "../../constants/masterData";
 import {
   AppConstants,
   UploadFileTypes,
@@ -17,12 +17,12 @@ import {
 import Utils from "../../utils";
 import { showErrorMessage } from "../../services/notifyService";
 
-class CategoryForm extends BasicForm {
+class ProductForm extends BasicForm {
   constructor(props) {
     super(props);
     this.state = {
-      avatar: props.dataDetail.categoryImage
-        ? `${AppConstants.contentRootUrl}/${props.dataDetail.categoryImage}`
+      avatar: props.dataDetail.productImage
+        ? `${AppConstants.contentRootUrl}/${props.dataDetail.productImage}`
         : "",
       uploading: false,
     }
@@ -56,7 +56,7 @@ class CategoryForm extends BasicForm {
     uploadFile({
       params: { fileObjects: { file }, type: UploadFileTypes.AVATAR },
       onCompleted: (result) => {
-        this.setFieldValue("categoryImage", result.data.filePath);
+        this.setFieldValue("productImage", result.data.filePath);
         this.setState({ uploading: false });
         onSuccess();
       },
@@ -68,24 +68,6 @@ class CategoryForm extends BasicForm {
       },
     });
   };
-
-  // validateToConfirmPassword = (rule, value) => {
-  //   const {
-  //     current: { validateFields, isFieldTouched },
-  //   } = this.formRef;
-  //   if (isFieldTouched("confirmPassword")) {
-  //     validateFields(["confirmPassword"], { force: true });
-  //   }
-  //   return Promise.resolve();
-  // };
-  // compareToPassword = (rule, newPassword) => {
-  //   const password = this.getFieldValue("customerPassword");
-  //   if ((password || newPassword) && password !== newPassword) {
-  //     return Promise.reject("Mật khẩu không khớp");
-  //   } else {
-  //     return Promise.resolve();
-  //   }
-  // };
 
   render() {
     const { formId, dataDetail, commonStatus, loadingSave, isEditing } = this.props;
@@ -101,7 +83,7 @@ class CategoryForm extends BasicForm {
 			<Row gutter={16}>
 				<Col span={12}>
 					<CropImageFiled
-						fieldName="categoryImage"
+						fieldName="productImage"
 						loading={uploading}
 						label="Ảnh đại diện"
 						imageUrl={avatar}
@@ -115,39 +97,36 @@ class CategoryForm extends BasicForm {
 			<Row gutter={16}>
 				<Col span={12}>
 					<TextField
-					fieldName="categoryName"
-					label="Tên danh mục"
+					fieldName="productName"
+					label="Tên sản phẩm"
 					required
-					disabled={loadingSave || isEditing}
+					disabled={loadingSave}
 					/>
 				</Col>
+        <Col span={12}>
+          <TextField 
+            fieldName="productPrice"
+            label="Giá sản phẩm"
+            type="number"
+            required
+            disabled={loadingSave}>
+          </TextField>
+        </Col>
 			</Row>
-			<Row gutter={16}>
-          <Col span={24}>
-            <TextField
-              fieldName="categoryDescription"
-              label={"Mô tả danh mục"}
-              required={!isEditing}
-              disabled={loadingSave}
-              style = {{height: '50px'}}
-              type = "textarea"
-            />
-          </Col>
 
-          {/* <Col span={12}>
-            <TextField
-              fieldName="confirmPassword"
-              type="password"
-              label={isEditing ? "Xác nhận mật khẩu mới" : "Xác nhận mật khẩu"}
-              required={!isEditing || this.getFieldValue("password")}
-              validators={[this.compareToPassword]}
-              disabled={loadingSave}
-            />
-          </Col> */}
-      </Row>			
+      <Row gutter={16}>
+        <Col span={12}>
+          <DropdownField 
+          fieldName="status"
+          label="Trạng thái"
+          options={commonStatus}
+          disabled={loadingSave}>
+          </DropdownField>
+        </Col>
+      </Row>	
       </Form>
     );
   }
 }
 
-export default CategoryForm;
+export default ProductForm;

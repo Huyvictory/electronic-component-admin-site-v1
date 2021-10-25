@@ -31,6 +31,7 @@ class UserAdminListPage extends ListBasePage {
         render: (avatar) => (
           <Avatar
             size="large"
+            className="table-avatar"
             icon={<UserOutlined style={{ fontSize: '54px'}} />}
             src={avatar ? `${AppConstants.contentRootUrl}${avatar}` : null}
             style={{width: "70px", height: "70px", padding: "8px"}}
@@ -92,6 +93,7 @@ class UserAdminListPage extends ListBasePage {
       id: this.dataDetail.id,
       kind: UserTypes.ADMIN,
       ...values,
+      lang: 'Viet Nam'
     };
   }
 

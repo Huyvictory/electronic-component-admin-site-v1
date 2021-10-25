@@ -8,7 +8,7 @@ import {
     QuestionOutlined,
     UnorderedListOutlined,
     InboxOutlined,
-    BarsOutlined
+    BarsOutlined,
 } from '@ant-design/icons';
 import { sitePathConfig } from '../constants/sitePathConfig';
 import store from '../store';
@@ -79,7 +79,20 @@ const navMenuConfig = [
             }
         ]
     },
+<<<<<<< HEAD
     
+=======
+    {
+        label: 'Sản phẩm',
+        icon: <InboxOutlined></InboxOutlined>,
+        children: [
+            {
+                label: 'Sản phẩm',
+                ...sitePathConfig.product,
+            },
+        ]
+    },
+>>>>>>> huy_dev
 ]
 
 export { navMenuConfig };

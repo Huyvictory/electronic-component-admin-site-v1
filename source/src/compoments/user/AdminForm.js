@@ -6,7 +6,7 @@ import TextField from "../common/entryForm/TextField";
 import DropdownField from "../common/entryForm/DropdownField";
 import CropImageFiled from "../common/entryForm/CropImageFiled";
 
-import { commonStatus, commonLanguages } from "../../constants/masterData";
+import { commonStatus} from "../../constants/masterData";
 
 import {
   AppConstants,
@@ -23,8 +23,8 @@ class AdminForm extends BasicForm {
   constructor(props) {
     super(props);
     this.state = {
-      logo: props.dataDetail.logoPath
-        ? `${AppConstants.contentRootUrl}/${props.dataDetail.logoPath}`
+      logo: props.dataDetail.avatar
+        ? `${AppConstants.contentRootUrl}/${props.dataDetail.avatar}`
         : "",
       uploading: false,
     };
@@ -39,7 +39,7 @@ class AdminForm extends BasicForm {
 
   componentDidMount() {
     const { dataDetail } = this.props;
-    this.setFieldValue("avatarPath", dataDetail.logoPath);
+    this.setFieldValue("avatar", dataDetail.avatar);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -122,6 +122,7 @@ class AdminForm extends BasicForm {
     const { isEditing, dataDetail } = this.props;
     if (!isEditing) {
       return {
+        ...dataDetail,
         status: STATUS_ACTIVE,
       };
     }
@@ -206,15 +207,6 @@ class AdminForm extends BasicForm {
           </Col>
         </Row>
         <Row gutter={16}>         
-          <Col span={12}>
-            <DropdownField
-              fieldName="lang"
-              label="Ngôn ngữ"
-              required
-              options={commonLanguages}
-              disabled={loadingSave}
-            />
-          </Col>
           <Col span={12}>
               <DropdownField
                 fieldName="status"

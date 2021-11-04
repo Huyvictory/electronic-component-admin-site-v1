@@ -9,6 +9,7 @@ import CropImageFiled from "../common/entryForm/CropImageFiled";
 import DatePickerField from "../common/entryForm/DatePickerField";
 import { convertStringToDateTime, convertDateTimeToString } from "../../utils/datetimeHelper";
 import {commonStatus} from "../../constants/masterData";
+import {categoryTypes} from '../../constants/masterData';
 import {
   AppConstants,
   UploadFileTypes,
@@ -121,6 +122,14 @@ class ProductForm extends BasicForm {
           label="Trạng thái"
           options={commonStatus}
           disabled={loadingSave}>
+          </DropdownField>
+        </Col>
+        <Col span={12}>
+          <DropdownField 
+          fieldName="categoryId"
+          label="Danh mục sản phẩm"
+          options={categoryTypes}
+          disabled={isEditing}>
           </DropdownField>
         </Col>
       </Row>	

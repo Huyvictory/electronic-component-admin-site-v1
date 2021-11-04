@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Avatar, Tag, Button } from "antd";
-import { ExportOutlined, PlusOutlined } from "@ant-design/icons";
+import { ExportOutlined, PlusOutlined} from "@ant-design/icons";
 
 import ListBasePage from "../ListBasePage";
 import ProductForm from "../../compoments/product/ProductForm";
@@ -38,13 +38,13 @@ class ProductListPage extends ListBasePage {
         title: "Ảnh sản phẩm",
         dataIndex: "productImage",
         align: 'center',
-        width: 100,
+        width: 200,
         render: (avatarPath) => (
           <Avatar
             style={{width: "70px", height: "70px", padding: "8px"}}
             className="table-avatar"
             size="large"
-            icon={<ExportOutlined />}
+            icon={<ExportOutlined style={{ fontSize: '54px'}} />}
             src={avatarPath ? `${AppConstants.contentRootUrl}${avatarPath}` : null}
           />
         ),
@@ -53,7 +53,7 @@ class ProductListPage extends ListBasePage {
       {
         title: <div>Giá sản phẩm</div>,
         dataIndex: "productPrice",
-        align: "center",
+        align: "right",
         width: 120,
       },
       this.renderStatusColumn(),
@@ -140,8 +140,7 @@ class ProductListPage extends ListBasePage {
 
   prepareCreateData(data) {
     return {
-      ...data,
-      categoryId: this.search.categoryId
+      ...data
     }
   }
 

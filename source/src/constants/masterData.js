@@ -16,6 +16,12 @@ export const commonStatus = [
     { value: STATUS_LOCK, label: 'Đang khóa', color: 'red' },
 ]
 
+export const categoryTypes = [
+    {value: 1, label: 'ARDUINO'},
+    {value: 2, label: 'LCD Screen'},
+    {value: 3, label: 'Power Supply'}
+]
+
 export const commonLanguages = [
     { value: 'vi', label: 'Việt Nam'},
     { value: 'en', label: 'English'},

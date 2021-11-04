@@ -19,9 +19,10 @@ import Forbidden from '../containers/Forbidden';
 import SettingsListPage from '../containers/settings/SettingsListPage';
 import GroupPermissionListPage from '../containers/groupPermission/GroupPermissionListPage';
 import CustomerListPage from '../containers/customer/CustomerListPage';
-import NewsCategoryListPage from '../containers/category/newsCategoryListPage';
+import NewsCategoryListPage from '../containers/category/NewsCategoryListPage';
 import ImportCategoryListPage from '../containers/category/ImportCategoryListPage';
 import ExportCategoryListPage from '../containers/category/ExportCategoryListPage';
+import ProductCategoryListPage from '../containers/category/ProductCategoryListPage';
 import ProductListPage from '../containers/product/ProductListPage';
 
 const RootRoute = () => {
@@ -36,7 +37,8 @@ const RootRoute = () => {
         newscategory,
         importcategory,
         exportcategory,
-        product
+        productCategory,
+        product,
     } = sitePathConfig;
 
     return (
@@ -57,6 +59,7 @@ const RootRoute = () => {
                 <PrivateRoute exact path={setting.path} component={SettingsListPage}/>
                 <PrivateRoute exact path={groupPermission.path} component={GroupPermissionListPage}/>
                 <PrivateRoute exact path={customer.path} component={CustomerListPage}/>
+                <PrivateRoute exact path={productCategory.path} component={ProductCategoryListPage}/>
                 <PrivateRoute exact path={newscategory.path} component={NewsCategoryListPage}/>
                 <PrivateRoute exact path = {importcategory.path} component = {ImportCategoryListPage}></PrivateRoute>
                 <PrivateRoute exact path = {exportcategory.path} component={ExportCategoryListPage}></PrivateRoute>

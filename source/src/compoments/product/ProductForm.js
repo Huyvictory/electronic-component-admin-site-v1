@@ -71,7 +71,7 @@ class ProductForm extends BasicForm {
   };
 
   render() {
-    const { formId, dataDetail, commonStatus, loadingSave, isEditing } = this.props;
+    const { formId, dataDetail, commonStatus, loadingSave, isEditing, categoryTypes } = this.props;
     const { avatar, uploading } = this.state;
     return (
       <Form
@@ -127,6 +127,7 @@ class ProductForm extends BasicForm {
         <Col span={12}>
           <DropdownField 
           fieldName="categoryId"
+          required
           label="Danh mục sản phẩm"
           options={categoryTypes}
           disabled={isEditing}>

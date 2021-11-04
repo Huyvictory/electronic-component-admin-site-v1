@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Avatar, Tag, Button } from "antd";
-import { ExportOutlined, PlusOutlined} from "@ant-design/icons";
+import { Avatar, Tag, Button, Table } from "antd";
+import { TableOutlined, PlusOutlined} from "@ant-design/icons";
 
 import ListBasePage from "../ListBasePage";
 import ProductForm from "../../compoments/product/ProductForm";
@@ -14,6 +14,7 @@ import { convertUtcToLocalTime } from "../../utils/datetimeHelper";
 import { AppConstants } from "../../constants";
 import {categoryKinds} from "../../constants/masterData";
 import { showErrorMessage, showSucsessMessage } from '../../services/notifyService';
+import Utils from '../../utils/index'
 
 const commonStatus = [
   { value: 1, label: 'Kích hoạt', color: 'green' },
@@ -44,7 +45,7 @@ class ProductListPage extends ListBasePage {
             style={{width: "70px", height: "70px", padding: "8px"}}
             className="table-avatar"
             size="large"
-            icon={<ExportOutlined style={{ fontSize: '54px'}} />}
+            icon={<TableOutlined style={{ fontSize: '54px'}} />}
             src={avatarPath ? `${AppConstants.contentRootUrl}${avatarPath}` : null}
           />
         ),
@@ -83,8 +84,6 @@ class ProductListPage extends ListBasePage {
         value: el.id
       }
     })
-
-    console.log(CategoryList);
 
     return [
       {
@@ -139,6 +138,7 @@ class ProductListPage extends ListBasePage {
 }
 
   prepareCreateData(data) {
+
     return {
       ...data
     }
@@ -173,7 +173,19 @@ class ProductListPage extends ListBasePage {
       dataList,
       loading,
       uploadFile,
+      categoryList
     } = this.props;
+
+    const productCategoryList = categoryList.data || [];
+    
+    let CategoryList = [...productCategoryList];
+
+    CategoryList = CategoryList.map((el) => {
+      return {
+        label: el.categoryName,
+        value: el.id
+      }
+    })
     const { isShowModifiedModal, isShowModifiedLoading } = this.state;
     const product = dataList.data || [];
     this.pagination.total = dataList.totalElements || 0;
@@ -214,6 +226,7 @@ class ProductListPage extends ListBasePage {
             uploadFile={uploadFile}
             commonStatus={commonStatus}
             loadingSave={isShowModifiedLoading}
+            categoryTypes={CategoryList}
           />
         </BasicModal>
       </div>

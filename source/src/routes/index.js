@@ -19,7 +19,7 @@ import Forbidden from '../containers/Forbidden';
 import SettingsListPage from '../containers/settings/SettingsListPage';
 import GroupPermissionListPage from '../containers/groupPermission/GroupPermissionListPage';
 import CustomerListPage from '../containers/customer/CustomerListPage';
-import NewsCategoryListPage from '../containers/category/NewsCategoryListPage';
+import NewsCategoryListPage from '../containers/category/newsCategoryListPage';
 import ImportCategoryListPage from '../containers/category/ImportCategoryListPage';
 import ExportCategoryListPage from '../containers/category/ExportCategoryListPage';
 import ProductCategoryListPage from '../containers/category/ProductCategoryListPage';

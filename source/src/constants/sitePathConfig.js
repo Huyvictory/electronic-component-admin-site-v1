@@ -93,6 +93,18 @@ export const sitePathConfig = {
     },
     product: {
         path: '/product',
+        childrenKeys: ['/product-child'],
+        permissions: [
+            apiConfig.product.getProductList.path,
+            apiConfig.product.getProductById.path,
+            apiConfig.product.createProduct.path,
+            apiConfig.product.updateProduct.path,
+            apiConfig.product.deleteProduct.path,
+            apiConfig.category.getTypeCategory.path
+        ]
+    },
+    productChild: {
+        path: '/product-children',
         permissions: [
             apiConfig.product.getProductList.path,
             apiConfig.product.getProductById.path,

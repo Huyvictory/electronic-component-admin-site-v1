@@ -29,6 +29,11 @@ function* getProductList({ payload: { params } }) {
     if(params.categoryId) {
         searchParams.categoryId = params.categoryId
     }
+
+    if(params.parentId) {
+        searchParams.parentId = params.parentId
+    }
+
     try {
         const result = yield call(sendRequest, apiParams, searchParams);
         yield put({
@@ -45,12 +50,12 @@ function* getCategoryType({payload: {params}}) {
     const apiParams = apiConfig.category.getTypeCategory;
     const searchParams = { page: params.page, size: params.size };
 
-    console.log('running');
 
     if(params.kind)
     {
         searchParams.kind = params.kind
     }
+
     try {
         const result = yield call (sendRequest, apiParams, searchParams);
         yield put({

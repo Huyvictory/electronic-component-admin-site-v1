@@ -23,17 +23,30 @@ const commonStatus = [
   { value: 0, label: 'Khóa', color: 'red' },
 ]
 
-class ProductListPage extends ListBasePage {
+class ProductListPageChildren extends ListBasePage {
   initialSearch() {
-    return { name: "", categoryId: undefined};
+    return {name: ""};
   }
 
   constructor(props) {
     super(props);
-    const { t } = props;
     this.objectName =  "Sản phẩm";
-    this.breadcrumbs = [{ name: "Sản phẩm" }];
-    this.categoryId = undefined;
+    const { location: { search } } = props;
+    const {
+        parentSearchcategoryId,
+        parentName,
+        parentId
+    } = qs.parse(search);
+    console.log(parentSearchcategoryId);
+    console.log(parentName);
+    console.log(parentId);
+    this.categoryId = parentSearchcategoryId;
+    this.parentId = parentId;
+    this.parentName = parentName;
+    this.breadcrumbs = [
+        { name: "Sản phẩm con" }, 
+        {name: `${parentName}`, 
+        path: `${sitePathConfig.product.path}/${parentSearchcategoryId}${this.handleRoutingParent()}`}];
     this.search = this.initialSearch();
     this.dataDetail = {};
     this.columns = [
@@ -53,20 +66,7 @@ class ProductListPage extends ListBasePage {
           />
         ),
       },
-      { title: 'Tên sản phẩm', dataIndex: "productName", render: (productName, dataRow) => {
-        return {
-            props: {
-                style: dataRow.labelColor === 'none' ? {} : { background: dataRow.labelColor },
-            },
-            children: (
-                <span className="routing" onClick={()=>{
-                    this.handleRouting(dataRow.id, dataRow.productName, dataRow.categoryId);
-                }}>
-                    {dataRow.productName}
-                </span>
-            ),
-        }
-    }},
+      { title: 'Tên sản phẩm', dataIndex: "productName"},
       {
         title: <div>Giá sản phẩm</div>,
         dataIndex: "productPrice",
@@ -116,50 +116,28 @@ class ProductListPage extends ListBasePage {
         key: "name",
         seachPlaceholder: 'Tên sản phẩm',
         initialValue: this.search.name,
-      },
-      {
-        key: "categoryId",
-        width: 250,
-        seachPlaceholder: 'Chọn danh mục sản phẩm',
-        fieldType: FieldTypes.SELECT,
-        options: CategoryList,
-        initialValue: this.search.categoryId,
-      },
+      }
     ];
   }
 
-  handleRouting(parentId, parentName, parentSearchcategoryId) {
-    const { location: { search }, history } = this.props;
+  handleRoutingParent() {
+    const { location: { search } } = this.props;
+    console.log(search);
     const queryString = qs.parse(search);
     const result = {};
+    const prName = 'parentSearch';
     Object.keys(queryString).map(q => {
-        result[`parentSearch${q}`] = queryString[q];
+        if(q.startsWith(prName))
+            result[q.substring(prName.length, q.length)] = queryString[q];
     })
-    history.push(`${sitePathConfig.product.path}-child?${qs.stringify({...result, parentId, parentName, parentSearchcategoryId})}`);
-}
-
-componentWillReceiveProps(nextProps) {
-  if(nextProps.location.search !== this.props.location.search) {
-      const { location: { search }, t } = nextProps;
-      const {categoryId } = qs.parse(search);
-      this.categoryId = categoryId;
-      this.pagination = { pageSize: 100 };
-      this.objectName =  "Sản phẩm";
-      this.breadcrumbs = [
-          { name: "Sản phẩm"}
-      ];
-      const { changeBreadcrumb } = nextProps;
-      if(this.breadcrumbs.length > 0) {
-          changeBreadcrumb(this.breadcrumbs);
-      }
-      this.loadDataTable(nextProps);
-  }
+    const qsMark = Object.keys(result).length > 0 ? "?" : "";
+    return qsMark + qs.stringify(result);
 }
 
   getList() {
     const { getDataList } = this.props;
         const page = this.pagination.current ? this.pagination.current - 1 : 0;
-        const params = { page, size: this.pagination.pageSize, search: this.search, categoryId: this.search.categoryId};
+        const params = { page, size: this.pagination.pageSize, search: this.search, categoryId: this.categoryId, parentId: this.parentId};
         getDataList({ params });
   }
 
@@ -194,7 +172,8 @@ componentWillReceiveProps(nextProps) {
   prepareCreateData(data) {
 
     return {
-      ...data
+      ...data,
+      parentId: this.parentId
     }
   }
 
@@ -232,13 +211,16 @@ componentWillReceiveProps(nextProps) {
     const productCategoryList = categoryList.data || [];
     
     let CategoryList = [...productCategoryList];
+    CategoryList = CategoryList.filter(el => el.id == this.categoryId)
 
+    
     CategoryList = CategoryList.map((el) => {
-      return {
-        label: el.categoryName,
-        value: el.id
-      }
+        return {
+            label: el.categoryName,
+            value: el.id
+        }
     })
+
     const { isShowModifiedModal, isShowModifiedLoading } = this.state;
     const product = dataList.data || [];
     this.pagination.total = dataList.totalElements || 0;
@@ -303,4 +285,4 @@ const mapDispatchToProps = (dispatch) => ({
   uploadFile: (payload) => dispatch(actions.uploadFile(payload)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProductListPage);
+export default connect(mapStateToProps, mapDispatchToProps)(ProductListPageChildren);

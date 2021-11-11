@@ -16,6 +16,7 @@ export const commonStatus = [
     { value: STATUS_LOCK, label: 'Đang khóa', color: 'red' },
 ]
 
+
 export const commonLanguages = [
     { value: 'vi', label: 'Việt Nam'},
     { value: 'en', label: 'English'},

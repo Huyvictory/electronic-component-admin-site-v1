@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Avatar, Tag, Button } from "antd";
-import { UserOutlined, PlusOutlined } from "@ant-design/icons";
+import { ShoppingOutlined, PlusOutlined } from "@ant-design/icons";
 // import { withTranslation } from "react-i18next";
 
 import ListBasePage from "../ListBasePage";
@@ -43,9 +43,9 @@ class ProductCategoryListPage extends ListBasePage {
         render: (avatarPath) => (
           <Avatar
           className="table-avatar"
-          style = {{width: '70px', height: '70px', padding: '15px'}}
+          style = {{width: '70px', height: '70px', padding: '8px'}}
             size="large"
-            icon={<UserOutlined />}
+            icon={<ShoppingOutlined style = {{fontSize: '54px'}} />}
             src={avatarPath ? `${AppConstants.contentRootUrl}${avatarPath}` : null}
           />
         ),

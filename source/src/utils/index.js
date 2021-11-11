@@ -89,10 +89,10 @@ const Utils = {
         if((value || value === 0) && !isNaN(value)) {
             const groupSeparator = setting.groupSeparator || ',';
             const decimalSeparator = setting.decimalSeparator || '.';
-            const currentcy = setting.currencySymbol || '';
+            const currentcy = 'Đ';
             const currencySymbolPosition = setting.currencySymbolPosition;
             if(value.toString().indexOf(decimalSeparator) === -1) {
-                value = value / setting.moneyRatio;
+                value = value / 1;
                 value = value.toFixed(Number(setting.decimal) || 0);
                 const decimalIndex = value.toString().lastIndexOf(".");
                 if(decimalIndex > -1) {

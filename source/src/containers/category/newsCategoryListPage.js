@@ -1,11 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Avatar, Tag, Button } from "antd";
-import { InfoCircleOutlined, PlusOutlined } from "@ant-design/icons";
+import { ShoppingOutlined, PlusOutlined } from "@ant-design/icons";
 // import { withTranslation } from "react-i18next";
 
 import ListBasePage from "../ListBasePage";
-import NewsCategoryForm from "../../compoments/category/CategoryForm";
+import NewsCategoryForm from "../../compoments/category/newsCategoryForm";
 import BaseTable from "../../compoments/common/table/BaseTable";
 import BasicModal from "../../compoments/common/modal/BasicModal";
 
@@ -42,10 +42,10 @@ class NewsCategoryListPage extends ListBasePage {
         width: 100,
         render: (avatarPath) => (
           <Avatar
-            className="table-avatar"
-            style = {{width: '70px', height: '70px', padding: '8px'}}
+          className="table-avatar"
+          style = {{width: '70px', height: '70px', padding: '8px'}}
             size="large"
-            icon={<InfoCircleOutlined style={{fontSize: '54px'}} />}
+            icon={<ShoppingOutlined style = {{fontSize: '54px'}} />}
             src={avatarPath ? `${AppConstants.contentRootUrl}${avatarPath}` : null}
           />
         ),

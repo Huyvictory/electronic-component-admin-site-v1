@@ -174,7 +174,18 @@ class NewsListPage extends ListBasePage {
       dataList,
       loading,
       uploadFile,
+      categoryList
     } = this.props;
+    const newsCategoryList = categoryList.data || [];
+    
+    let CategoryList = [...newsCategoryList];
+
+    CategoryList = CategoryList.map((el) => {
+      return {
+        label: el.categoryName,
+        value: el.id
+      }
+    })
     const { isShowModifiedModal, isShowModifiedLoading } = this.state;
     const news = dataList.data || [];
     this.pagination.total = dataList.totalElements || 0;
@@ -215,6 +226,8 @@ class NewsListPage extends ListBasePage {
             uploadFile={uploadFile}
             commonStatus={commonStatus}
             loadingSave={isShowModifiedLoading}
+            categoryTypes={CategoryList}
+
           />
         </BasicModal>
       </div>

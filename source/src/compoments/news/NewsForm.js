@@ -10,6 +10,10 @@ import CropImageFiled from "../common/entryForm/CropImageFiled";
 import DatePickerField from "../common/entryForm/DatePickerField";
 import { convertStringToDateTime, convertDateTimeToString } from "../../utils/datetimeHelper";
 import {commonStatus} from "../../constants/masterData";
+import RichTextField from '../common/entryForm/RichTextField';
+import {categoryTypes} from '../../constants/masterData';
+
+
 import {
   AppConstants,
   UploadFileTypes,
@@ -71,7 +75,7 @@ class NewsForm extends BasicForm {
   };
 
   render() {
-    const { formId, dataDetail, commonStatus, loadingSave, isEditing,categoryList } = this.props;
+    const { formId, dataDetail, commonStatus, loadingSave, isEditing,categoryTypes } = this.props;
     const { avatar, uploading } = this.state;
     
 
@@ -109,25 +113,24 @@ class NewsForm extends BasicForm {
 					/>
 				</Col>
         <Col span={12}>
-          <TextField 
-            fieldName="description"
-            label="Mô tả"
-            type="string"
-            required
-            disabled={loadingSave}>
-          </TextField>
-        </Col>
-			</Row>
-
-      <Row gutter={16}>
-        <Col span={12}>
           <DropdownField 
           fieldName="categoryId"
-          label="Thể loại"
-          disabled={loadingSave}>
+          label="Danh mục tin tức"
+          disabled={loadingSave}
+          options = {categoryTypes}>
           </DropdownField>
         </Col>
+			</Row>
+      <Row gutter={16}>
+        <Col span={24}>
+          <RichTextField
+          label="Mô tả sản phẩm"
+          fieldName="description"
+          disabled={loadingSave}>
+          </RichTextField>
+        </Col>
       </Row>	
+      
       </Form>
     );
   }

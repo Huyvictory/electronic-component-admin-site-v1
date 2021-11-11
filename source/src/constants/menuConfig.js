@@ -89,6 +89,16 @@ const navMenuConfig = [
             },
         ]
     },
+    {
+        label: 'Tin tức',
+        icon: <InboxOutlined></InboxOutlined>,
+        children: [
+            {
+                label: 'Tin tức',
+                ...sitePathConfig.news,
+            },
+        ]
+    },
 ]
 
 export { navMenuConfig };

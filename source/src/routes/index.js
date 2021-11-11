@@ -24,6 +24,7 @@ import ImportCategoryListPage from '../containers/category/ImportCategoryListPag
 import ExportCategoryListPage from '../containers/category/ExportCategoryListPage';
 import ProductCategoryListPage from '../containers/category/ProductCategoryListPage';
 import ProductListPage from '../containers/product/ProductListPage';
+import NewsListPage from '../containers/news/NewsListPage';
 
 const RootRoute = () => {
     const {
@@ -39,6 +40,7 @@ const RootRoute = () => {
         exportcategory,
         productCategory,
         product,
+        news
     } = sitePathConfig;
 
     return (
@@ -64,6 +66,7 @@ const RootRoute = () => {
                 <PrivateRoute exact path = {importcategory.path} component = {ImportCategoryListPage}></PrivateRoute>
                 <PrivateRoute exact path = {exportcategory.path} component={ExportCategoryListPage}></PrivateRoute>
                 <PrivateRoute exact path = {product.path} component={ProductListPage}></PrivateRoute>
+                <PrivateRoute exact path = {news.path} component={NewsListPage}></PrivateRoute>
 
                 {/* Error Page */}
                 <PrivateRoute exact path={forbidden.path} component={Forbidden}/>

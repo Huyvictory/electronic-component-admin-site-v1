@@ -230,6 +230,33 @@ const apiConfig = {
             method: 'DELETE',
             headers: baseHeader
         }
+    },
+    news: {
+        getNewsList: {
+            path: '/v1/news/list',
+            method: 'GET',
+            headers: baseHeader
+        },
+        createNews: {
+            path: '/v1/news/create',
+            method: 'POST',
+            headers: baseHeader
+        },
+        getNewsById: {
+            path: '/v1/news/get',
+            method: 'GET',
+            headers: baseHeader
+        },
+        updateNews: {
+            path: '/v1/news/update',
+            method: 'PUT',
+            headers: baseHeader
+        },
+        deleteNews: {
+            path: '/v1/news/delete',
+            method: 'DELETE',
+            headers: baseHeader
+        }
     }
 }
 export default apiConfig;

@@ -101,5 +101,16 @@ export const sitePathConfig = {
             apiConfig.product.deleteProduct.path,
             apiConfig.category.getTypeCategory.path
         ]
+    },
+    news: {
+        path: '/news',
+        permissions: [
+            apiConfig.news.getNewsList.path,
+            apiConfig.news.getNewsById.path,
+            apiConfig.news.createNews.path,
+            apiConfig.news.updateNews.path,
+            apiConfig.news.deleteNews.path,
+            apiConfig.category.getTypeCategory.path
+        ]
     }
 }

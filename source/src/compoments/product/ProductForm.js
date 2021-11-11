@@ -6,6 +6,7 @@ import TextField from "../common/entryForm/TextField";
 import FieldSet from "../common/elements/FieldSet";
 import DropdownField from "../common/entryForm/DropdownField";
 import CropImageFiled from "../common/entryForm/CropImageFiled";
+import RichTextField from '../common/entryForm/RichTextField';
 import DatePickerField from "../common/entryForm/DatePickerField";
 import { convertStringToDateTime, convertDateTimeToString } from "../../utils/datetimeHelper";
 import {commonStatus} from "../../constants/masterData";
@@ -30,7 +31,7 @@ class ProductForm extends BasicForm {
   }
 
   getInitialValue = () => {
-    const { dataDetail, isEditing } = this.props;
+    const { dataDetail, isEditing} = this.props;
     if(!isEditing) {
       return {
         ...dataDetail,
@@ -50,6 +51,13 @@ class ProductForm extends BasicForm {
       );
     }
   };
+
+  validatePrice = (rule, price) => {
+    const { t } = this.props;
+    return !!(/^[0-9]+$/.exec(price))
+    ? Promise.resolve()
+    : Promise.reject(t("form.validationMessage.price"))
+}
 
   uploadFileAvatar = (file, onSuccess) => {
     const { uploadFile } = this.props;
@@ -110,6 +118,8 @@ class ProductForm extends BasicForm {
             label="Giá sản phẩm"
             type="number"
             required
+            minLength={0}
+            validators={[this.validatePrice]}
             disabled={loadingSave}>
           </TextField>
         </Col>
@@ -132,6 +142,15 @@ class ProductForm extends BasicForm {
           options={categoryTypes}
           disabled={isEditing}>
           </DropdownField>
+        </Col>
+      </Row>
+      <Row gutter={16}>
+        <Col span={24}>
+          <RichTextField
+          label="Mô tả sản phẩm"
+          fieldName="description"
+          disabled={loadingSave}>
+          </RichTextField>
         </Col>
       </Row>	
       </Form>

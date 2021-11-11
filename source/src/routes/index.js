@@ -24,7 +24,7 @@ import ImportCategoryListPage from '../containers/category/ImportCategoryListPag
 import ExportCategoryListPage from '../containers/category/ExportCategoryListPage';
 import ProductCategoryListPage from '../containers/category/ProductCategoryListPage';
 import ProductListPage from '../containers/product/ProductListPage';
-
+import ProductListPageChildren from '../containers/product/ProductListPageChildren';
 const RootRoute = () => {
     const {
         admin,
@@ -64,7 +64,8 @@ const RootRoute = () => {
                 <PrivateRoute exact path = {importcategory.path} component = {ImportCategoryListPage}></PrivateRoute>
                 <PrivateRoute exact path = {exportcategory.path} component={ExportCategoryListPage}></PrivateRoute>
                 <PrivateRoute exact path = {product.path} component={ProductListPage}></PrivateRoute>
-
+                <PrivateRoute exact path = {product.path + "/:id"} component={ProductListPage}></PrivateRoute>
+                <PrivateRoute exact path = {product.childrenKeys[0]} component={ProductListPageChildren}></PrivateRoute>
                 {/* Error Page */}
                 <PrivateRoute exact path={forbidden.path} component={Forbidden}/>
                 {/* <Route exact path="/error" component={ErrorServer} /> */}

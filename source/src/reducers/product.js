@@ -24,15 +24,14 @@ const reducer = createReducer({
     },
     [defineActionSuccess(GET_PRODUCT_LIST)]: (state, { productData }) => {
 
-        let settingObject = actions.getUserData();
-        let newproductDataArray = productData.data.map((el) => {
-            console.log(el.productPrice);
-            return {
-                ...el,
-                productPrice: Utils.formatMoney(el.productPrice, settingObject.settings)
-            }
-        });
-        productData.data = newproductDataArray;
+        // let settingObject = actions.getUserData();
+        // let newproductDataArray = productData.data.map((el) => {
+        //     return {
+        //         ...el,
+        //         productPrice: Utils.formatMoney(el.productPrice, settingObject.settings)
+        //     }
+        // });
+        // productData.data = newproductDataArray;
 
         return {
             ...state,

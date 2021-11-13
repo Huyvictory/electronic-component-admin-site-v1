@@ -5,7 +5,7 @@ import { ShoppingOutlined, PlusOutlined } from "@ant-design/icons";
 // import { withTranslation } from "react-i18next";
 
 import ListBasePage from "../ListBasePage";
-import NewsCategoryForm from "../../compoments/category/newsCategoryForm";
+import NewsCategoryForm from "../../compoments/category/NewsCategoryForm";
 import BaseTable from "../../compoments/common/table/BaseTable";
 import BasicModal from "../../compoments/common/modal/BasicModal";
 

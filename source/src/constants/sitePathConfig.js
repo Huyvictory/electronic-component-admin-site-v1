@@ -113,5 +113,15 @@ export const sitePathConfig = {
             apiConfig.product.deleteProduct.path,
             apiConfig.category.getTypeCategory.path
         ]
+    },
+    province: {
+        path: '/province',
+        permissions: [
+            apiConfig.province.getProvinceList.path,
+            apiConfig.province.getProvinceById.path,
+            apiConfig.province.createProvince.path,
+            apiConfig.province.updateProvince.path,
+            apiConfig.province.deleteProvince.path
+        ]
     }
 }

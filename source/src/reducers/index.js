@@ -7,6 +7,7 @@ import settings from './setting';
 import customer from './customer';
 import category from './category';
 import product from './product';
+import province from './province';
 
 const rootReducer = combineReducers({
     appCommon: appCommon.reducer,
@@ -16,7 +17,8 @@ const rootReducer = combineReducers({
     settings: settings.reducer,
     customer: customer.reducer,
     category: category.reducer,
-    product: product.reducer
+    product: product.reducer,
+    province: province.reducer
 });
 
 export default rootReducer;

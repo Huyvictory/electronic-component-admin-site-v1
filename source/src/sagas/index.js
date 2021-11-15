@@ -7,6 +7,7 @@ import setting from './setting';
 import customer from './customer';
 import category from './category';
 import product from './product';
+import province from './province';
 
 const sagas = [
     ...appCommon,
@@ -16,7 +17,8 @@ const sagas = [
     ...setting,
     ...customer,
     ...category,
-    ...product
+    ...product,
+    ...province
 ];
 
 function* rootSaga() {

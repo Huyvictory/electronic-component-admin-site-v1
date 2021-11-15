@@ -7,6 +7,7 @@ import {
     UserOutlined,
     QuestionOutlined,
     UnorderedListOutlined,
+    CompassOutlined,
     InboxOutlined,
     BarsOutlined,
 } from '@ant-design/icons';
@@ -80,6 +81,16 @@ const navMenuConfig = [
         ]
     },
     {
+        label: 'Tỉnh thành',
+        icon: <CompassOutlined></CompassOutlined>,
+        children: [
+            {
+                label: 'Tỉnh thành',
+                ...sitePathConfig.province
+            }
+        ]
+    },
+    {
         label: 'Sản phẩm',
         icon: <InboxOutlined></InboxOutlined>,
         children: [
@@ -88,7 +99,7 @@ const navMenuConfig = [
                 ...sitePathConfig.product,
             },
         ]
-    },
+    },   
 ]
 
 export { navMenuConfig };

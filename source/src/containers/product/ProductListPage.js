@@ -30,7 +30,6 @@ class ProductListPage extends ListBasePage {
 
   constructor(props) {
     super(props);
-    const { t } = props;
     this.objectName =  "Sản phẩm";
     this.breadcrumbs = [{ name: "Sản phẩm" }];
     this.categoryId = undefined;

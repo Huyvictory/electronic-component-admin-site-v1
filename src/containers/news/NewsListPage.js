@@ -50,12 +50,7 @@ class NewsListPage extends ListBasePage {
         ),
       },
       { title: 'Tiêu đề', dataIndex: "title"},
-      {
-        title: <div>Nội dung</div>,
-        dataIndex: "content",
-        align: "center",
-        width: 120,
-      },
+      
       this.renderStatusColumn(),
       this.renderActionColumn(),
     ];

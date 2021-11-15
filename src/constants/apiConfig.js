@@ -231,6 +231,7 @@ const apiConfig = {
             headers: baseHeader
         }
     },
+<<<<<<< HEAD:source/src/constants/apiConfig.js
     province: {
         getProvinceList: {
             path: '/v1/province/list',
@@ -262,6 +263,34 @@ const apiConfig = {
             method: 'GET',
             headers: baseHeader
         },
+=======
+    news: {
+        getNewsList: {
+            path: '/v1/news/list',
+            method: 'GET',
+            headers: baseHeader
+        },
+        createNews: {
+            path: '/v1/news/create',
+            method: 'POST',
+            headers: baseHeader
+        },
+        getNewsById: {
+            path: '/v1/news/get',
+            method: 'GET',
+            headers: baseHeader
+        },
+        updateNews: {
+            path: '/v1/news/update',
+            method: 'PUT',
+            headers: baseHeader
+        },
+        deleteNews: {
+            path: '/v1/news/delete',
+            method: 'DELETE',
+            headers: baseHeader
+        }
+>>>>>>> dev:src/constants/apiConfig.js
     }
 }
 export default apiConfig;

@@ -99,7 +99,21 @@ const navMenuConfig = [
                 ...sitePathConfig.product,
             },
         ]
+<<<<<<< HEAD:source/src/constants/menuConfig.js
     },   
+=======
+    },
+    {
+        label: 'Tin tức',
+        icon: <InboxOutlined></InboxOutlined>,
+        children: [
+            {
+                label: 'Tin tức',
+                ...sitePathConfig.news,
+            },
+        ]
+    },
+>>>>>>> dev:src/constants/menuConfig.js
 ]
 
 export { navMenuConfig };

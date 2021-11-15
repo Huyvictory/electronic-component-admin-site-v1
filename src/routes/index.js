@@ -24,8 +24,13 @@ import ImportCategoryListPage from '../containers/category/ImportCategoryListPag
 import ExportCategoryListPage from '../containers/category/ExportCategoryListPage';
 import ProductCategoryListPage from '../containers/category/ProductCategoryListPage';
 import ProductListPage from '../containers/product/ProductListPage';
+<<<<<<< HEAD:source/src/routes/index.js
 import ProductListPageChildren from '../containers/product/ProductListPageChildren';
 import ProvinceListPage from '../containers/province/ProvinceListPage';
+=======
+import NewsListPage from '../containers/news/NewsListPage';
+
+>>>>>>> dev:src/routes/index.js
 const RootRoute = () => {
     const {
         admin,
@@ -40,7 +45,11 @@ const RootRoute = () => {
         exportcategory,
         productCategory,
         product,
+<<<<<<< HEAD:source/src/routes/index.js
         province
+=======
+        news
+>>>>>>> dev:src/routes/index.js
     } = sitePathConfig;
 
     return (
@@ -66,9 +75,14 @@ const RootRoute = () => {
                 <PrivateRoute exact path = {importcategory.path} component = {ImportCategoryListPage}></PrivateRoute>
                 <PrivateRoute exact path = {exportcategory.path} component={ExportCategoryListPage}></PrivateRoute>
                 <PrivateRoute exact path = {product.path} component={ProductListPage}></PrivateRoute>
+<<<<<<< HEAD:source/src/routes/index.js
                 <PrivateRoute exact path = {product.path + "/:id"} component={ProductListPage}></PrivateRoute>
                 <PrivateRoute exact path = {product.childrenKeys[0]} component={ProductListPageChildren}></PrivateRoute>
                 <PrivateRoute exact path = {province.path} component={ProvinceListPage}></PrivateRoute>
+=======
+                <PrivateRoute exact path = {news.path} component={NewsListPage}></PrivateRoute>
+
+>>>>>>> dev:src/routes/index.js
                 {/* Error Page */}
                 <PrivateRoute exact path={forbidden.path} component={Forbidden}/>
                 {/* <Route exact path="/error" component={ErrorServer} /> */}

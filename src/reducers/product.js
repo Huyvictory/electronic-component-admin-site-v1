@@ -1,6 +1,4 @@
 import { actionTypes, reduxUtil } from '../actions/product';
-import {actions} from '../actions/account';
-import Utils from '../utils/index'
 
 const { createReducer, defineActionSuccess, defineActionLoading, defineActionFailed } = reduxUtil;
 const {
@@ -23,16 +21,6 @@ const reducer = createReducer({
         }
     },
     [defineActionSuccess(GET_PRODUCT_LIST)]: (state, { productData }) => {
-
-        // let settingObject = actions.getUserData();
-        // let newproductDataArray = productData.data.map((el) => {
-        //     return {
-        //         ...el,
-        //         productPrice: Utils.formatMoney(el.productPrice, settingObject.settings)
-        //     }
-        // });
-        // productData.data = newproductDataArray;
-
         return {
             ...state,
             productData,

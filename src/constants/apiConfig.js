@@ -210,14 +210,14 @@ const apiConfig = {
             method: 'GET',
             headers: baseHeader
         },
-        createProduct: {
-            path: '/v1/product/create',
-            method: 'POST',
-            headers: baseHeader
-        },
         getProductById: {
             path: '/v1/product/get',
             method: 'GET',
+            headers: baseHeader
+        },
+        createProduct: {
+            path: '/v1/product/create',
+            method: 'POST',
             headers: baseHeader
         },
         updateProduct: {
@@ -231,6 +231,39 @@ const apiConfig = {
             headers: baseHeader
         }
     },
+<<<<<<< HEAD:source/src/constants/apiConfig.js
+    province: {
+        getProvinceList: {
+            path: '/v1/province/list',
+            method: 'GET',
+            headers: baseHeader
+        },
+        getProvinceById: {
+            path: '/v1/province/get',
+            method: 'GET',
+            headers: baseHeader
+        },
+        createProvince: {
+            path: '/v1/province/create',
+            method: 'POST',
+            headers: baseHeader
+        },
+        updateProvince: {
+            path: '/v1/province/update',
+            method: 'PUT',
+            headers: baseHeader
+        },
+        deleteProvince: {
+            path: '/v1/province/delete',
+            method: 'DELETE',
+            headers: baseHeader
+        },
+        getProvinceListAutoComplete: {
+            path: '/v1/province/auto-complete',
+            method: 'GET',
+            headers: baseHeader
+        },
+=======
     news: {
         getNewsList: {
             path: '/v1/news/list',
@@ -257,6 +290,7 @@ const apiConfig = {
             method: 'DELETE',
             headers: baseHeader
         }
+>>>>>>> dev:src/constants/apiConfig.js
     }
 }
 export default apiConfig;

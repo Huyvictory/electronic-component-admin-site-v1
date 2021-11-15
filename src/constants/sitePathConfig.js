@@ -114,6 +114,16 @@ export const sitePathConfig = {
             apiConfig.category.getTypeCategory.path
         ]
     },
+<<<<<<< HEAD:source/src/constants/sitePathConfig.js
+    province: {
+        path: '/province',
+        permissions: [
+            apiConfig.province.getProvinceList.path,
+            apiConfig.province.getProvinceById.path,
+            apiConfig.province.createProvince.path,
+            apiConfig.province.updateProvince.path,
+            apiConfig.province.deleteProvince.path
+=======
     news: {
         path: '/news',
         permissions: [
@@ -123,6 +133,7 @@ export const sitePathConfig = {
             apiConfig.news.updateNews.path,
             apiConfig.news.deleteNews.path,
             apiConfig.category.getTypeCategory.path
+>>>>>>> dev:src/constants/sitePathConfig.js
         ]
     }
 }

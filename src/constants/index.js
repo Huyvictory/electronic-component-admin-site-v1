@@ -42,8 +42,8 @@ const ProvinceKinds = {
         level: 2,
         text: 'Quận/Huyện'
     },
-    ward: {
-        name: 'PROVINCE_KIND_WARD',
+    commune: {
+        name: 'PROVINCE_KIND_COMMUNE',
         level: 3,
         text: 'Phường/Xã'
     }

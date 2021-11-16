@@ -90,7 +90,7 @@ class ProductListPage extends ListBasePage {
       isDelete: true,
       isChangeStatus: false,
     };
-    this.getCategoryType();
+    this.getCategoryTypeProducts();
   }
 
   getSearchFields() {
@@ -99,16 +99,21 @@ class ProductListPage extends ListBasePage {
       categoryList
     } = this.props
 
+    console.log(this.props);
+
     const productCategoryList = categoryList.data || [];
     
     let CategoryList = [...productCategoryList];
+
 
     CategoryList = CategoryList.map((el) => {
       return {
         label: el.categoryName,
         value: el.id
       }
-    })
+    });
+
+    console.log(CategoryList);
 
     return [
       {
@@ -162,11 +167,11 @@ componentWillReceiveProps(nextProps) {
         getDataList({ params });
   }
 
-  getCategoryType() {
-    const {getCategoryType} = this.props;
+  getCategoryTypeProducts() {
+    const {getCategoryTypeProducts} = this.props;
     const page = this.pagination.current ? this.pagination.current - 1 : 0;
     const params = { page, size: this.pagination.pageSize, kind: categoryKinds.CATEGORY_KIND_PRODUCT};
-    getCategoryType({params});
+    getCategoryTypeProducts({params});
   }
 
   getDetail(id) {
@@ -294,7 +299,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   getDataList: (payload) => dispatch(actions.getProductList(payload)),
-  getCategoryType: (payload) => dispatch(actions.getCategoryType(payload)),
+  getCategoryTypeProducts: (payload) => dispatch(actions.getCategoryTypeProducts(payload)),
   getDataById: (payload) => dispatch(actions.getProductById(payload)),
   updateData: (payload) => dispatch(actions.updateProduct(payload)),
   deleteData: (payload) => dispatch(actions.deleteProduct(payload)),

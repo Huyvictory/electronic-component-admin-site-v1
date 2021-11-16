@@ -96,25 +96,24 @@ export const sitePathConfig = {
         childrenKeys: ['/product-child'],
         permissions: [
             apiConfig.product.getProductList.path,
+            apiConfig.category.getTypeCategory.path,
             apiConfig.product.getProductById.path,
             apiConfig.product.createProduct.path,
             apiConfig.product.updateProduct.path,
             apiConfig.product.deleteProduct.path,
-            apiConfig.category.getTypeCategory.path
         ]
     },
     productChild: {
         path: '/product-children',
         permissions: [
             apiConfig.product.getProductList.path,
+            apiConfig.category.getTypeCategory.path,
             apiConfig.product.getProductById.path,
             apiConfig.product.createProduct.path,
             apiConfig.product.updateProduct.path,
             apiConfig.product.deleteProduct.path,
-            apiConfig.category.getTypeCategory.path
         ]
     },
-<<<<<<< HEAD:source/src/constants/sitePathConfig.js
     province: {
         path: '/province',
         permissions: [
@@ -123,7 +122,8 @@ export const sitePathConfig = {
             apiConfig.province.createProvince.path,
             apiConfig.province.updateProvince.path,
             apiConfig.province.deleteProvince.path
-=======
+        ]
+    },
     news: {
         path: '/news',
         permissions: [
@@ -133,7 +133,6 @@ export const sitePathConfig = {
             apiConfig.news.updateNews.path,
             apiConfig.news.deleteNews.path,
             apiConfig.category.getTypeCategory.path
->>>>>>> dev:src/constants/sitePathConfig.js
         ]
     }
 }

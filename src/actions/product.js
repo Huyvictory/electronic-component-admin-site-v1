@@ -6,7 +6,7 @@ const { defineAction, createActionWithLoading, createAction } = reduxUtil;
 
 export const actionTypes = {
     GET_PRODUCT_LIST: defineAction('GET_PRODUCT_LIST'),
-    GET_CATEGORY_TYPE: defineAction('GET_CATEGORY_TYPE'),
+    GET_CATEGORY_TYPE_PRODUCTS: defineAction('GET_CATEGORY_TYPE_PRODUCTS'),
     CREATE_PRODUCT: defineAction('CREATE_PRODUCT'),
     GET_PRODUCT_BY_ID: defineAction('GET_PRODUCT_BY_ID'),
     UPDATE_PRODUCT: defineAction('UPDATE_PRODUCT'),
@@ -15,7 +15,7 @@ export const actionTypes = {
 
 export const actions = {
     getProductList: createActionWithLoading(actionTypes.GET_PRODUCT_LIST),
-    getCategoryType: createActionWithLoading(actionTypes.GET_CATEGORY_TYPE),
+    getCategoryTypeProducts: createActionWithLoading(actionTypes.GET_CATEGORY_TYPE_PRODUCTS),
     createProduct: createAction(actionTypes.CREATE_PRODUCT),
     getProductById: createAction(actionTypes.GET_PRODUCT_BY_ID),
     updateProduct: createAction(actionTypes.UPDATE_PRODUCT),

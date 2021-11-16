@@ -10,7 +10,7 @@ const { defineActionLoading, defineActionSuccess, defineActionFailed } = reduxUt
 const {
     GET_PRODUCT_LIST,
     GET_PRODUCT_BY_ID,
-    GET_CATEGORY_TYPE,
+    GET_CATEGORY_TYPE_PRODUCTS,
     UPDATE_PRODUCT,
     DELETE_PRODUCT,
     CREATE_PRODUCT,
@@ -18,7 +18,6 @@ const {
 
 
 function* getProductList({ payload: { params } }) {
-
     const apiParams = apiConfig.product.getProductList;
     const searchParams = { page: params.page, size: params.size };
     if(params.search) {
@@ -36,6 +35,7 @@ function* getProductList({ payload: { params } }) {
 
     try {
         const result = yield call(sendRequest, apiParams, searchParams);
+        console.log(result.responseData);
         yield put({
             type: defineActionSuccess(GET_PRODUCT_LIST),
             productData: result.responseData && result.responseData.data,
@@ -46,7 +46,8 @@ function* getProductList({ payload: { params } }) {
     }
 }
 
-function* getCategoryType({payload: {params}}) {
+function* getCategoryTypeProducts({payload: {params}}) {
+    console.log('running');
     const apiParams = apiConfig.category.getTypeCategory;
     const searchParams = { page: params.page, size: params.size };
 
@@ -58,14 +59,19 @@ function* getCategoryType({payload: {params}}) {
 
     try {
         const result = yield call (sendRequest, apiParams, searchParams);
+        console.log(result.responseData);
         yield put({
-            type: defineActionSuccess(GET_CATEGORY_TYPE),
+            type: defineActionSuccess(GET_CATEGORY_TYPE_PRODUCTS),
             productCategoryType: result.responseData && result.responseData.data
         })
     }
     catch(error) {
-        yield put({type: defineActionFailed(GET_CATEGORY_TYPE)});
+        yield put({type: defineActionFailed(GET_CATEGORY_TYPE_PRODUCTS)});
     }
+}
+
+function* testSaga () {
+    console.log('testSaga');
 }
 
 function* getProductById({ payload: { params, onCompleted, onError } }) {
@@ -124,7 +130,8 @@ function* deleteProduct({ payload: { params, onCompleted, onError } }) {
 
 const sagas = [
     takeLatest(defineActionLoading(GET_PRODUCT_LIST),getProductList),
-    takeLatest(defineActionLoading(GET_CATEGORY_TYPE), getCategoryType),
+    takeLatest(defineActionLoading(GET_CATEGORY_TYPE_PRODUCTS), getCategoryTypeProducts),
+    takeLatest(defineActionLoading(GET_CATEGORY_TYPE_PRODUCTS), testSaga),
     takeLatest(GET_PRODUCT_BY_ID, getProductById),
     takeLatest(UPDATE_PRODUCT, updateProduct),
     takeLatest(CREATE_PRODUCT, createProduct),

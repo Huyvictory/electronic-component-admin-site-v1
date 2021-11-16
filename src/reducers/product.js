@@ -4,7 +4,7 @@ const { createReducer, defineActionSuccess, defineActionLoading, defineActionFai
 const {
     GET_PRODUCT_LIST,
     DELETE_PRODUCT,
-    GET_CATEGORY_TYPE
+    GET_CATEGORY_TYPE_PRODUCTS
 } = actionTypes;
 
 const initialState = { 
@@ -27,13 +27,13 @@ const reducer = createReducer({
             tbproductLoading: false
         }
     },
-    [defineActionLoading(GET_CATEGORY_TYPE)]: (state) => {
+    [defineActionLoading(GET_CATEGORY_TYPE_PRODUCTS)]: (state) => {
         return {
             ...state,
             tbproductLoading: true
         }
     },
-    [defineActionSuccess(GET_CATEGORY_TYPE)]: (state, {productCategoryType}) => {
+    [defineActionSuccess(GET_CATEGORY_TYPE_PRODUCTS)]: (state, {productCategoryType}) => {
         return {
             ...state,
             productCategoryType,

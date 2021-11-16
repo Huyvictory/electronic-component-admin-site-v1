@@ -231,7 +231,6 @@ const apiConfig = {
             headers: baseHeader
         }
     },
-<<<<<<< HEAD:source/src/constants/apiConfig.js
     province: {
         getProvinceList: {
             path: '/v1/province/list',
@@ -263,7 +262,7 @@ const apiConfig = {
             method: 'GET',
             headers: baseHeader
         },
-=======
+    },
     news: {
         getNewsList: {
             path: '/v1/news/list',
@@ -290,7 +289,8 @@ const apiConfig = {
             method: 'DELETE',
             headers: baseHeader
         }
->>>>>>> dev:src/constants/apiConfig.js
     }
 }
+
 export default apiConfig;
+

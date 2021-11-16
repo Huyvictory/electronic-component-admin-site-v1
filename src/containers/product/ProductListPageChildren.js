@@ -91,7 +91,7 @@ class ProductListPageChildren extends ListBasePage {
       isDelete: true,
       isChangeStatus: false,
     };
-    this.getCategoryType();
+    this.getCategoryTypeProducts();
   }
 
   getSearchFields() {
@@ -141,11 +141,11 @@ class ProductListPageChildren extends ListBasePage {
         getDataList({ params });
   }
 
-  getCategoryType() {
-    const {getCategoryType} = this.props;
+  getCategoryTypeProducts() {
+    const {getCategoryTypeProducts} = this.props;
     const page = this.pagination.current ? this.pagination.current - 1 : 0;
     const params = { page, size: this.pagination.pageSize, kind: categoryKinds.CATEGORY_KIND_PRODUCT};
-    getCategoryType({params});
+    getCategoryTypeProducts({params});
   }
 
   getDetail(id) {
@@ -277,7 +277,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   getDataList: (payload) => dispatch(actions.getProductList(payload)),
-  getCategoryType: (payload) => dispatch(actions.getCategoryType(payload)),
+  getCategoryTypeProducts: (payload) => dispatch(actions.getCategoryTypeProducts(payload)),
   getDataById: (payload) => dispatch(actions.getProductById(payload)),
   updateData: (payload) => dispatch(actions.updateProduct(payload)),
   deleteData: (payload) => dispatch(actions.deleteProduct(payload)),

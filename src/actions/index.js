@@ -6,11 +6,8 @@ import { actions as settingActions, actionTypes as settingTypes} from './setting
 import { actions as customerActions, actionTypes as customerTypes} from './customer';
 import { actions as categoryActions, actionTypes as categoryTypes } from './category';
 import { actions as productActions, actionTypes as productTypes } from './product';
-<<<<<<< HEAD:source/src/actions/index.js
 import { actions as provinceActions, actionTypes as provinceTypes} from './province';
-=======
 import { actions as newsActions, actionTypes as newsTypes } from './news';
->>>>>>> dev:src/actions/index.js
 
 export const actions = {
     ...appCommonActions,
@@ -21,12 +18,9 @@ export const actions = {
     ...customerActions,
     ...categoryActions,
     ...productActions,
-<<<<<<< HEAD:source/src/actions/index.js
-    ...provinceActions
-=======
+    ...provinceActions,
     ...newsActions,
 
->>>>>>> dev:src/actions/index.js
 }
 
 export const types = {
@@ -38,9 +32,6 @@ export const types = {
     ...customerTypes,
     ...categoryTypes,
     ...productTypes,
-<<<<<<< HEAD:source/src/actions/index.js
-    ...provinceTypes
-=======
+    ...provinceTypes,
     ...newsTypes,
->>>>>>> dev:src/actions/index.js
 }

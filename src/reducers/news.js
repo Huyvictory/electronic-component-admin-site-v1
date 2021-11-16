@@ -4,7 +4,7 @@ const { createReducer, defineActionSuccess, defineActionLoading, defineActionFai
 const {
     GET_NEWS_LIST,
     DELETE_NEWS,
-    GET_CATEGORY_TYPE
+    GET_CATEGORY_TYPE_NEWS
 } = actionTypes;
 
 const initialState = { 
@@ -27,13 +27,13 @@ const reducer = createReducer({
             tbnewsLoading: false
         }
     },
-    [defineActionLoading(GET_CATEGORY_TYPE)]: (state) => {
+    [defineActionLoading(GET_CATEGORY_TYPE_NEWS)]: (state) => {
         return {
             ...state,
             tbnewsLoading: true
         }
     },
-    [defineActionSuccess(GET_CATEGORY_TYPE)]: (state, {newsCategoryType}) => {
+    [defineActionSuccess(GET_CATEGORY_TYPE_NEWS)]: (state, {newsCategoryType}) => {
         return {
             ...state,
             newsCategoryType,

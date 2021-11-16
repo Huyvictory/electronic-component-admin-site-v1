@@ -64,7 +64,7 @@ class NewsListPage extends ListBasePage {
       isDelete: true,
       isChangeStatus: false,
     };
-    this.getCategoryType();
+    this.getCategoryTypeNews();
   }
 
   getSearchFields() {
@@ -72,6 +72,8 @@ class NewsListPage extends ListBasePage {
     const {
       categoryList
     } = this.props
+
+    console.log(this.props);
 
     const newsCategoryList = categoryList.data || [];
     
@@ -110,11 +112,11 @@ class NewsListPage extends ListBasePage {
         getDataList({ params });
   }
 
-  getCategoryType() {
-    const {getCategoryType} = this.props;
+  getCategoryTypeNews() {
+    const {getCategoryTypeNews} = this.props;
     const page = this.pagination.current ? this.pagination.current - 1 : 0;
     const params = { page, size: this.pagination.pageSize, kind: categoryKinds.CATEGORY_KIND_NEWS};
-    getCategoryType({params});
+    getCategoryTypeNews({params});
   }
 
   getDetail(id) {
@@ -243,7 +245,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   getDataList: (payload) => dispatch(actions.getNewsList(payload)),
-  getCategoryType: (payload) => dispatch(actions.getCategoryType(payload)),
+  getCategoryTypeNews: (payload) => dispatch(actions.getCategoryTypeNews(payload)),
   getDataById: (payload) => dispatch(actions.getNewsById(payload)),
   updateData: (payload) => dispatch(actions.updateNews(payload)),
   deleteData: (payload) => dispatch(actions.deleteNews(payload)),

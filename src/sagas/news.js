@@ -10,7 +10,7 @@ const { defineActionLoading, defineActionSuccess, defineActionFailed } = reduxUt
 const {
     GET_NEWS_LIST,
     GET_NEWS_BY_ID,
-    GET_CATEGORY_TYPE,
+    GET_CATEGORY_TYPE_NEWS,
     UPDATE_NEWS,
     DELETE_NEWS,
     CREATE_NEWS,
@@ -41,7 +41,7 @@ function* getNewsList({ payload: { params } }) {
     }
 }
 
-function* getCategoryType({payload: {params}}) {
+function* getCategoryTypeNews({payload: {params}}) {
     const apiParams = apiConfig.category.getTypeCategory;
     const searchParams = { page: params.page, size: params.size };
 
@@ -54,12 +54,12 @@ function* getCategoryType({payload: {params}}) {
     try {
         const result = yield call (sendRequest, apiParams, searchParams);
         yield put({
-            type: defineActionSuccess(GET_CATEGORY_TYPE),
+            type: defineActionSuccess(GET_CATEGORY_TYPE_NEWS),
             newsCategoryType: result.responseData && result.responseData.data
         })
     }
     catch(error) {
-        yield put({type: defineActionFailed(GET_CATEGORY_TYPE)});
+        yield put({type: defineActionFailed(GET_CATEGORY_TYPE_NEWS)});
     }
 }
 
@@ -119,7 +119,7 @@ function* deleteNews({ payload: { params, onCompleted, onError } }) {
 
 const sagas = [
     takeLatest(defineActionLoading(GET_NEWS_LIST),getNewsList),
-    takeLatest(defineActionLoading(GET_CATEGORY_TYPE), getCategoryType),
+    takeLatest(defineActionLoading(GET_CATEGORY_TYPE_NEWS), getCategoryTypeNews),
     takeLatest(GET_NEWS_BY_ID, getNewsById),
     takeLatest(UPDATE_NEWS, updateNews),
     takeLatest(CREATE_NEWS, createNews),

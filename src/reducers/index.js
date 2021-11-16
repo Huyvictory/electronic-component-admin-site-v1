@@ -7,11 +7,8 @@ import settings from './setting';
 import customer from './customer';
 import category from './category';
 import product from './product';
-<<<<<<< HEAD:source/src/reducers/index.js
 import province from './province';
-=======
 import news from './news';
->>>>>>> dev:src/reducers/index.js
 
 const rootReducer = combineReducers({
     appCommon: appCommon.reducer,
@@ -22,12 +19,9 @@ const rootReducer = combineReducers({
     customer: customer.reducer,
     category: category.reducer,
     product: product.reducer,
-<<<<<<< HEAD:source/src/reducers/index.js
-    province: province.reducer
-=======
+    province: province.reducer,
     news: news.reducer
 
->>>>>>> dev:src/reducers/index.js
 });
 
 export default rootReducer;

@@ -9,6 +9,7 @@ import category from './category';
 import product from './product';
 import province from './province';
 import news from './news';
+import orders from './orders';
 
 const sagas = [
     ...appCommon,
@@ -21,6 +22,7 @@ const sagas = [
     ...product,
     ...province,
     ...news,
+    ...orders
 ];
 
 function* rootSaga() {

@@ -1,3 +1,6 @@
+import React from 'react'
+import { HourglassOutlined , SolutionOutlined, CarOutlined, StopOutlined, CheckCircleOutlined } from '@ant-design/icons';
+
 const AppConstants = {
     apiRootUrl: process.env.REACT_APP_API,
     contentRootUrl: `${process.env.REACT_APP_API}/v1/file/download`,
@@ -19,6 +22,39 @@ const UserTypes = {
     ADMIN: 1,
     SHOP: 2
 }
+
+const OrdersStates = [
+    {
+        value: 0,
+        label: 'Mới tạo',
+        color: '#171717',
+        icon: <HourglassOutlined />,
+    },
+    {
+        value: 1,
+        label: 'Đã duyệt',
+        color: 'orange',
+        icon: <SolutionOutlined />,
+    },
+    {
+        value: 2,
+        label: 'Vận chuyển',
+        color: 'blue',
+        icon: <CarOutlined />,
+    },
+    {
+        value: 3,
+        label: 'Hoàn tất',
+        color: 'green',
+        icon: <CheckCircleOutlined />,
+    },
+    {
+        value: 4,
+        label: 'Đã hủy',
+        color: 'red',
+        icon: <StopOutlined/>,
+    },
+]
 
 const GroupPermissonTypes = {
     ADMIN: 1,
@@ -84,4 +120,5 @@ export {
     ProvinceKinds,
     // CategoryKinds,
     CurrentcyPositions,
+    OrdersStates
 };

@@ -34,6 +34,9 @@ const Utils = {
         const statusItem = allStatus.find(item => item.value === status);
         return statusItem;
     },
+    getSettingsDateFormat(key) {
+        return actions.getUserData()?.settings?.[key];
+    },
     getCommonKindItem(kind) {
         const allKinds = [
             ...commonKinds,

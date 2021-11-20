@@ -289,6 +289,13 @@ const apiConfig = {
             method: 'DELETE',
             headers: baseHeader
         }
+    },
+    orders: {
+        getOrdersList: {
+            path: '/v1/orders/list',
+            method: 'GET',
+            headers: baseHeader
+        },
     }
 }
 

@@ -8,6 +8,7 @@ import { actions as categoryActions, actionTypes as categoryTypes } from './cate
 import { actions as productActions, actionTypes as productTypes } from './product';
 import { actions as provinceActions, actionTypes as provinceTypes} from './province';
 import { actions as newsActions, actionTypes as newsTypes } from './news';
+import { actions as ordersActions, actionTypes as ordersTypes } from './orders';
 
 export const actions = {
     ...appCommonActions,
@@ -20,7 +21,7 @@ export const actions = {
     ...productActions,
     ...provinceActions,
     ...newsActions,
-
+    ...ordersActions
 }
 
 export const types = {
@@ -34,4 +35,5 @@ export const types = {
     ...productTypes,
     ...provinceTypes,
     ...newsTypes,
+    ...ordersTypes
 }

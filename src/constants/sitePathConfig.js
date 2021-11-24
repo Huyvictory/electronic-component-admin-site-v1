@@ -134,5 +134,17 @@ export const sitePathConfig = {
             apiConfig.news.deleteNews.path,
             apiConfig.category.getTypeCategory.path
         ]
+    },
+    orders: {
+        path: '/orders',
+        permissions: [
+            apiConfig.orders.getOrdersList.path,
+            apiConfig.orders.getOrdersrbyId.path,
+            'does not have apicreate',
+            apiConfig.orders.updateOrders.path,
+            apiConfig.orders.updateOrdersCancel.path,
+            apiConfig.orders.updateOrdersByState.path,
+            
+        ]
     }
 }

@@ -9,6 +9,7 @@ import category from './category';
 import product from './product';
 import province from './province';
 import news from './news';
+import orders from './orders';
 
 const rootReducer = combineReducers({
     appCommon: appCommon.reducer,
@@ -20,8 +21,8 @@ const rootReducer = combineReducers({
     category: category.reducer,
     product: product.reducer,
     province: province.reducer,
-    news: news.reducer
-
+    news: news.reducer,
+    orders: orders.reducer
 });
 
 export default rootReducer;

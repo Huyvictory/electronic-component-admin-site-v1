@@ -1,5 +1,8 @@
 import moment from 'moment';
 import { DATE_FORMAT_VALUE, DATE_FORMAT_DISPLAY } from '../constants';
+import {actions} from '../actions';
+
+const DEFAUL_FORMAT = 'DD/MM/YYYY HH:mm:ss'
 
 export const convertUtcToLocalTime = (utcTime, format = DATE_FORMAT_DISPLAY) => {
     try {
@@ -57,6 +60,18 @@ export const convertDateTimeToString = (datetime, stringFormat = DATE_FORMAT_VAL
     }
     catch(err) {
         return null
+    }
+}
+
+export const convertUtcToTimezone = (utcTime, format = DATE_FORMAT_DISPLAY) => {
+    const utcOffset = Number(actions.getUserData()?.settings?.timezone) || 7;
+    try {
+        if(utcTime && format)
+            return moment.utc(utcTime, DEFAUL_FORMAT).utcOffset(utcOffset).format(format)
+        return '';
+    }
+    catch(err) {
+        return '';
     }
 }
 

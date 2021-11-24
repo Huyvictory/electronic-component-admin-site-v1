@@ -15,19 +15,25 @@ class BasicModal extends Component {
     }
 
     render() {
-        const { visible, onOk, onCancel, loading, children, objectName, width, top, formId, bodyStyle, maskClosable } = this.props;
+        const { visible, onOk, onCancel, loading, children, objectName, width, top, formId, bodyStyle, maskClosable, additionalButton, className } = this.props;
         const formSubmitId = formId || `form-${objectName}`;
-        let footerComponent = [<Button key="back" onClick={onCancel}>Đóng</Button>];
+        let footerComponent = [<Button className="modal-btn-close" key="back" onClick={onCancel}>Đóng</Button>];
         if(onOk) {
             footerComponent.push(
-                <Button key="submit" htmlType="submit" type="primary" loading={loading} form={formSubmitId}>
+                <Button className="modal-btn-save" key="submit" htmlType="submit" type="primary" loading={loading} form={formSubmitId}>
                     Lưu
                 </Button>
+            )
+        }
+        if(additionalButton) {
+            footerComponent.push(
+                additionalButton
             )
         }
         return (
             <Modal
                 maskClosable={!!maskClosable}
+                className={className}
                 bodyStyle={bodyStyle || { maxHeight: '84vh', overflow: 'auto'}}
                 destroyOnClose // rerender child component when modal close
                 style={{ top: top || 40 }}

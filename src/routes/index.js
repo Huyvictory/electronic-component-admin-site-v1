@@ -27,6 +27,7 @@ import ProductListPage from '../containers/product/ProductListPage';
 import ProductListPageChildren from '../containers/product/ProductListPageChildren';
 import ProvinceListPage from '../containers/province/ProvinceListPage';
 import NewsListPage from '../containers/news/NewsListPage';
+import OrdersListPage from '../containers/orders/OrdersListPage';
 
 const RootRoute = () => {
     const {
@@ -43,7 +44,8 @@ const RootRoute = () => {
         productCategory,
         product,
         province,
-        news
+        news,
+        orders
     } = sitePathConfig;
 
     return (
@@ -73,6 +75,7 @@ const RootRoute = () => {
                 <PrivateRoute exact path = {product.childrenKeys[0]} component={ProductListPageChildren}></PrivateRoute>
                 <PrivateRoute exact path = {province.path} component={ProvinceListPage}></PrivateRoute>
                 <PrivateRoute exact path = {news.path} component={NewsListPage}></PrivateRoute>
+                <PrivateRoute exact path = {orders.path} component={OrdersListPage}></PrivateRoute>
 
                 {/* Error Page */}
                 <PrivateRoute exact path={forbidden.path} component={Forbidden}/>

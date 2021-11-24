@@ -2,6 +2,9 @@ import { commonStatus,commonKinds } from '../constants/masterData';
 import { STATUS_DELETE, CurrentcyPositions } from '../constants';
 import { showErrorMessage } from '../services/notifyService';
 import { actions } from '../actions';
+
+const {getUserData} = actions
+
 const Utils = {
     camelCaseToTitleCase(camelCase) {
         if (camelCase === null || camelCase === '') {
@@ -33,6 +36,9 @@ const Utils = {
         ]
         const statusItem = allStatus.find(item => item.value === status);
         return statusItem;
+    },
+    getSettingsDateFormat(key) {
+        return actions.getUserData()?.settings?.[key];
     },
     getCommonKindItem(kind) {
         const allKinds = [
@@ -139,6 +145,15 @@ const Utils = {
                 .replace(/[\u0300-\u036f]/g, '')
                 .replace(/đ/g, 'd').replace(/Đ/g, 'D');
         return str;
+    },
+    checkPermission(permissions = []) {
+        const userData = getUserData();
+        return !!!permissions.some(permission=>userData.permissions.indexOf(permission) < 0)
+    },
+    formatIntegerNumber(value){
+        value = value.replace(/\$\s?|(,*)/g, '')
+        value = value.replace(/\$\s?|(\.*)/g, '')
+        return value
     },
 }
 

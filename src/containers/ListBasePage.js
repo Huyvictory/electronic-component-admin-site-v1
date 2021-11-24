@@ -483,6 +483,18 @@ class ListBasePage extends Component {
             {children}
         </ElementWithPermission>)
     }
+
+    /**
+     * 
+     * @param {*} children 
+     * @param {*} requiredPermissions -> perrmissions string
+     * @returns 
+     */
+     renderButtonVerTwo(children, requiredPermissions = []){
+        return (<ElementWithPermission permissions={requiredPermissions}>
+            {children}
+        </ElementWithPermission>)
+    }
 }
 
 export default ListBasePage;

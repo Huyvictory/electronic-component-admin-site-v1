@@ -10,6 +10,7 @@ import {
     CompassOutlined,
     InboxOutlined,
     BarsOutlined,
+    ShoppingCartOutlined
 } from '@ant-design/icons';
 import { sitePathConfig } from '../constants/sitePathConfig';
 import store from '../store';
@@ -110,6 +111,16 @@ const navMenuConfig = [
             },
         ]
     },
+    {
+        label: 'Đơn đặt hàng',
+        icon: <ShoppingCartOutlined></ShoppingCartOutlined>,
+        children: [
+            {
+                label: 'Đơn đặt hàng',
+                ...sitePathConfig.orders,
+            }
+        ]
+    }
 ]
 
 export { navMenuConfig };

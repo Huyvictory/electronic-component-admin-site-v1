@@ -296,6 +296,26 @@ const apiConfig = {
             method: 'GET',
             headers: baseHeader
         },
+        getOrdersrbyId: {
+            path: '/v1/orders/get',
+            method: 'GET',
+            headers: baseHeader
+        },
+        updateOrders: {
+            path: '/v1/orders/update',
+            method: 'PUT',
+            headers: baseHeader
+        },
+        updateOrdersByState: {
+            path: '/v1/orders/update-state',
+            method: 'PUT',
+            headers: baseHeader
+        },
+        updateOrdersCancel: {
+            path: '/v1/orders/cancel-orders',
+            method: 'PUT',
+            headers: baseHeader
+        }
     }
 }
 

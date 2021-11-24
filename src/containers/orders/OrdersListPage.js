@@ -71,8 +71,9 @@ class OrdersListPage extends ListBasePage {
         }
     },
     {
-        title: 'Trạng thái đơn hàng',
+        title: 'Trạng thái',
         dataIndex: 'ordersState',
+        align: 'center',
         width: 90,
         render: (ordersState, dataRow) => {
             const state = OrdersStates.find(state => state.value === ordersState);
@@ -122,7 +123,7 @@ class OrdersListPage extends ListBasePage {
                 ), [
                     ...requiredPermissions || [
                         sitePathConfig.orders.permissions[1],
-                        sitePathConfig.orders.permissions[3]
+                        sitePathConfig.orders.permissions[3],
                     ]
                 ]))
             }
@@ -186,7 +187,7 @@ class OrdersListPage extends ListBasePage {
   }
 
   handleCancelStateNoConfirm = (values) => {
-    const { updateStateOrders, cancelOrders, t } = this.props
+    const { updateStateOrders, cancelOrders} = this.props
     this.setState({
         isShowModifiedLoading: true,
         disableButton: 'all',
@@ -198,14 +199,14 @@ class OrdersListPage extends ListBasePage {
         onCompleted: () => {
             this.getList()
             this.getDetail(this.dataDetail.id)
-            showSucsessMessage(t("showSuccessMessage.update") , { t, ns: 'listBasePage' })
+            showSucsessMessage('Cập nhật thành công' , {ns: 'listBasePage' })
             this.setState({
                 isShowModifiedLoading: false,
                 disableButton: null,
             })
         },
         onError: (error) => {
-            showErrorMessage(error.message || t("showErrorMessage.update"), { t, ns: 'listBasePage' })
+            showErrorMessage(error.message || 'Cập nhật thất bại', {ns: 'listBasePage' })
             this.setState({
                 isShowModifiedLoading: false,
                 disableButton: null,
@@ -215,13 +216,13 @@ class OrdersListPage extends ListBasePage {
 }
 
   handleUpdateState = (values) => {
-      const { updateStateOrders, cancelOrders, t } = this.props
+      const { updateStateOrders, cancelOrders} = this.props
       confirm({
-          title: t("confirmUpdateState"),
+          title: 'Xác nhận cập nhật trạng thái',
           content: '',
-          okText: t("yes"),
+          okText: 'Có',
           okType: 'danger',
-          cancelText: t("no"),
+          cancelText: 'Không',
           onOk: () => {
               this.setState({
                   isShowModifiedLoading: true,
@@ -235,14 +236,14 @@ class OrdersListPage extends ListBasePage {
                       onCompleted: () => {
                           this.getList()
                           this.getDetail(this.dataDetail.id)
-                          showSucsessMessage(t("showSuccessMessage.update") , { t, ns: 'listBasePage' })
+                          showSucsessMessage('Cập nhật thành công' , { ns: 'listBasePage' })
                           this.setState({
                               isShowModifiedLoading: false,
                               disableButton: null,
                           })
                       },
                       onError: (error) => {
-                          showErrorMessage(error.message || t("showErrorMessage.update"), { t, ns: 'listBasePage' })
+                          showErrorMessage(error.message || 'Cập nhật thất bại', {ns: 'listBasePage' })
                           this.setState({
                               isShowModifiedLoading: false,
                               disableButton: null,
@@ -258,14 +259,14 @@ class OrdersListPage extends ListBasePage {
                       onCompleted: () => {
                           this.getList()
                           this.getDetail(this.dataDetail.id)
-                          showSucsessMessage(t("showSuccessMessage.update") , { t, ns: 'listBasePage' })
+                          showSucsessMessage('Cập nhật thành công' , {ns: 'listBasePage' })
                           this.setState({
                               isShowModifiedLoading: false,
                               disableButton: null,
                           })
                       },
                       onError: (error) => {
-                          showErrorMessage(error.message || t("showErrorMessage.update"), { t, ns: 'listBasePage' })
+                          showErrorMessage(error.message || 'Cập nhật thất bại', { ns: 'listBasePage' })
                           this.setState({
                               isShowModifiedLoading: false,
                               disableButton: null,
@@ -281,7 +282,7 @@ class OrdersListPage extends ListBasePage {
   }
 
   handleUpdate = (values) => {
-      const { updateData, t } = this.props
+      const { updateData} = this.props
       this.setState({
           isShowModifiedLoading: true,
           disableButton: 'update-orders',
@@ -292,7 +293,7 @@ class OrdersListPage extends ListBasePage {
           },
           onCompleted: () => {
               this.getList()
-              showSucsessMessage(t("showSuccessMessage.update") , { t, ns: 'listBasePage' })
+              showSucsessMessage('Cập nhật thành công' , {ns: 'listBasePage' })
               this.setState({
                   isShowModifiedLoading: false,
                   isShowModifiedModal: false,
@@ -300,7 +301,7 @@ class OrdersListPage extends ListBasePage {
               })
           },
           onError: (error) => {
-              showErrorMessage(error.message || t("showErrorMessage.update"), { t, ns: 'listBasePage' })
+              showErrorMessage(error.message || 'Cập nhật thất bại', {ns: 'listBasePage' })
               this.setState({
                   isShowModifiedLoading: false,
                   disableButton: null,
@@ -310,10 +311,9 @@ class OrdersListPage extends ListBasePage {
   }
 
   renderUpdateButtons = () => {
-      const { t } = this.props;
       const { isShowModifiedLoading, disableButton } = this.state;
       return (<>
-          <ElementWithPermission permissions={[sitePathConfig.orders.permissions[4]]}>
+            <ElementWithPermission permissions={[sitePathConfig.orders.permissions[4]]}>
               <Button
               type="primary"
               loading={disableButton === "cancel-orders"}
@@ -332,10 +332,10 @@ class OrdersListPage extends ListBasePage {
                       })
               }
               >
-                  {t("cancelOrders")}
+                  {'Hủy đơn hàng'}
               </Button>
           </ElementWithPermission>
-          <ElementWithPermission permissions={[sitePathConfig.orders.permissions[5]]}>
+          <ElementWithPermission permissions={[sitePathConfig.orders.permissions[3]]}>
               <Button
               htmlType="submit"
               form="customer-info-form"
@@ -347,7 +347,7 @@ class OrdersListPage extends ListBasePage {
                   ? 'btn-update-orders disabled' : 'btn-update-orders'
               }
               >
-                  {t("save")}
+                  {'Lưu'}
               </Button>
           </ElementWithPermission>
       </>
@@ -400,12 +400,14 @@ class OrdersListPage extends ListBasePage {
     }
   }
 
-  prepareUpdateData(data) {
-    return {
-      ...data,
-      id: this.dataDetail.id
-    }
-  }
+//   prepareUpdateData(data) {
+//     return {
+//       ...data,
+//       ordersDetailDtos: [
+//           {"amount": 0}
+//       ]
+//     }
+//   }
 
   render() {
     const {
@@ -414,25 +416,13 @@ class OrdersListPage extends ListBasePage {
       uploadFile,
     } = this.props;
 
-    console.log('sfdf');
-
     const { isShowModifiedModal, isShowModifiedLoading } = this.state;
     const orders = dataList.data || [];
     this.pagination.total = dataList.totalElements || 0;
     return (
-      <div>
+      <div className="orders-list-page">
         {this.renderSearchForm()}
         <div className="action-bar">
-          {
-            this.renderCreateNewButton((
-              <Button
-              type="primary"
-              onClick={() => this.onShowModifiedModal(false)}
-            >
-              <PlusOutlined /> Thêm mới
-            </Button>
-            ))
-          }
         </div>
         <BaseTable
           loading={loading}
@@ -444,11 +434,13 @@ class OrdersListPage extends ListBasePage {
         />
         <BasicModal
           visible={isShowModifiedModal}
+          className="orders-modal"
           isEditing={this.isEditing}
           objectName={this.objectName}
           loading={isShowModifiedLoading}
-          onOk={this.onOkModal}
+        //   onOk={this.onOkModal}
           onCancel={this.onCancelModal}
+          additionalButton={this.renderUpdateButtons()}
         >
           <OrdersForm
                 dataDetail={this.isEditing ? this.dataDetail : {}}
@@ -470,6 +462,10 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   getDataList: (payload) => dispatch(actions.getOrdersList(payload)),
+  getDataById: (payload) => dispatch(actions.getOrdersById(payload)),
+  updateStateOrders: (payload) => dispatch(actions.updateStateOrders(payload)),
+  cancelOrders: (payload) => dispatch(actions.cancelOrders(payload)),
+  updateData: (payload) => dispatch(actions.updateOrders(payload)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(OrdersListPage);

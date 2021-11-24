@@ -139,10 +139,12 @@ export const sitePathConfig = {
         path: '/orders',
         permissions: [
             apiConfig.orders.getOrdersList.path,
-            'does not have yet apigetorderbyid',
+            apiConfig.orders.getOrdersrbyId.path,
             'does not have apicreate',
-            'does not have yet apiupdateorder',
-            'does not have apideleteorder' 
+            apiConfig.orders.updateOrders.path,
+            apiConfig.orders.updateOrdersCancel.path,
+            apiConfig.orders.updateOrdersByState.path,
+            
         ]
     }
 }

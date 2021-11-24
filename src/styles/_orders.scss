@@ -1,0 +1,315 @@
+.orders-list-page {
+    
+}
+.orders-form {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin: -18px -6px;
+    .display-none {
+        display: none !important;
+    }
+    .loading {
+        position: absolute;
+        top: -6px;
+        left: -18px;
+        right: -18px;
+        bottom: -6px;
+        z-index: 1;
+        display: flex;
+        cursor: not-allowed;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(0, 0, 0, 0.13);
+    }
+    ul {
+        list-style: none;
+        padding: 0;
+    }
+    .state {
+        font-size: 16px;
+        font-weight: 400;
+        margin: 1em 0.5em 32px;
+    }
+
+    .custom-fieldset.none-legend {
+        padding: 8px 22px 4px;
+        legend {
+            display: none;
+        }
+    }
+    .custom-fieldset {
+        margin-bottom: 16px;
+        padding: 8px 16px 0;
+    }
+    .fieldset-list {
+        margin-bottom: 8px;
+    }
+    .ant-steps {
+        margin-bottom: 24px;
+        .finish {
+            .ant-steps-item-container {
+                cursor: default !important;
+            }
+            .ant-steps-icon, .ant-steps-item-title {
+                color: green !important;
+            }
+            &.has-prev-state {
+                flex: unset;
+                width: 25%;
+            }
+            &.is-prev-state {
+                flex: 1;
+            }
+        }
+        .process {
+            .ant-steps-icon, .ant-steps-item-title {
+                color: blue !important;
+            }
+        }
+        .process.cancel {
+            .ant-steps-item-container {
+                cursor: default !important;
+            }
+            .ant-steps-icon, .ant-steps-item-title {
+                color: red !important;
+            }
+        }
+        .wait.cancel {
+            .ant-steps-item-container {
+                cursor: not-allowed !important;
+            }
+            .ant-steps-icon, .ant-steps-item-title {
+                color: rgba(0, 0, 0, 0.25) !important;
+            }
+        }
+    }
+    .payment-content {
+        flex: 1;
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding-right: 16px;
+        margin-right: -16px;
+        .form {
+            margin-top: 8px;
+            .form-item-email, .form-item-discount {
+                margin-bottom: 8px;
+            }
+            .form-item-phone, .form-item-fullname {
+                margin-bottom: 12px;
+            }
+        }
+        .list {
+            flex: 1;
+            overflow: hidden;
+            padding: 0;
+            padding-top: 0;
+            margin-right: 0;
+            .orders {
+                max-height: 100%;
+                overflow-y: auto;
+                overflow-x: hidden;
+                padding-right:  0;
+                .item {
+                    border-bottom: 1px solid #f0f0f0;
+                    padding: 12px 8px;
+                    position: relative;
+                    margin: 0;
+                    margin-top: 8px;
+                    border-radius: 3px;
+                    &:first-child {
+                        margin-top: 0;
+                    }
+                    &:last-child {
+                        border-bottom: none;
+                    }
+                    .item-content {
+                        display: flex;
+                        align-items: center;
+                        .col-1 {
+                            flex: 1;
+                            display: flex;
+                            justify-content: flex-start;
+                            .title {
+                                font-weight: 400;
+                                margin: 0;
+                                line-height: 1.7;
+                            }
+                            .action {
+                                display: flex;
+                                align-items: center;
+                                .note-btn {
+                                    font-size: 0.7rem;
+                                    padding: 0 8px;
+                                    height: 25px;
+                                }
+                                .delete-btn {
+                                    cursor: pointer;
+                                    color: red;
+                                    position: absolute;
+                                    top: 0px;
+                                    right: 0px;
+                                }
+                            }
+                            .quantity-edition {
+                                display: flex;
+                                line-height: 1.7;
+                                .minus, .plus {
+                                    margin-top: auto;
+                                    width: 25px;
+                                    height: 25px;
+                                    padding: 0;
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                }
+                                .quantity {
+                                    margin-top: auto;
+                                    margin: 0 8px;
+                                }
+                                .plus {
+                                    margin-right: 8px;
+                                }
+                            }
+                        }
+                        .col-2 {
+                            display: flex;
+                            width: fit-content;
+                            flex-shrink: 0;
+                            margin-left: 16px;
+                            margin-right: 0;
+                            flex-direction: column;
+                            align-items: flex-end;
+                            justify-content: space-between;
+                            .price {
+                                color: #000;
+                                font-weight: 400;
+                                margin: 0;
+                            }
+                            .delete-btn {
+                                cursor: pointer;
+                                color: red;
+                                position: absolute;
+                                top: 80%;
+                                transform: translateY(-50%);
+                                right: 7px;
+                            }
+                        }
+                    }
+                    .note {
+                        width: 100%;
+                        height: 144px;
+                        position: relative;
+                        .form {
+                            height: 100%;
+                            width: 100%;
+                            padding-left: 1px;
+                            textarea {
+                                resize: none;
+                                width: 100%;
+                                height: calc(100% - 45px);
+                                border: #d9d9d9 1px solid;
+                                border-radius: 5px;
+                                margin-top: 8px;
+                                outline: none;
+                                padding: 8px;
+                                overflow-y: auto;
+                                word-break: break-word;
+                            }
+                        }
+                        .submit-note {
+                            position: absolute;
+                            bottom: 0;
+                            right: 0;
+                        }
+                    }
+                    .note.hide {
+                        display: none;
+                    }
+                    .note-content {
+                        width: 100%;
+                        margin: 0;
+                        font-style: italic;
+                        font-size: 0.8rem;
+                        word-break: break-word;
+                        padding-left: 22px;
+                    }
+                }
+            }
+        }
+    }
+    .bottom {
+        height: fit-content;
+        flex-shrink: 0;
+        margin-top: auto;
+        display: flex;
+        flex-direction: column;
+        padding-top: 4px;
+        padding-bottom: 16px;
+        .calculate-total {
+            display: flex;
+            justify-content: space-between;
+            padding: 0px;
+        }
+        .calculate-total.product {
+            padding-top: 8px;
+        }
+        .calculate-total.product, .calculate-total.vat, .calculate-total.discount {
+            .title, .total {
+                font-weight: 500;
+                font-size: 14px;
+            }
+        }
+        .calculate-total.vat {
+            padding-bottom: 8px;
+        }
+        .calculate-total.product-vat {
+            padding: 8px 0px;
+            border-top: 1px solid #f0f0f0;
+            .title, .total {
+                font-weight: bold;
+                font-size: 14px;
+            }
+            .total {
+                font-weight: bold;
+            }
+        }
+        .payment {
+            display: block;
+            width: 50%;
+            margin: auto auto 16px auto;
+            min-width: 100px;
+            height: 38px;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+    }
+}
+
+.orders-modal {
+    .ant-modal-footer {
+        display: flex;
+        justify-content: flex-end;
+        .btn-cancel-orders {
+            order: 0;
+            margin-right: auto;
+            flex-shrink: 0;
+            background: red;
+            border: none;
+            color: white;
+            margin-left: 0;
+        }
+        .btn-update-orders {
+            order: 2;
+            flex-shrink: 0;
+        }
+        .btn-cancel-orders.disabled, .btn-update-orders.disabled {
+            background-color: #ccc;
+        }
+        .modal-btn-close, .modal-btn-save {
+            order: 1;
+            flex-shrink: 0;
+        }
+    }
+}

@@ -24,7 +24,6 @@ const OrdersForm = ({
     handleSubmit,
     handleCancelStateNoConfirm,
     loadingSave,
-    t,
 }) => {
 
     const dispatch = useDispatch()
@@ -54,6 +53,7 @@ const OrdersForm = ({
     const [customersList, setCustomersList] = useState([])
     const [listCustomerLoading, setListCustomerLoading] = useState(false)
     const [disabledFields, setDisabledFields] = useState(true)
+    const [toggleNewlyOrders, settoggleNewlyOrders] = useState(true)
 
     const discountPrice = totalPrice * (saleOff / 100)
     const totalPriceAfterDiscount = totalPrice - discountPrice
@@ -98,15 +98,16 @@ const OrdersForm = ({
             })),
 
         })
+        console.log(ordersDetailDtos);
     }
 
     const handleRemoveSelectingItem = (product, isCancel) => {
         confirm({
-            title: `${isCancel ? t("confirmDeleteFinalItem") : t("confirmDeleteItem")}`,
+            title: `${isCancel ? 'Xác nhận xóa cuối cùng' : 'Xác nhận xóa'}`,
             content: '',
-            okText: t("yes"),
+            okText: 'Có',
             okType: 'danger',
-            cancelText: t("no"),
+            cancelText: 'Không',
             onOk: () => {
                 if(!isCancel) {
                     const newProductsList = [...productsList]
@@ -195,13 +196,14 @@ const OrdersForm = ({
             customerFullName: dataDetail.customerDto?.customerFullName,
             customerEmail: dataDetail.customerDto?.customerEmail,
             saleOff,
-            id: dataDetail.customerDto?.id,
+            id: dataDetail.customerDto?.id
         })
     }, [])
 
+
     return (
     <div className="orders-form">
-        <h2 className="state">{t("form.state")}:</h2>
+        <h2 className="state">{'Trạng thái đơn đạt hàng'}:</h2>
         <Steps current={ordersState} onChange={handleChangeStep} size="small">
             {
                 ordersState < OrdersStates[3].value
@@ -212,7 +214,7 @@ const OrdersForm = ({
                         key={state.value}
                         title={state.label}
                         icon={state.icon}
-                        className="finish"
+                        className= "finish"
                         status="finish"
                         />
                     }
@@ -270,7 +272,7 @@ const OrdersForm = ({
         </Steps>
         <div className="payment-content">
             <div className="form">
-                <FieldSet title={t("form.fieldSet.customerInfo")}>
+                <FieldSet title={'Thông tin chi trả'}>
                     <Form
                         ref={formRef}
                         id="customer-info-form"
@@ -283,7 +285,7 @@ const OrdersForm = ({
                             <Col span={12}>
                                 <TextField
                                 fieldName={"customerFullName"}
-                                label={t("form.label.customerFullName")}
+                                label={'Họ và tên khách hàng'}
                                 disabled={isReadonlyForm || loadingSave || disabledFields}
                                 className="form-item-fullname"
                                 />
@@ -291,7 +293,7 @@ const OrdersForm = ({
                             <Col span={12}>
                                 <AutoCompleteField
                                     fieldName="customerPhone"
-                                    label={t("form.label.customerPhone")}
+                                    label={'Số điện thoại'}
                                     className="form-item-phone"
                                     required
                                     minLength={10}
@@ -316,12 +318,12 @@ const OrdersForm = ({
                                 className="form-item-email"
                                 />
                                 <NumericField
-                                fieldName="saleOff"
-                                label={`${t("form.label.ordersSaleOff")} (%)`}
+                                fieldName="ordersSaleOff"
+                                label={`${'Giảm giá'} (%)`}
                                 min={0}
                                 max={100}
                                 className="form-item-discount"
-                                disabled={isReadonlyForm || loadingSave}
+                                disabled={ordersState === OrdersStates[0].value ? false : true || loadingSave}
                                 onChange={handleChangeSaleOff}
                                 width="100%"
                                 parser={(value) => Utils.formatIntegerNumber(value)}
@@ -330,8 +332,8 @@ const OrdersForm = ({
                             <Col span={12}>
                                 <TextField
                                     fieldName="ordersAddress"
-                                    label={`${t("form.label.ordersAddress")}`}
-                                    disabled={isReadonlyForm || loadingSave}
+                                    label={`${'Địa chỉ'}`}
+                                    disabled={ordersState === OrdersStates[0].value ? false : true || loadingSave}
                                     type="textarea"
                                     style={{ height: 102 }}
                                 />
@@ -341,7 +343,7 @@ const OrdersForm = ({
                 </FieldSet>
             </div>
             <div className="list">
-                <FieldSet title={t("form.fieldSet.productList")} className="custom-fieldset fieldset-list">
+                <FieldSet title={'Danh sách đặt hàng'} className="custom-fieldset fieldset-list">
                     <ul className="orders">
                         {
                             productsList.map(ordersDetail => {
@@ -352,7 +354,7 @@ const OrdersForm = ({
                                         <div className="col col-1">
                                             <div className="quantity-edition">
                                                 <Button
-                                                className={`minus${isReadonlyForm ? ' display-none' : ''}`}
+                                                className={ordersState === OrdersStates[0].value  ?  `minus` : 'display-none'}
                                                 onClick={() => {
                                                     if(ordersDetail.amount <= 1) {
                                                         handleRemoveSelectingItem(ordersDetail.productDto, productsList.length === 1)
@@ -366,7 +368,7 @@ const OrdersForm = ({
                                                 </Button>
                                                 <span className="quantity" style={isReadonlyForm ? { marginRight: 4, marginLeft: 0 } : {}}>{ordersDetail.amount}</span>
                                                 <Button
-                                                className={`plus${isReadonlyForm ? ' display-none' : ''}`}
+                                                className={ordersState === OrdersStates[0].value ? `plus` : 'display-none'}
                                                 onClick={() => handleChangeAmountItem(ordersDetail.productDto, 1)}
                                                 >
                                                     +
@@ -381,7 +383,7 @@ const OrdersForm = ({
                                                 {Utils.formatMoney( ordersDetail.price * ordersDetail.amount)}
                                             </p>
                                             <DeleteOutlined
-                                            className={`delete-btn${isReadonlyForm ? ' display-none' : ''}`}
+                                            className={ordersState === OrdersStates[0].value ? `delete-btn` : 'display-none'}
                                             onClick={() => handleRemoveSelectingItem(ordersDetail.productDto, productsList.length === 1)}
                                             />
                                         </div>
@@ -398,13 +400,13 @@ const OrdersForm = ({
         <div className="bottom">
             <FieldSet className="custom-fieldset none-legend">
                 <div className="calculate-total product">
-                    <div className="title">{t("form.totalProductPrice")}:</div>
+                    <div className="title">{'Tổng tiền'}:</div>
                     <div className="total">
                         {Utils.formatMoney(totalPrice)}
                     </div>
                 </div>
                 <div className="calculate-total discount">
-                    <div className="title">{t("form.saleOff")}{saleOff > 0 ? ` (${saleOff}%)`: ''}:</div>
+                    <div className="title">{'Giảm giá'}{saleOff > 0 ? ` (${saleOff}%)`: ''}:</div>
                     <div className="total">
                         {Utils.formatMoney(discountPrice)}
                     </div>
@@ -416,7 +418,7 @@ const OrdersForm = ({
                     </div>
                 </div>
                 <div className="calculate-total product-vat">
-                    <div className="title">{t("form.totalPayment")}:</div>
+                    <div className="title">{'Tổng tiền sau thuế'}:</div>
                     <div className="total">
                         {Utils.formatMoney(finalPrice)}
                     </div>

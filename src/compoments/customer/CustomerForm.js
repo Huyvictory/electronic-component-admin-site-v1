@@ -69,24 +69,6 @@ class CustomerForm extends BasicForm {
     });
   };
 
-  // validateToConfirmPassword = (rule, value) => {
-  //   const {
-  //     current: { validateFields, isFieldTouched },
-  //   } = this.formRef;
-  //   if (isFieldTouched("confirmPassword")) {
-  //     validateFields(["confirmPassword"], { force: true });
-  //   }
-  //   return Promise.resolve();
-  // };
-  // compareToPassword = (rule, newPassword) => {
-  //   const password = this.getFieldValue("customerPassword");
-  //   if ((password || newPassword) && password !== newPassword) {
-  //     return Promise.reject("Mật khẩu không khớp");
-  //   } else {
-  //     return Promise.resolve();
-  //   }
-  // };
-
   render() {
     const { formId, dataDetail, commonStatus, loadingSave, isEditing } = this.props;
     const { avatar, uploading } = this.state;
@@ -113,14 +95,6 @@ class CustomerForm extends BasicForm {
 			</Row>
 
 			<Row gutter={16}>
-				<Col span={12}>
-					<TextField
-					fieldName="customerUsername"
-					label="Tên tài khoản"
-					required
-					disabled={loadingSave || isEditing}
-					/>
-				</Col>
 				<Col span={12}>
 					<TextField
 					fieldName="customerFullName"
@@ -152,16 +126,6 @@ class CustomerForm extends BasicForm {
               disabled={loadingSave}
             />
           </Col>
-          {/* <Col span={12}>
-            <TextField
-              fieldName="confirmPassword"
-              type="password"
-              label={isEditing ? "Xác nhận mật khẩu mới" : "Xác nhận mật khẩu"}
-              required={!isEditing || this.getFieldValue("password")}
-              validators={[this.compareToPassword]}
-              disabled={loadingSave}
-            />
-          </Col> */}
       </Row>
 			<Row gutter={16}>
         <Col span={12}>

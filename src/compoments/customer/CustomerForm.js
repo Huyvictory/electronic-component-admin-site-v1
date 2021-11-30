@@ -7,7 +7,7 @@ import FieldSet from "../common/elements/FieldSet";
 import DropdownField from "../common/entryForm/DropdownField";
 import CropImageFiled from "../common/entryForm/CropImageFiled";
 import DatePickerField from "../common/entryForm/DatePickerField";
-import { commonLanguages } from "../../constants/masterData";
+import { commonLanguages, commonSex } from "../../constants/masterData";
 import { convertStringToDateTime, convertDateTimeToString } from "../../utils/datetimeHelper";
 import {
   AppConstants,
@@ -38,6 +38,7 @@ class CustomerForm extends BasicForm {
     }
     return {
       ...dataDetail,
+      birthday: convertStringToDateTime(dataDetail.birthday, 'DD/MM/YYYY HH:mm:ss', 'DD/MM/YYYY'),
     }
   }
 
@@ -68,6 +69,16 @@ class CustomerForm extends BasicForm {
       },
     });
   };
+
+  handleSubmit(formValues) {
+    const { onSubmit } = this.props;
+    onSubmit({
+        ...formValues,
+        ...this.otherData,
+        birthday: convertDateTimeToString(formValues.birthday, 'DD/MM/YYYY HH:mm:ss'),
+        isLoyalty: false,
+    })
+  }
 
   render() {
     const { formId, dataDetail, commonStatus, loadingSave, isEditing } = this.props;
@@ -103,6 +114,16 @@ class CustomerForm extends BasicForm {
 					disabled={loadingSave}
 					/>
 				</Col>
+        <Col span={12}>
+            <DatePickerField
+            fieldName="birthday"
+            label="Ngày sinh"
+            width="100%"
+            format={"DD/MM/YYYY"}
+            disabled={loadingSave}
+            placeholder="Chọn ngày sinh"
+            />
+        </Col>
 			</Row>
 			<Row gutter={16}>
           <Col span={12}>
@@ -142,6 +163,15 @@ class CustomerForm extends BasicForm {
 			</Row>
 
 			<Row gutter={16}>
+        <Col span={12}>
+            <DropdownField
+                fieldName="sex"
+                label="Giới tính"
+                required
+                options={commonSex}
+                disabled={loadingSave}
+            />
+        </Col>
         <Col span={12}>
           <DropdownField
             fieldName="status"

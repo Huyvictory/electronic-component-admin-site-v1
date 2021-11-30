@@ -11,12 +11,8 @@
 node_modules
 
 # production
-<<<<<<< HEAD
-build
-=======
 /source/build
 /build
->>>>>>> khoa_dev
 
 # misc
 .DS_Store

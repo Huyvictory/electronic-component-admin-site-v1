@@ -50,12 +50,7 @@ class NewsListPage extends ListBasePage {
         ),
       },
       { title: 'Tiêu đề', dataIndex: "title"},
-      {
-        title: <div>Mô tả</div>,
-        dataIndex: "description",
-        align: "center",
-        width: 120,
-      },
+      
       this.renderStatusColumn(),
       this.renderActionColumn(),
     ];
@@ -143,15 +138,19 @@ class NewsListPage extends ListBasePage {
   prepareCreateData(data) {
     return {
       ...data,
-      categoryId: this.search.categoryId
+      kind: 1,
+      pinTop: 0,
+      status: 0,
     }
   }
 
   prepareUpdateData(data) {
     return {
       ...data,
+      categoryOrdering: 0,
       id: this.dataDetail.id,
-      categoryId: this.search.categoryId
+      status: 1
+      
     }
   }
 

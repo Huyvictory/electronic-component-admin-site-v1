@@ -106,7 +106,6 @@ class NewsForm extends BasicForm {
 				<Col span={12}>
 					<TextField
 					fieldName="title"
-          type="string"
 					label="Tiêu đề"
 					required
 					disabled={loadingSave}
@@ -115,11 +114,28 @@ class NewsForm extends BasicForm {
         <Col span={12}>
           <DropdownField 
           fieldName="categoryId"
+          required
           label="Danh mục tin tức"
           disabled={loadingSave}
           options = {categoryTypes}>
           </DropdownField>
         </Col>
+        <Col span={12}>
+          <DropdownField 
+          fieldName="status"
+          label="Trạng thái"
+          options={commonStatus}
+          disabled={loadingSave}>
+          </DropdownField>
+        </Col>
+        <Col span={12}>
+					<TextField
+					fieldName="content"
+					label="Nội dung"
+					required
+					disabled={loadingSave}
+					/>
+				</Col>
 			</Row>
       <Row gutter={16}>
         <Col span={24}>

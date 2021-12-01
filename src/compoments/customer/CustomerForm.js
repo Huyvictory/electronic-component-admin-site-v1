@@ -7,7 +7,7 @@ import FieldSet from "../common/elements/FieldSet";
 import DropdownField from "../common/entryForm/DropdownField";
 import CropImageFiled from "../common/entryForm/CropImageFiled";
 import DatePickerField from "../common/entryForm/DatePickerField";
-import { commonLanguages } from "../../constants/masterData";
+import { commonLanguages, commonSex } from "../../constants/masterData";
 import { convertStringToDateTime, convertDateTimeToString } from "../../utils/datetimeHelper";
 import {
   AppConstants,
@@ -38,6 +38,7 @@ class CustomerForm extends BasicForm {
     }
     return {
       ...dataDetail,
+      birthday: convertStringToDateTime(dataDetail.birthday, 'DD/MM/YYYY HH:mm:ss', 'DD/MM/YYYY'),
     }
   }
 
@@ -69,23 +70,15 @@ class CustomerForm extends BasicForm {
     });
   };
 
-  // validateToConfirmPassword = (rule, value) => {
-  //   const {
-  //     current: { validateFields, isFieldTouched },
-  //   } = this.formRef;
-  //   if (isFieldTouched("confirmPassword")) {
-  //     validateFields(["confirmPassword"], { force: true });
-  //   }
-  //   return Promise.resolve();
-  // };
-  // compareToPassword = (rule, newPassword) => {
-  //   const password = this.getFieldValue("customerPassword");
-  //   if ((password || newPassword) && password !== newPassword) {
-  //     return Promise.reject("Mật khẩu không khớp");
-  //   } else {
-  //     return Promise.resolve();
-  //   }
-  // };
+  handleSubmit(formValues) {
+    const { onSubmit } = this.props;
+    onSubmit({
+        ...formValues,
+        ...this.otherData,
+        birthday: convertDateTimeToString(formValues.birthday, 'DD/MM/YYYY HH:mm:ss'),
+        isLoyalty: false,
+    })
+  }
 
   render() {
     const { formId, dataDetail, commonStatus, loadingSave, isEditing } = this.props;
@@ -115,20 +108,22 @@ class CustomerForm extends BasicForm {
 			<Row gutter={16}>
 				<Col span={12}>
 					<TextField
-					fieldName="customerUsername"
-					label="Tên tài khoản"
-					required
-					disabled={loadingSave || isEditing}
-					/>
-				</Col>
-				<Col span={12}>
-					<TextField
 					fieldName="customerFullName"
 					label="Họ và tên"
 					required
 					disabled={loadingSave}
 					/>
 				</Col>
+        <Col span={12}>
+            <DatePickerField
+            fieldName="birthday"
+            label="Ngày sinh"
+            width="100%"
+            format={"DD/MM/YYYY"}
+            disabled={loadingSave}
+            placeholder="Chọn ngày sinh"
+            />
+        </Col>
 			</Row>
 			<Row gutter={16}>
           <Col span={12}>
@@ -152,16 +147,6 @@ class CustomerForm extends BasicForm {
               disabled={loadingSave}
             />
           </Col>
-          {/* <Col span={12}>
-            <TextField
-              fieldName="confirmPassword"
-              type="password"
-              label={isEditing ? "Xác nhận mật khẩu mới" : "Xác nhận mật khẩu"}
-              required={!isEditing || this.getFieldValue("password")}
-              validators={[this.compareToPassword]}
-              disabled={loadingSave}
-            />
-          </Col> */}
       </Row>
 			<Row gutter={16}>
         <Col span={12}>
@@ -178,6 +163,15 @@ class CustomerForm extends BasicForm {
 			</Row>
 
 			<Row gutter={16}>
+        <Col span={12}>
+            <DropdownField
+                fieldName="sex"
+                label="Giới tính"
+                required
+                options={commonSex}
+                disabled={loadingSave}
+            />
+        </Col>
         <Col span={12}>
           <DropdownField
             fieldName="status"

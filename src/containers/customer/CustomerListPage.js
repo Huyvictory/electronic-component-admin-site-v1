@@ -45,7 +45,6 @@ class CustomerListPage extends ListBasePage {
           />
         ),
       },
-      { title: 'Tên tài khoản', dataIndex: "customerUsername" },
       { title: 'Họ và tên', dataIndex: "customerFullName" },
       { title: 'Số điện thoại', dataIndex: "customerPhone", width: 120 },
       { title: 'E-mail', dataIndex: "customerEmail", width: "200px" },

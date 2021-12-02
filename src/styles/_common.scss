@@ -483,3 +483,7 @@ body {
         left: -99999px;
     }
 }
+
+.selectable, .clickable {
+    cursor: pointer;
+}

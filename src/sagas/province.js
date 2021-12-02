@@ -4,6 +4,7 @@ import { sendRequest } from '../services/apiService';
 import { actionTypes, reduxUtil } from '../actions/province';
 import apiConfig from '../constants/apiConfig';
 import { handleApiResponse } from '../utils/apiHelper';
+import { ProvinceKinds } from '../constants';
 
 const { defineActionLoading, defineActionSuccess, defineActionFailed } = reduxUtil;
 
@@ -13,6 +14,9 @@ const {
     UPDATE_PROVINCE,
     DELETE_PROVINCE,
     CREATE_PROVINCE,
+    GET_PROVINCE_COMBOBOX_LIST,
+    GET_DISTRICT_COMBOBOX_LIST,
+    GET_COMMUNE_COMBOBOX_LIST,
 } = actionTypes;
 
 
@@ -104,12 +108,74 @@ function* deleteProvince({ payload: { params, onCompleted, onError } }) {
     }
 }
 
+export function* getProvinceComboboxList({ payload: {params} }){
+    const apiParams = apiConfig.province.getProvinceListAutoComplete;
+    try {
+        const result = yield call (sendRequest, apiParams, {
+            kind: ProvinceKinds.province.name
+        });
+        yield put ({
+            type: defineActionSuccess(GET_PROVINCE_COMBOBOX_LIST),
+            provinceComboboxList: result.responseData && {
+                ...result.responseData.data,
+            },
+            
+        })
+    }
+    catch(error) {
+        yield put({ type: defineActionFailed(GET_PROVINCE_COMBOBOX_LIST) });
+    }
+}
+export function* getDistrictComboboxList({ payload: {params} }){
+    const apiParams = apiConfig.province.getProvinceListAutoComplete;
+    const searchParams = {};
+    if(params && params.parentId){
+        searchParams.parentId = params.parentId
+    }
+    try {
+        const result = yield call (sendRequest, apiParams, searchParams);
+        yield put ({
+            type: defineActionSuccess(GET_DISTRICT_COMBOBOX_LIST),
+            districtComboboxList: result.responseData && {
+                ...result.responseData.data,
+            },
+        })
+    }
+    catch(error) {
+        yield put({ type: defineActionFailed(GET_DISTRICT_COMBOBOX_LIST) });
+    }
+}
+
+export function* getCommuneComboboxList({ payload: {params} }){
+    const apiParams = apiConfig.province.getProvinceListAutoComplete;
+    const searchParams = {};
+    if(params && params.parentId){
+        searchParams.parentId = params.parentId
+    }
+    try {
+        const result = yield call (sendRequest, apiParams, searchParams);
+        yield put ({
+            type: defineActionSuccess(GET_COMMUNE_COMBOBOX_LIST),
+            communeComboboxList: result.responseData && {
+                ...result.responseData.data,
+            },
+            
+        })
+    }
+    catch(error) {
+        yield put({ type: defineActionFailed(GET_COMMUNE_COMBOBOX_LIST) });
+    }
+}
+
 const sagas = [
     takeLatest(defineActionLoading(GET_PROVINCE_LIST),getProvinceList),
     takeLatest(GET_PROVINCE_BY_ID, getProvinceById),
     takeLatest(UPDATE_PROVINCE, updateProvince),
     takeLatest(CREATE_PROVINCE, createProvince),
     takeLatest(defineActionLoading(DELETE_PROVINCE), deleteProvince),
+    takeLatest(GET_PROVINCE_COMBOBOX_LIST, getProvinceComboboxList),
+    takeLatest(GET_DISTRICT_COMBOBOX_LIST, getDistrictComboboxList),
+    takeLatest(GET_COMMUNE_COMBOBOX_LIST, getCommuneComboboxList),
 ]
 
 export default sagas;

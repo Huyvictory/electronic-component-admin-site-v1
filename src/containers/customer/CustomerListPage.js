@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Avatar, Tag, Button } from "antd";
-import { UserOutlined, PlusOutlined } from "@ant-design/icons";
+import { Avatar, Tag, Button, Divider } from "antd";
+import { UserOutlined, PlusOutlined, EditOutlined, DeleteOutlined, LockOutlined, CheckOutlined, HomeOutlined } from "@ant-design/icons";
 import qs from 'query-string';
 
 import ListBasePage from "../ListBasePage";
@@ -12,7 +12,7 @@ import BasicModal from "../../compoments/common/modal/BasicModal";
 import { actions } from "../../actions";
 import { FieldTypes } from "../../constants/formConfig";
 import { convertUtcToLocalTime } from "../../utils/datetimeHelper";
-import { AppConstants } from "../../constants";
+import { AppConstants, STATUS_ACTIVE } from "../../constants";
 import { sitePathConfig } from "../../constants/sitePathConfig";
 
 const commonStatus = [
@@ -90,13 +90,6 @@ class CustomerListPage extends ListBasePage {
         seachPlaceholder: 'Số điện thoại',
         initialValue: this.search.phone,
       },
-      // {
-      //   key: "status",
-      //   seachPlaceholder: t('searchPlaceHolder.status'),
-      //   fieldType: FieldTypes.SELECT,
-      //   options: commonStatus,
-      //   initialValue: this.search.status,
-      // },
     ];
   }
 
@@ -115,6 +108,72 @@ class CustomerListPage extends ListBasePage {
         }
     }
   }
+
+  renderActionColumn() {
+    return {
+        title: 'Hành động',
+        width: '100px',
+        align: 'center',
+        render: (dataRow) => {
+            const actionColumns = [];
+
+            if(this.actionColumns.isAddress)
+            {
+              actionColumns.push(
+                (
+                    <Button type="link" onClick={() => this.handleRouting(dataRow.id, dataRow.customerFullName, dataRow.customerPhone) } className="no-padding">
+                        <HomeOutlined/>
+                    </Button>
+                )
+            )
+            }
+            if(this.actionColumns.isEdit) {
+                actionColumns.push(this.renderEditButton((
+                    <Button type="link" onClick={() => this.getDetail(dataRow.id)} className="no-padding">
+                        <EditOutlined/>
+                    </Button>
+                )))
+            }
+            if(this.actionColumns.isChangeStatus) {
+                actionColumns.push(
+                    <Button type="link" onClick={() => this.showChangeStatusConfirm(dataRow) } className="no-padding">
+                        {
+                            dataRow.status === STATUS_ACTIVE
+                            ?
+                            <LockOutlined/>
+                            :
+                            <CheckOutlined/>
+                        }
+                    </Button>
+                )
+            }
+            if(this.actionColumns.isDelete) {
+                actionColumns.push(
+                    this.renderDeleteButton((
+                        <Button type="link" onClick={() => this.showDeleteConfirm(dataRow.id) } className="no-padding">
+                            <DeleteOutlined/>
+                        </Button>
+                    ))
+                )
+            }
+            const actionColumnsWithDivider = [];
+            actionColumns.forEach((action, index) => {
+                actionColumnsWithDivider.push(action);
+                if(index !== (actionColumns.length -1))
+                {
+                    actionColumnsWithDivider.push(<Divider type="vertical" />);
+                }
+            })
+            return (
+                <span>
+                    {
+                        actionColumnsWithDivider.map((action, index) => <span key={index}>{action}</span>)
+                    }
+                </span>
+            )
+        }
+    }  
+}
 
   render() {
     const {
@@ -135,7 +194,7 @@ class CustomerListPage extends ListBasePage {
               type="primary"
               onClick={() => this.onShowModifiedModal(false)}
             >
-              <PlusOutlined /> Thêm mới
+              <PlusOutlined />Thêm mới
             </Button>
             ))
           }
@@ -147,14 +206,6 @@ class CustomerListPage extends ListBasePage {
           dataSource={customer}
           pagination={this.pagination}
           onChange={this.handleTableChange}
-          rowClassName={(record, rowIndex) => 'clickable'}
-          onRow={(record, rowIndex) => {
-                return {
-                  onClick: event => {
-                    this.handleRouting(record.id, record.customerFullName, record.customerPhone)
-                  }
-                };
-              }}
         />
         <BasicModal
           visible={isShowModifiedModal}

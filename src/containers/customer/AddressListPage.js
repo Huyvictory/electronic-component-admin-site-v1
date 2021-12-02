@@ -40,7 +40,7 @@ class AddressListPage extends ListBasePage {
                 path: `${sitePathConfig.customer.path}${this.handleRoutingParent('parentSearch')}`,
             },
             {
-                name: 'Hiện tại'
+                name: 'Địa chỉ'
             },
         ];
         this.columns = [
@@ -108,7 +108,6 @@ class AddressListPage extends ListBasePage {
     }
 
     getSearchFields() {
-        const { t } = this.props;
         return [
         {
             key: "name",
@@ -158,7 +157,6 @@ class AddressListPage extends ListBasePage {
         const {
             dataList,
             loading,
-            t,
             provinceComboboxList,
             districtComboboxList,
             communeComboboxList,
@@ -173,16 +171,16 @@ class AddressListPage extends ListBasePage {
         <div>
             { this.renderSearchForm() }
             <div className="action-bar">
-            {
-                this.renderCreateNewButton((
-                <Button
-                type="primary"
-                onClick={() => this.onShowModifiedModal(false)}
-                >
-                <PlusOutlined /> {'Thêm mới'}
-                </Button>
-                ))
-            }
+                {
+                    this.renderCreateNewButton((
+                    <Button
+                    type="primary"
+                    onClick={() => this.onShowModifiedModal(false)}
+                    >
+                    <PlusOutlined />Thêm mới
+                    </Button>
+                    ))
+                }
             </div>
             <BaseTable
             loading={loading}
@@ -206,7 +204,6 @@ class AddressListPage extends ListBasePage {
                 loadingSave={isShowModifiedLoading}
                 customerPhone={this.parentPhone}
                 customerName={this.parentName}
-                t={t}
                 provinceComboboxList={provinceComboboxList?.data || []}
                 districtComboboxList={districtComboboxList?.data || []}
                 communeComboboxList={communeComboboxList?.data || []}

@@ -231,6 +231,33 @@ const apiConfig = {
             headers: baseHeader
         }
     },
+    address: {
+        getList: {
+            path:  '/v1/addresses/list',
+            method: 'GET',
+            headers: baseHeader,
+        },
+        getById: {
+            path:  '/v1/addresses/get',
+            method: 'GET',
+            headers: baseHeader,
+        },
+        create: {
+            path:  '/v1/addresses/create',
+            method: 'POST',
+            headers: baseHeader,
+        },
+        update: {
+            path:  '/v1/addresses/update',
+            method: 'PUT',
+            headers: baseHeader,
+        },
+        delete: {
+            path:  '/v1/addresses/delete',
+            method: 'DELETE',
+            headers: baseHeader,
+        },
+    },
     province: {
         getProvinceList: {
             path: '/v1/province/list',

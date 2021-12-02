@@ -7,6 +7,7 @@ import settings from './setting';
 import customer from './customer';
 import category from './category';
 import product from './product';
+import address from './address';
 import province from './province';
 import news from './news';
 import orders from './orders';
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
     customer: customer.reducer,
     category: category.reducer,
     product: product.reducer,
+    address: address.reducer,
     province: province.reducer,
     news: news.reducer,
     orders: orders.reducer

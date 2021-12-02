@@ -114,6 +114,19 @@ export const sitePathConfig = {
             apiConfig.product.deleteProduct.path,
         ]
     },
+    address: {
+        path: '/address',
+        permissions: [
+            apiConfig.address.getList.path,
+            apiConfig.address.getById.path,
+            apiConfig.address.create.path,
+            apiConfig.address.update.path,
+            apiConfig.address.delete.path,
+        ],
+    },
+    wrapperCustomerPreferences: {
+        path: '/wrapper-customer-preferences',
+    },
     province: {
         path: '/province',
         permissions: [

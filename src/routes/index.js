@@ -25,6 +25,7 @@ import ExportCategoryListPage from '../containers/category/ExportCategoryListPag
 import ProductCategoryListPage from '../containers/category/ProductCategoryListPage';
 import ProductListPage from '../containers/product/ProductListPage';
 import ProductListPageChildren from '../containers/product/ProductListPageChildren';
+import WrapperCustomerPreferences from '../containers/customer/WrapperCustomerPreferences';
 import ProvinceListPage from '../containers/province/ProvinceListPage';
 import NewsListPage from '../containers/news/NewsListPage';
 import OrdersListPage from '../containers/orders/OrdersListPage';
@@ -43,6 +44,7 @@ const RootRoute = () => {
         exportcategory,
         productCategory,
         product,
+        wrapperCustomerPreferences,
         province,
         news,
         orders
@@ -73,6 +75,7 @@ const RootRoute = () => {
                 <PrivateRoute exact path = {product.path} component={ProductListPage}></PrivateRoute>
                 <PrivateRoute exact path = {product.path + "/:id"} component={ProductListPage}></PrivateRoute>
                 <PrivateRoute exact path = {product.childrenKeys[0]} component={ProductListPageChildren}></PrivateRoute>
+                <PrivateRoute path={wrapperCustomerPreferences.path} component={WrapperCustomerPreferences}/>
                 <PrivateRoute exact path = {province.path} component={ProvinceListPage}></PrivateRoute>
                 <PrivateRoute exact path = {news.path} component={NewsListPage}></PrivateRoute>
                 <PrivateRoute exact path = {orders.path} component={OrdersListPage}></PrivateRoute>

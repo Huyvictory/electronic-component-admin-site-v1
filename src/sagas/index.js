@@ -7,6 +7,7 @@ import setting from './setting';
 import customer from './customer';
 import category from './category';
 import product from './product';
+import address from './address';
 import province from './province';
 import news from './news';
 import orders from './orders';
@@ -20,6 +21,7 @@ const sagas = [
     ...customer,
     ...category,
     ...product,
+    ...address,
     ...province,
     ...news,
     ...orders

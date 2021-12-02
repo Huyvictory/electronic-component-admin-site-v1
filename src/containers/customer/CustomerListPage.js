@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Avatar, Tag, Button } from "antd";
 import { UserOutlined, PlusOutlined } from "@ant-design/icons";
+import qs from 'query-string';
 
 import ListBasePage from "../ListBasePage";
 import CustomerForm from "../../compoments/customer/CustomerForm";
@@ -12,6 +13,7 @@ import { actions } from "../../actions";
 import { FieldTypes } from "../../constants/formConfig";
 import { convertUtcToLocalTime } from "../../utils/datetimeHelper";
 import { AppConstants } from "../../constants";
+import { sitePathConfig } from "../../constants/sitePathConfig";
 
 const commonStatus = [
   { value: 1, label: 'Kích hoạt', color: 'green' },
@@ -62,8 +64,19 @@ class CustomerListPage extends ListBasePage {
       isEdit: true,
       isDelete: true,
       isChangeStatus: false,
+      isAddress: true,
     };
   }
+
+  handleRouting(parentId, parentName, parentPhone) {
+    const { location: { search }, history } = this.props;
+    const queryString = qs.parse(search);
+    const result = {};
+    Object.keys(queryString).map(q => {
+        result[`parentSearch${q}`] = queryString[q];
+    })
+    history.push(`${sitePathConfig.wrapperCustomerPreferences.path}?${qs.stringify({...result, parentId, parentName, parentPhone})}`);
+}
 
   getSearchFields() {
     return [
@@ -134,6 +147,14 @@ class CustomerListPage extends ListBasePage {
           dataSource={customer}
           pagination={this.pagination}
           onChange={this.handleTableChange}
+          rowClassName={(record, rowIndex) => 'clickable'}
+          onRow={(record, rowIndex) => {
+                return {
+                  onClick: event => {
+                    this.handleRouting(record.id, record.customerFullName, record.customerPhone)
+                  }
+                };
+              }}
         />
         <BasicModal
           visible={isShowModifiedModal}

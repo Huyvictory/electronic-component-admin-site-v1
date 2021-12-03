@@ -67,5 +67,6 @@ Thumbs.db
 *.mov
 *.wmv
 
-
+# Firebase deployment log
+.firebase/
 

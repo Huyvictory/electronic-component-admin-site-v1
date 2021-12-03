@@ -20,7 +20,8 @@
     "prebuild:staging": "rm -rf build",
     "build:staging": "env-cmd -f ./env/.staging react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy:dev": "npm run build:dev && firebase deploy"
   },
   "eslintConfig": {
     "extends": "react-app"

@@ -34,6 +34,39 @@ class OrdersListPage extends ListBasePage {
     this.categoryId = undefined;
     this.search = this.initialSearch();
     this.dataDetail = {};
+    this.state = {
+        isShowModifiedModal: false,
+        isShowModifiedLoading: false,
+        disableButton: null,
+    }
+    const { location: { search } } = props;
+    const {
+        parentName,
+        parentId,
+    } = qs.parse(search);
+    this.parentId = parentId;
+    this.parentName = parentName;
+
+    console.log(parentName);
+
+    // If list customer's orders
+    if(parentId) {
+        this.breadcrumbs = [
+            {
+                name: `Khách hàng (${parentName})`,
+                path: `${sitePathConfig.customer.path}${this.handleRoutingParent('parentSearch')}`,
+            },
+            {
+                name: 'Đơn hàng'
+            },
+        ];
+    }
+    // List all orders
+    else {
+        this.breadcrumbs = [
+            { name: 'Đơn hàng' }
+        ];
+    }
     this.columns = [
       this.renderIdColumn(),
       { title: 'Mã đơn hàng', dataIndex: "ordersCode", width: 115, render: (ordersCode, dataRow) => {
@@ -368,7 +401,7 @@ class OrdersListPage extends ListBasePage {
   getList() {
     const { getDataList } = this.props;
         const page = this.pagination.current ? this.pagination.current - 1 : 0;
-        const params = { page, size: this.pagination.pageSize, search: this.search};
+        const params = { page, size: this.pagination.pageSize, search: this.search, customerId: this.parentId};
         getDataList({ params });
   }
 

@@ -19,6 +19,11 @@ const {
 function* getOrdersList({ payload: { params } }) {
     const apiParams = apiConfig.orders.getOrdersList;
     const searchParams = { page: params.page, size: params.size };
+
+    if(params.customerId) {
+        searchParams.customerId = params.customerId
+    }
+    
     if(params.search) {
         if(params.search.code) {
             searchParams.code = params.search.code

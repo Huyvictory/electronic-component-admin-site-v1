@@ -8,6 +8,7 @@ import ListBasePage from "../ListBasePage";
 import CustomerForm from "../../compoments/customer/CustomerForm";
 import BaseTable from "../../compoments/common/table/BaseTable";
 import BasicModal from "../../compoments/common/modal/BasicModal";
+import ElementWithPermission from '../../compoments/common/elements/ElementWithPermission';
 
 import { actions } from "../../actions";
 import { FieldTypes } from "../../constants/formConfig";
@@ -109,6 +110,17 @@ class CustomerListPage extends ListBasePage {
     }
   }
 
+  renderHomeButton(children){
+    const { location : { pathname }} = this.props;
+    const requiredPermissions = [];
+    
+    requiredPermissions.push(sitePathConfig.orders.permissions[0])
+    requiredPermissions.push(sitePathConfig.address.permissions[0])
+    return (<ElementWithPermission permissions={requiredPermissions}>
+        {children}
+    </ElementWithPermission>)
+}
+
   renderActionColumn() {
     return {
         title: 'Hành động',
@@ -119,13 +131,11 @@ class CustomerListPage extends ListBasePage {
 
             if(this.actionColumns.isAddress)
             {
-              actionColumns.push(
-                (
-                    <Button type="link" onClick={() => this.handleRouting(dataRow.id, dataRow.customerFullName, dataRow.customerPhone) } className="no-padding">
+              actionColumns.push(this.renderHomeButton((
+                  <Button type="link" onClick={() => this.handleRouting(dataRow.id, dataRow.customerFullName, dataRow.customerPhone) } className="no-padding">
                         <HomeOutlined/>
                     </Button>
-                )
-            )
+                )))
             }
             if(this.actionColumns.isEdit) {
                 actionColumns.push(this.renderEditButton((

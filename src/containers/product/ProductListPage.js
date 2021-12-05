@@ -142,23 +142,23 @@ class ProductListPage extends ListBasePage {
     history.push(`${sitePathConfig.product.path}-child?${qs.stringify({...result, parentId, parentName, parentSearchcategoryId})}`);
 }
 
-componentWillReceiveProps(nextProps) {
-  if(nextProps.location.search !== this.props.location.search) {
-      const { location: { search }, t } = nextProps;
-      const {categoryId } = qs.parse(search);
-      this.categoryId = categoryId;
-      this.pagination = { pageSize: 100 };
-      this.objectName =  "Sản phẩm";
-      this.breadcrumbs = [
-          { name: "Sản phẩm"}
-      ];
-      const { changeBreadcrumb } = nextProps;
-      if(this.breadcrumbs.length > 0) {
-          changeBreadcrumb(this.breadcrumbs);
-      }
-      this.loadDataTable(nextProps);
-  }
-}
+// componentWillReceiveProps(nextProps) {
+//   if(nextProps.location.search !== this.props.location.search) {
+//       const { location: { search }} = nextProps;
+//       const {categoryId } = qs.parse(search);
+//       this.categoryId = categoryId;
+//       this.pagination = { pageSize: 100 };
+//       this.objectName =  "Sản phẩm";
+//       this.breadcrumbs = [
+//           { name: "Sản phẩm"}
+//       ];
+//       const { changeBreadcrumb } = nextProps;
+//       if(this.breadcrumbs.length > 0) {
+//           changeBreadcrumb(this.breadcrumbs);
+//       }
+//       this.loadDataTable(nextProps);
+//   }
+// }
 
   getList() {
     const { getDataList } = this.props;

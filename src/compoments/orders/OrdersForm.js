@@ -349,7 +349,7 @@ const OrdersForm = ({
                             productsList.map(ordersDetail => {
                                 const parentName = ordersDetail.productDto.parentName
                                 const productName = parentName ? parentName + " (" + ordersDetail.productDto.productName + ")" : ordersDetail.productDto.productName
-                                return (<li key={ordersDetail.id} className={`item`} style={{ backgroundColor: ordersDetail.productDto.labelColor, paddingRight: isReadonlyForm ? 8 : 32 }}>
+                                return (<li key={ordersDetail.id} className={`item`} style={{ backgroundColor: ordersDetail.productDto.labelColor, paddingRight: isReadonlyForm ? 32 : 32 }}>
                                     <div className="item-content">
                                         <div className="col col-1">
                                             <div className="quantity-edition">

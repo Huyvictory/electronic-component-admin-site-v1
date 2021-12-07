@@ -80,12 +80,12 @@ class OrdersListPage extends ListBasePage {
                 render: (createdDate) => <div style={{ paddingRight: 20, whiteSpace: 'nowrap' }}>{convertUtcToTimezone(createdDate, Utils.getSettingsDateFormat("date-format-product"))}</div>,
       },
       {
-        title: "Họ và tên khách hàng",
-        dataIndex: ['customerDto', 'customerFullName'],
-        render: (customerFullName, dataRow) => {
+        title: "Người nhận",
+        dataIndex: 'receiverName',
+        render: (receiverName, dataRow) => {
             return (
                 <div>
-                    {customerFullName}
+                    {receiverName}
                 </div>
             )
         }
@@ -94,7 +94,7 @@ class OrdersListPage extends ListBasePage {
         title: <div className="tb-al-r">Tổng tiền</div>,
         dataIndex: 'ordersTotalMoney',
         align: 'right',
-        width: 100,
+        width: 200,
         render: (ordersTotalMoney, dataRow) => {
             return (
                 <div className="tb-al-r force-one-line">

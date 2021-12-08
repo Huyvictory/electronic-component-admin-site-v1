@@ -146,6 +146,17 @@ class ProductForm extends BasicForm {
       </Row>
       <Row gutter={16}>
         <Col span={24}>
+          <TextField
+          label="Mô tả ngắn"
+          fieldName="shortDescription"
+          disabled={loadingSave}
+          type="textarea"
+          style={{ height: 102 }}>
+          </TextField>
+        </Col>
+      </Row>
+      <Row gutter={16}>
+        <Col span={24}>
           <RichTextField
           label="Mô tả sản phẩm"
           fieldName="description"

@@ -292,7 +292,7 @@ const OrdersForm = ({
                             </Col>
                             <Col span={12}>
                                 <AutoCompleteField
-                                    fieldName="receiverPhone"
+                                    fieldName="customerPhone"
                                     label={'Số điện thoại'}
                                     className="form-item-phone"
                                     required

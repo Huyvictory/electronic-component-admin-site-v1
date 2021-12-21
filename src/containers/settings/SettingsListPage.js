@@ -1,7 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Button } from "antd";
-import { PlusOutlined } from "@ant-design/icons";
+import { Button, Avatar } from "antd";
+import { PlusOutlined, SettingOutlined } from "@ant-design/icons";
+import { AppConstants } from "../../constants";
 
 import ListBasePage from "../ListBasePage";
 import SettingForm from "../../compoments/settings/SettingForm";
@@ -26,7 +27,14 @@ class SettingsListPage extends ListBasePage {
         title: <div style={{paddingRight: "2vw"}}>Giá trị</div>,
         dataIndex: "value",
         render: (value) => (
-          <div style={{paddingRight: "2vw"}}>{value}</div>
+            <div style={{paddingRight: "2vw"}}>{value.includes('/AVATAR/') ? <Avatar
+            style={{width: "70px", height: "70px", 'margin-left': '0'}}
+            className="table-avatar"
+            size="large"
+            icon={<SettingOutlined style={{ fontSize: '54px'}} />}
+            src={value ? `${AppConstants.contentRootUrl}${value}` : null}
+          /> : value}
+            </div>
         )
       },
       { title: "Mô tả", dataIndex: "description"},
@@ -57,8 +65,8 @@ class SettingsListPage extends ListBasePage {
             description,  
             name,
             settingValue: value,
-            settingGroup: group,
-            settingKey: key,
+            settingGroup: "Store Info::0",
+            settingKey: name,
             id: this.dataDetail.id
         }
     }
@@ -68,6 +76,7 @@ class SettingsListPage extends ListBasePage {
     const {
       dataList,
       loading,
+      uploadFile,
     } = this.props;
     const { isShowModifiedModal, isShowModifiedLoading } = this.state;
     const settings = dataList.data || [];
@@ -97,6 +106,7 @@ class SettingsListPage extends ListBasePage {
           <SettingForm
             isEditing={this.isEditing}
             dataDetail={this.isEditing ? this.dataDetail : {}}
+            uploadFile={uploadFile}
             loadingSave={isShowModifiedLoading}
           />
         </BasicModal>
@@ -116,6 +126,7 @@ const mapDispatchToProps = (dispatch) => ({
   createData: (payload) => dispatch(actions.createSetting(payload)),
   updateData: (payload) => dispatch(actions.updateSetting(payload)),
   deleteData: (payload) => dispatch(actions.deleteSetting(payload)),
+  uploadFile: (payload) => dispatch(actions.uploadFile(payload)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SettingsListPage);

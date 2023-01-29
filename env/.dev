@@ -1,2 +1,2 @@
-REACT_APP_API = https://electronic-component.herokuapp.com/
+REACT_APP_API = http://localhost:8080/
 GENERATE_SOURCEMAP=true

@@ -171,7 +171,7 @@ class MasterLayout extends Component {
                                 
                             </div>
                             <Footer className="app-footer">
-                            CopyRight © 2021, Group 9 All Rights Reserved
+                            CopyRight © 2023, Capstone Project
                             </Footer>
                         </Content>
                     </Layout>
